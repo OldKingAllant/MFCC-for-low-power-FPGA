@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="filterbank_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="filterbank_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000000 us"></ZoomStartTime>
+      <ZoomEndTime time="15.740001 us"></ZoomEndTime>
+      <Cursor1Time time="1.000000 us"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="186"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="11" />
+   <wvobject fp_name="/filterbank_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/sample_valid" type="logic">
+      <obj_property name="ElementShortName">sample_valid</obj_property>
+      <obj_property name="ObjectShortName">sample_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/sample" type="array">
+      <obj_property name="ElementShortName">sample[63:0]</obj_property>
+      <obj_property name="ObjectShortName">sample[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/end_of_frame" type="logic">
+      <obj_property name="ElementShortName">end_of_frame</obj_property>
+      <obj_property name="ObjectShortName">end_of_frame</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/accepts_samples" type="logic">
+      <obj_property name="ElementShortName">accepts_samples</obj_property>
+      <obj_property name="ObjectShortName">accepts_samples</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/coefficients" type="array">
+      <obj_property name="ElementShortName">coefficients[255:0]</obj_property>
+      <obj_property name="ObjectShortName">coefficients[255:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/valid" type="logic">
+      <obj_property name="ElementShortName">valid</obj_property>
+      <obj_property name="ObjectShortName">valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/coeff_1" type="array">
+      <obj_property name="ElementShortName">coeff_1[63:0]</obj_property>
+      <obj_property name="ObjectShortName">coeff_1[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/coeff_2" type="array">
+      <obj_property name="ElementShortName">coeff_2[63:0]</obj_property>
+      <obj_property name="ObjectShortName">coeff_2[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/coeff_3" type="array">
+      <obj_property name="ElementShortName">coeff_3[63:0]</obj_property>
+      <obj_property name="ObjectShortName">coeff_3[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/filterbank_tb/coeff_4" type="array">
+      <obj_property name="ElementShortName">coeff_4[63:0]</obj_property>
+      <obj_property name="ObjectShortName">coeff_4[63:0]</obj_property>
+   </wvobject>
+</wave_config>

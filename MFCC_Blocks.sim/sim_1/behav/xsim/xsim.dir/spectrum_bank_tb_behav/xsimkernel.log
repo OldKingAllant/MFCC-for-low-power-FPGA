@@ -1,0 +1,7 @@
+Running: xsim.dir/spectrum_bank_tb_behav/xsimk.exe -simmode gui -wdb spectrum_bank_tb_behav.wdb -simrunnum 0 -socket 64529
+Design successfully loaded
+Design Loading Memory Usage: 33416 KB (Peak: 33416 KB)
+Design Loading CPU Usage: 62 ms
+Simulation completed
+Simulation Memory Usage: 38640 KB (Peak: 38640 KB)
+Simulation CPU Usage: 7592 ms
