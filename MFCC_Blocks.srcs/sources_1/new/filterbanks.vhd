@@ -46,7 +46,7 @@ entity filterbanks is
         accepts_samples : out std_logic;
         coefficients : out std_logic_vector(((sample_size * 2) * nmult) - 1 downto 0); --packed nmult coefficients
         valid : out std_logic;
-        receiver_ready : in std_logic
+        stall : in std_logic
     );
 end filterbanks;
 
@@ -136,6 +136,7 @@ architecture Behavioral of filterbanks is
     
     type COEFF_TYPE is array(0 to numfilters - 1) of unsigned(VALUE_SIZE - 1 downto 0);
     type SPECTRAL_SAMPLES is array(0 to NFFT_BINS - 1) of unsigned(VALUE_SIZE - 1 downto 0);
+    type TEMP_COEFF_TY is array(0 to nmult - 1) of unsigned(VALUE_SIZE - 1 downto 0);
     
     signal coeffs : COEFF_TYPE := (others => (others => '0'));       --coefficients for each filter
     signal samples : SPECTRAL_SAMPLES;--ringbuffer of power spectral data
@@ -156,21 +157,24 @@ begin
         variable processed_sample : unsigned(VALUE_SIZE - 1 downto 0);
         variable has_sample : std_logic;
         variable diff : integer;
+        variable output_coeff_temp : std_logic_vector(VALUE_SIZE - 1 downto 0);
+        variable temp_coeffs : TEMP_COEFF_TY;
     begin
         if rising_edge(clk) then
+            temp_coeffs := (others => (others => '0'));
             has_sample := '0';
             valid <= '0';
             next_write_pos := write_pos + 1;
             safety_buffer_pos := write_pos + 2;
             diff := read_pos - write_pos;
             
-            if((read_pos > write_pos and diff <= 4) or receiver_ready='0') then
+            if(read_pos > write_pos and diff <= 4) then
                 accepts_samples <= '0';
             else
                 accepts_samples <= '1';
             end if;
             
-            if(sample_valid='1') then                         --there is data on input
+            if(sample_valid='1' and stall='0') then           --there is data on input
                 if(not (next_write_pos = read_pos)) then      --check if there is no buffer overrun
                     samples(write_pos) <= unsigned(sample);
                 end if;
@@ -196,13 +200,14 @@ begin
             end if;
             
             
-            if(((not (read_pos = write_pos)) or has_sample = '1') and receiver_ready='1') then
+            if(((not (read_pos = write_pos)) or has_sample = '1') and stall='0') then
                 --multiply and accumulate for filter
                 --between curr_filter_base and 
                 --curr_filter_base + nmult
                 for filter in 0 to nmult - 1 loop
                     mult_result := processed_sample * THE_BANK(curr_filter_base + filter)(curr_sample_cnt);
-                    coeffs(curr_filter_base + filter) <= coeffs(curr_filter_base + filter) + mult_result(VALUE_SIZE - 1 downto 0);
+                    temp_coeffs(filter) := coeffs(curr_filter_base + filter) + mult_result(VALUE_SIZE - 1 downto 0);
+                    coeffs(curr_filter_base + filter) <= temp_coeffs(filter);
                 end loop;
                 
                 if(curr_sample_cnt + 1 >= NFFT_BINS) then
@@ -215,11 +220,15 @@ begin
                         packed_coeff_position := coeff_index * VALUE_SIZE;
                         --check if coefficient for filter is at least 'one'
                         --apply mel-flooring if not
-                        if(coeffs(curr_filter_base + coeff_index) < ONE) then
-                            coefficients(packed_coeff_position + VALUE_SIZE - 1 downto packed_coeff_position) <= std_logic_vector(to_unsigned(ONE, VALUE_SIZE));
+                        if(temp_coeffs(coeff_index) < ONE) then
+                            output_coeff_temp := std_logic_vector(to_unsigned(ONE, VALUE_SIZE));
                         else
-                            coefficients(packed_coeff_position + VALUE_SIZE - 1 downto packed_coeff_position) <= std_logic_vector(coeffs(curr_filter_base + coeff_index));
+                            output_coeff_temp := std_logic_vector(temp_coeffs(coeff_index));
                         end if;
+                        
+                        --drop precision bits that were doubled by multiplication
+                        output_coeff_temp := std_logic_vector(shift_right(unsigned(output_coeff_temp), precision));
+                        coefficients(packed_coeff_position + VALUE_SIZE - 1 downto packed_coeff_position) <= output_coeff_temp;
                         valid <= '1';
                     end loop;
                 end if;

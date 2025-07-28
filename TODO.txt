@@ -1,0 +1,12 @@
+Implement logarithm for coefficients
+
+log_coeff[i] = log10(coeff[i])
+
+Implement log10 using log2:
+log10(x) = log2(x) / log2(10)
+
+log2(10) is a constant so no problem with that
+
+log2(x):
+- Integer part computed by taking the index of the highest bit
+- Fractional part needs lookup table

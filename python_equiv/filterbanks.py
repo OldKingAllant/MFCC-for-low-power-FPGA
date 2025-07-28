@@ -59,10 +59,10 @@ for i in range(len(fbank)):
     if coeffs[i] < 1.0:
         coeffs[i] = 1.0
 
+coeffs = [math.log10(coeff / 2**16) for coeff in coeffs]
+
 for coeff in coeffs:
-    coeff = int(coeff / 2**16)
-    #coeff /= 2**8
-    print(f'{coeff:x}')
+    print(f'{coeff}')
 
 x_axis = [i for i in range(len(coeffs))]
 

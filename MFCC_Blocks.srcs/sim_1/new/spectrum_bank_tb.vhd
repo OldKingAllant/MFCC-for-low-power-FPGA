@@ -59,10 +59,18 @@ architecture Behavioral of spectrum_bank_tb is
     
     signal stall_fft : std_logic;
     signal stall_pow : std_logic;
+    signal stall_filt : std_logic;
+    
+    signal log_input_valid : std_logic;
+    signal log_input_coeffs : std_logic_vector((64 * 4) - 1 downto 0);
+    signal log_output_valid : std_logic;
+    signal log_output_value : std_logic_vector(64 - 1 downto 0);
+    signal log_request_stall : std_logic;
 begin
     fbank_stall_req <= '1' when fbank_accepts_samples='0' else '0';
-    stall_fft <= '1' when spectrum_stall_req='1' or fbank_stall_req='1' else '0';
-    stall_pow <= '1' when fft_stall_req='1' or fbank_stall_req='1' else '0';
+    stall_fft <= '1' when spectrum_stall_req='1' or fbank_stall_req='1' or log_request_stall='1' else '0';
+    stall_pow <= '1' when fbank_stall_req='1' or log_request_stall='1' else '0';
+    stall_filt <= '1' when log_request_stall='1' else '0';
     
     fft : entity work.fft(Behavioral) port map(
         clk => clk,
@@ -112,7 +120,25 @@ begin
         accepts_samples => fbank_accepts_samples,
         coefficients => coefficients,
         valid => valid,
-        receiver_ready => '1'
+        stall => stall_filt
+    );
+    
+    log_comp : entity work.log_compute(Behavioral)
+    generic map(
+        sample_size => 64,
+        precision => 8,
+        num_coeffs => 4,
+        total_coeffs => 16,
+        buf_size => 20
+    )
+    port map(
+        clk => clk,
+        input_valid => valid,
+        input_coeffs => coefficients,
+        output_valid => log_output_valid,
+        output_value => log_output_value,
+        stall => '0',
+        request_stall => log_request_stall
     );
     
     wave_gen : entity work.complex_signal_generator(Behavioral) 
