@@ -1,12 +1,21 @@
-Implement logarithm for coefficients
+DCT 
 
-log_coeff[i] = log10(coeff[i])
+N = number of filters
+n = unsigned range [1, N]
 
-Implement log10 using log2:
-log10(x) = log2(x) / log2(10)
+weights = [N][N] (number of cepstra = num of filters)
 
-log2(10) is a constant so no problem with that
+for each row:
+row[i] = cos(PI * (i + 1 - 0.5) * i / N)
 
-log2(x):
-- Integer part computed by taking the index of the highest bit
-- Fractional part needs lookup table
+for filter in numfilters
+  for cepstra in cepstras
+	dot_result[i] += coeffs[filter] * weights[cepstra][filter]
+
+dct[i] = sqrt(2/N) * dot_result[i]
+
+which is
+sqrt(2/N) * (coeffs[0] * weights[0][0] + coeffs[0] * weights[1][0] + ...)
+
+Property of multiplication:
+coeffs[0] * (sqrt(2/N)*weights[0][0]) + coeffs[0] * (sqrt(2/N)*weights[1][0]) + ...
