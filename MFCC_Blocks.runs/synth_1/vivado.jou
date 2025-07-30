@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Wed Jul 30 12:01:16 2025
+# Process ID: 21928
+# Current directory: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1
+# Command line: vivado.exe -log sin_lifter.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source sin_lifter.tcl
+# Log file: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/sin_lifter.vds
+# Journal file: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1\vivado.jou
+# Running On: DESKTOP-S7TDGUG, OS: Windows, CPU Frequency: 3192 MHz, CPU Physical cores: 6, Host memory: 17093 MB
+#-----------------------------------------------------------
+source sin_lifter.tcl -notrace

@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="sin_lift_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="sin_lift_tb" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,314.786 ns"></ZoomEndTime>
+      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="146"></NameColumnWidth>
+      <ValueColumnWidth column_width="58"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="7" />
+   <wvobject fp_name="/sin_lift_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_lift_tb/input_valid" type="logic">
+      <obj_property name="ElementShortName">input_valid</obj_property>
+      <obj_property name="ObjectShortName">input_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_lift_tb/input_value" type="array">
+      <obj_property name="ElementShortName">input_value[63:0]</obj_property>
+      <obj_property name="ObjectShortName">input_value[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_lift_tb/output_valid" type="logic">
+      <obj_property name="ElementShortName">output_valid</obj_property>
+      <obj_property name="ObjectShortName">output_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_lift_tb/output_value" type="array">
+      <obj_property name="ElementShortName">output_value[63:0]</obj_property>
+      <obj_property name="ObjectShortName">output_value[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_lift_tb/request_stall" type="logic">
+      <obj_property name="ElementShortName">request_stall</obj_property>
+      <obj_property name="ObjectShortName">request_stall</obj_property>
+   </wvobject>
+   <wvobject fp_name="/sin_lift_tb/stall" type="logic">
+      <obj_property name="ElementShortName">stall</obj_property>
+      <obj_property name="ObjectShortName">stall</obj_property>
+   </wvobject>
+</wave_config>

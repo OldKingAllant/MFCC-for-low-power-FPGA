@@ -27,15 +27,15 @@ def discrete_cos_transformation(frames: np.array, precision):
     return dct_signal
 
 
-frames = np.full((1, 16), 256)
+frames = np.full((1, 16), 2**16)
 print(frames)
 
-dct_res = discrete_cos_transformation(frames, 8)
+dct_res = discrete_cos_transformation(frames, 16)
 
 print('\n\n')
-print(dct_res / 2**16)
+print(dct_res / 2**32)
 #for elem in dct_res:
 #    elem = int(elem)
 #    print(f'{elem:x}')
 
-print(dct(frames[0], 3, norm='ortho') / 2**8)
+print(dct(frames[0], 3, norm='ortho') / 2**16)

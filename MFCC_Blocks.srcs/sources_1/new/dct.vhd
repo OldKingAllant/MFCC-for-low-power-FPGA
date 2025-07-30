@@ -147,12 +147,12 @@ begin
                     mult_result := signed(processed_sample) * signed(DCT_LUT(curr_cepstra_base + cepstra)(curr_coeff_cnt));
                     temp_mfcc(cepstra) := mfcc_work_buffer(curr_cepstra_base + cepstra) + mult_result(VALUE_SIZE - 1 downto 0);
                     mfcc_work_buffer(curr_cepstra_base + cepstra) <= temp_mfcc(cepstra);
-                    report integer'image(to_integer(signed(temp_mfcc(cepstra)))) severity note;
+                    --report integer'image(to_integer(signed(temp_mfcc(cepstra)))) severity note;
                 end loop;
                 
                 if(curr_coeff_cnt + 1 >= numcoeffs) then
                     for mfcc_index in 0 to nmult - 1 loop
-                        output_buffer(curr_cepstra_base + mfcc_index) <= temp_mfcc(mfcc_index);
+                        output_buffer(curr_cepstra_base + mfcc_index) <= shift_right(temp_mfcc(mfcc_index), precision);
                     end loop;
                     output_cnt <= output_cnt + nmult;
                 end if;
