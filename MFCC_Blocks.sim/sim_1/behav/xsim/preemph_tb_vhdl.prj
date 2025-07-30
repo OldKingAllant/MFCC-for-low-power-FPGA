@@ -1,0 +1,12 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"../../../../MFCC_Blocks.srcs/sim_1/new/wave_gen.vhd" \
+
+vhdl2008 xil_defaultlib  \
+"../../../../MFCC_Blocks.srcs/sources_1/new/preemphasis.vhd" \
+
+vhdl xil_defaultlib  \
+"../../../../MFCC_Blocks.srcs/sim_1/new/preemph_tb.vhd" \
+
+# Do not sort compile order
+nosort

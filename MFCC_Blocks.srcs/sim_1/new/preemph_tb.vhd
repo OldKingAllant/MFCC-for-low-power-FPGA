@@ -29,11 +29,12 @@ end preemph_tb;
 
 architecture Behavioral of preemph_tb is
  signal       clk : std_logic;
- signal       enable : std_logic; 
- signal       val_in : unsigned(31 downto 0);
- signal       val_out : unsigned(31 downto 0);
- signal       ready : std_logic;
- signal       ready_sync : std_logic;
+ signal       input_valid : std_logic; 
+ signal       input_value : signed(31 downto 0) := (others => '0');
+ signal       output_value : signed(31 downto 0);
+ signal       output_valid : std_logic;
+ 
+ signal input_val_temp : std_logic_vector(15 downto 0);
 begin
     preemph_module : entity work.preemphasis(Behavioral) 
     generic map(
@@ -42,12 +43,26 @@ begin
     )
     port map(
         clk => clk,
-        enable => enable,
-        val_in => val_in,
-        val_out => val_out,
-        ready => ready,
-        ready_sync => ready_sync
+        input_valid => input_valid,
+        input_value => input_value,
+        output_value => output_value,
+        output_valid => output_valid,
+        stall => '0'
     );
+    
+    wave_gen : entity work.complex_signal_generator(Behavioral) 
+    generic map(
+        FFT_Size => 512,
+        FUNC_TYPE => 2
+    )
+    port map(
+        clk => clk,
+        reset => '1',
+        real_out => input_val_temp,
+        tvalid => input_valid
+    );
+    
+    input_value <= resize(signed(input_val_temp), input_value'length);
     
     process is 
     begin 
@@ -57,7 +72,7 @@ begin
         wait for 100ns;
     end process;
     
-    enable <= '1';
-    val_in <= to_unsigned(16#20#, 32);
+    --input_valid <= '1';
+    --input_value <= to_unsigned(16#20#, 32);
 
 end Behavioral;

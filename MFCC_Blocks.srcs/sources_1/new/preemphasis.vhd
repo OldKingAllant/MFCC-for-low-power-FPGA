@@ -48,38 +48,37 @@ use ieee.numeric_std.all;
 
 entity preemphasis is
     generic (
-        sample_size : integer; --sample size in bits
-        bit_shift : integer    --a = 1 - (1 >> bit_shift)
+        sample_size : integer := 32; --sample size in bits
+        bit_shift : integer := 5    --a = 1 - (1 >> bit_shift)
     );
     port (
         clk : in std_logic;
-        enable : in std_logic; 
-        val_in : in unsigned(sample_size - 1 downto 0);
-        val_out : out unsigned(sample_size - 1 downto 0);
-        ready : out std_logic;
-        ready_sync : out std_logic
+        input_valid : in std_logic; 
+        input_value : in signed(sample_size - 1 downto 0);
+        output_value : out signed(sample_size - 1 downto 0);
+        output_valid : out std_logic;
+        stall : in std_logic
     );
 end preemphasis;
 
 architecture Behavioral of preemphasis is
     --shift register holds previous input value used for
     --interpolation
-    signal previous_value : unsigned(sample_size - 1 downto 0) := (others => '0');
+    signal previous_value : signed(sample_size - 1 downto 0) := (others => '0');
 begin
     -- sequential
     process(clk) is
     begin 
         if rising_edge(clk) then
-            ready_sync <= '0';
-            if(enable = '1') then 
-                ready_sync <= '1';
-                previous_value <= val_in;
-                val_out <= val_in - previous_value + shift_right(previous_value, bit_shift);
+            if(stall='0') then
+                output_valid <= '0';
+                if(input_valid = '1') then 
+                    output_valid <= '1';
+                    previous_value <= input_value;
+                    output_value <= input_value - previous_value + shift_right(previous_value, bit_shift);
+                end if;
             end if;
         end if;
     end process;
-    
-    --combinational
-    ready <= enable;
 
 end Behavioral;

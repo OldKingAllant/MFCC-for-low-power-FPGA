@@ -41,4 +41,4 @@ EAStep()
      fi
 }
 
-EAStep vivado -log sin_lifter.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source sin_lifter.tcl
+EAStep vivado -log preemphasis.vds -m64 -product Vivado -mode batch -messageDb vivado.pb -notrace -source preemphasis.tcl
