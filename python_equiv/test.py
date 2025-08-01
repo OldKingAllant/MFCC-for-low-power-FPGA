@@ -60,14 +60,9 @@ dout_scipy = np.fft.fft(tst)
 dout_scipy.real = dout_scipy.real* dout_scipy.real
 dout_scipy.imag = dout_scipy.imag * dout_scipy.imag
 sum_re_im = dout_scipy.real + dout_scipy.imag
-sum_re_im = sum_re_im[0:257]
-print(len(sum_re_im))
 
-coeffs = mel_filter(sum_re_im, 50, 6500, 16, 16000)[0]
-x_axis = [i for i in range(len(coeffs))]
+x_axis = [i for i in range(len(sum_re_im))]
 
-print(coeffs)
-
-plt.plot(x_axis, coeffs)
+plt.plot(x_axis, sum_re_im)
 plt.show()
 

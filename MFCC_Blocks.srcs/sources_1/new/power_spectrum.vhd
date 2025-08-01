@@ -28,16 +28,17 @@ use IEEE.math_real.all;
 entity power_spectrum is
     generic (
         sample_size : integer;
-        fft_size : integer
+        fft_size : integer;
+        precision : integer := 8
     );
     port (
         clk : in std_logic;
-        enable : in std_logic;
+        input_valid : in std_logic;
         re_in : in std_logic_vector(sample_size - 1 downto 0);
         im_in : in std_logic_vector(sample_size - 1 downto 0);
-        valid : out std_logic;
+        output_valid : out std_logic;
         sum : out std_logic_vector((sample_size * 2) - 1 downto 0);
-        spectrum : out std_logic_vector((sample_size * 2) - 1 downto 0);
+        output_value : out std_logic_vector((sample_size * 2) - 1 downto 0);
         request_stall : out std_logic;
         stall : in std_logic
     );
@@ -60,13 +61,15 @@ begin
         variable temp_spectrum : unsigned(RESULT_SIZE - 1 downto 0);
         variable next_point_count : integer;
     begin
+        temp_spectrum := (others => '0');
+        next_point_count := 0;
         if rising_edge(clk) then
             valid_squared <= '0';
             --valid_sum <= '0';
             --valid <= '0';
             
             if(stall='0') then
-                if(enable='1') then
+                if(input_valid='1') then
                     re_squared <= signed(re_in) * signed(re_in);
                     im_squared <= signed(im_in) * signed(im_in);
                     valid_squared <= '1';
@@ -83,19 +86,19 @@ begin
                 next_point_count := point_count + 1;
                     
                 if(next_point_count <= HALF_FFT_SIZE + 1) then
-                    valid <= '1';
+                    output_valid <= '1';
                 elsif(next_point_count >= fft_size) then
                     next_point_count := 0;
-                    valid <= '0';
+                    output_valid <= '0';
                 else
-                    valid <= '0';
+                    output_valid <= '0';
                 end if;
                     
                 temp_spectrum := shift_right(unsigned(sum_internal), AVG_SHIFT);
-                spectrum <= std_logic_vector(temp_spectrum);
+                output_value <= std_logic_vector(temp_spectrum);
                 point_count <= next_point_count;
             else
-                valid <= '0';
+                output_valid <= '0';
             end if;
         end if;
     end process;

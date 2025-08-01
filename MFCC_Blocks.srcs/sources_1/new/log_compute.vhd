@@ -49,11 +49,11 @@ use IEEE.math_real.all;
 
 entity log_compute is
   generic (
-    sample_size : integer;
-    precision : integer;
-    num_coeffs: integer;   --number of input coefficients in a single clock cycle
-    total_coeffs: integer; --total coefficients
-    buf_size: integer
+    sample_size : integer := 64;
+    precision : integer := 8;
+    num_coeffs: integer := 4;   --number of input coefficients in a single clock cycle
+    total_coeffs: integer := 16; --total coefficients
+    buf_size: integer := 20
   );
   port (
     clk : in std_logic;
@@ -116,7 +116,7 @@ architecture Behavioral of log_compute is
     begin
         curr_value := 0;
         for curr_fract in lut'range loop
-            lut_entry := integer(log2(1.0+(real(curr_value)/LUT_SIZE)) * LUT_SIZE);
+            lut_entry := integer(log2(1.0+(real(curr_value)/real(LUT_SIZE))) * real(LUT_SIZE));
             lut(curr_fract) := std_logic_vector(to_unsigned(lut_entry, sample_size));
             curr_value := curr_value + 1;
         end loop;
@@ -132,7 +132,7 @@ architecture Behavioral of log_compute is
     type STATE_TY is (FILLING, COMPUTING);
     signal state : STATE_TY := FILLING;
 begin
-    request_stall <= '0';
+    --request_stall <= '0';
     
     process(clk) is
         variable msb_position : integer; --position of msb bit set to 1
@@ -143,6 +143,14 @@ begin
         variable curr_value : std_logic_vector(sample_size - 1 downto 0);
         variable curr_coeff_count : integer;
     begin
+        msb_position := 0;
+        lut_index := 0;
+        lut_entry := (others => '0');
+        log2_result := (others => '0');
+        log10_result := (others => '0');
+        curr_value := (others => '0');
+        curr_coeff_count := 0;
+        
         if rising_edge(clk) then
             output_valid <= '0';
             
@@ -187,7 +195,7 @@ begin
                 
                 --multiply the integer part by 2**precision,
                 --to that it is > 1 in fixed point 
-                log2_result := shift_left(to_unsigned(msb_position - 8, sample_size), precision);
+                log2_result := shift_left(to_unsigned(msb_position - precision, sample_size), precision);
                 log2_result := log2_result + lut_entry; --sum integer and fractional part to obtain full result
                 
                 --finally compute log10(x) = log2(x) * 1/log2(10),

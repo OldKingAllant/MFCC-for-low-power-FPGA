@@ -47,7 +47,7 @@ dout_scipy.real = dout_scipy.real* dout_scipy.real
 dout_scipy.imag = dout_scipy.imag * dout_scipy.imag
 sum_re_im = dout_scipy.real + dout_scipy.imag
 sum_re_im = sum_re_im[0:257]
-print(len(sum_re_im))
+print(max(sum_re_im))
 
 frame = sum_re_im
 
@@ -59,10 +59,11 @@ for i in range(len(fbank)):
     if coeffs[i] < 1.0:
         coeffs[i] = 1.0
 
-coeffs = [math.log10(coeff / 2**16) for coeff in coeffs]
+#coeffs = [math.log10(coeff / 2**16) for coeff in coeffs]
 
 for coeff in coeffs:
-    print(f'{coeff}')
+    coeff = coeff / 2**8
+    print(f'{int(coeff):x}')
 
 x_axis = [i for i in range(len(coeffs))]
 

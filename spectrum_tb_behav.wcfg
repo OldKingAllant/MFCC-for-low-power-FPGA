@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="spectrum_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="spectrum_tb" />
+            <top_module name="vcomponents" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="0.000 ns"></ZoomStartTime>
+      <ZoomEndTime time="1,286.996 ns"></ZoomEndTime>
+      <Cursor1Time time="1,000.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="109"></NameColumnWidth>
+      <ValueColumnWidth column_width="61"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="10" />
+   <wvobject fp_name="/spectrum_tb/clk" type="logic">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/wave_clk" type="logic">
+      <obj_property name="ElementShortName">wave_clk</obj_property>
+      <obj_property name="ObjectShortName">wave_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/input_valid_fft" type="logic">
+      <obj_property name="ElementShortName">input_valid_fft</obj_property>
+      <obj_property name="ObjectShortName">input_valid_fft</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/input_value_fft" type="array">
+      <obj_property name="ElementShortName">input_value_fft[31:0]</obj_property>
+      <obj_property name="ObjectShortName">input_value_fft[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/output_valid_fft" type="logic">
+      <obj_property name="ElementShortName">output_valid_fft</obj_property>
+      <obj_property name="ObjectShortName">output_valid_fft</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/output_re" type="array">
+      <obj_property name="ElementShortName">output_re[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_re[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/output_im" type="array">
+      <obj_property name="ElementShortName">output_im[31:0]</obj_property>
+      <obj_property name="ObjectShortName">output_im[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/frame_end" type="logic">
+      <obj_property name="ElementShortName">frame_end</obj_property>
+      <obj_property name="ObjectShortName">frame_end</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/spectrum_valid" type="logic">
+      <obj_property name="ElementShortName">spectrum_valid</obj_property>
+      <obj_property name="ObjectShortName">spectrum_valid</obj_property>
+   </wvobject>
+   <wvobject fp_name="/spectrum_tb/spectrum" type="array">
+      <obj_property name="ElementShortName">spectrum[63:0]</obj_property>
+      <obj_property name="ObjectShortName">spectrum[63:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
+      <obj_property name="CellHeight">100</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
+      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
+      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
+      <obj_property name="AnalogHorizLine">0.000000</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,2 +1,0 @@
-Breakpoint File Version 1.0
-75,true,"D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd"

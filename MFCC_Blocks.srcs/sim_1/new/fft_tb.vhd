@@ -29,22 +29,28 @@ end fft_tb;
 
 architecture Behavioral of fft_tb is
     signal    clk : std_logic;
-    signal    enable : std_logic;
-    signal    input_val : unsigned(31 downto 0) := (others => '0');
-    signal    output_ready : std_logic;
+    
+    signal    input_valid : std_logic;
+    signal    input_value : signed(31 downto 0);
+    signal    request_stall : std_logic;
+    signal    stall : std_logic;
+    signal    output_valid : std_logic;
     signal    output_re : std_logic_vector(31 downto 0);
     signal    output_im : std_logic_vector(31 downto 0);
-    signal frame_end : std_logic;
+    signal    frame_end : std_logic;
+    
     signal temp_val : std_logic_vector(15 downto 0);
 begin
     fft_block : entity work.fft(Behavioral) port map(
         clk => clk,
-        enable => enable,
-        input_val => input_val,
-        output_ready => output_ready,
+        input_value => input_value,
+        input_valid => input_valid,
+        output_valid => output_valid,
         output_re => output_re,
         output_im => output_im,
-        frame_end => frame_end
+        frame_end => frame_end,
+        stall => '0',
+        request_stall => request_stall
     );
     
     wave_gen : entity work.complex_signal_generator(Behavioral) 
@@ -55,11 +61,11 @@ begin
     port map(
         clk => clk,
         reset => '1',
-        imagery_out => temp_val
+        real_out => temp_val,
+        tvalid => input_valid
     );
     
-    input_val(15 downto 0) <= unsigned(temp_val);
-    enable <= '1';
+    input_value <= resize(signed(temp_val), 32);
     
     --process 
     --is 

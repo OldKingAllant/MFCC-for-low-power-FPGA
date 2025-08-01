@@ -27,11 +27,11 @@ use IEEE.math_real.all;
 
 entity dct is
   generic (
-    sample_size : integer;
-    precision : integer;
-    numcoeffs : integer;
-    numcepstra : integer;
-    nmult : integer
+    sample_size : integer := 64;
+    precision : integer := 8;
+    numcoeffs : integer := 16;
+    numcepstra : integer := 16;
+    nmult : integer := 4
   );
   Port (
     clk : in std_logic;
@@ -61,7 +61,7 @@ architecture Behavioral of dct is
             curr_row := (others => (others => '0'));
             curr_index := 0;
             for entry in curr_row'range loop
-                temp_value := (SQRT_2_N * cos(MATH_PI * (real(cepstra) + 1.0 - 0.5) * real(curr_index) / real(numcoeffs))) * (2**precision);
+                temp_value := (SQRT_2_N * cos(MATH_PI * (real(cepstra) + 1.0 - 0.5) * real(curr_index) / real(numcoeffs))) * real(2**precision);
                 if(temp_value >= 0.0) then
                     curr_row(entry) := std_logic_vector(to_signed(integer(floor(temp_value)), sample_size));
                 else 
@@ -98,17 +98,22 @@ begin
     process(clk) is
         variable mult_result : signed((VALUE_SIZE * 2) - 1 downto 0);
         variable next_write_pos : integer;
-        variable safety_buffer_pos : integer;
         variable has_sample : std_logic;
         variable diff : integer;
         variable processed_sample : unsigned(VALUE_SIZE - 1 downto 0);
         variable temp_mfcc : TEMP_MFCC_TY;
     begin
+        mult_result := (others => '0');
+        next_write_pos := 0;
+        has_sample := '0';
+        diff := 0;
+        processed_sample := (others => '0');
+        temp_mfcc := (others => (others => '0'));
+        
         if rising_edge(clk) then
             has_sample := '0';
             output_valid <= '0';
             next_write_pos := write_pos + 1;
-            safety_buffer_pos := write_pos + 2;
             diff := read_pos - write_pos;
             
              if(read_pos > write_pos and diff <= 4) then

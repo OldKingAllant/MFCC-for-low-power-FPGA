@@ -41,7 +41,7 @@ begin
     log_block : entity work.log_compute(Behavioral)
     generic map(
         sample_size => 64,
-        precision => 8,
+        precision => 12,
         num_coeffs => 1,
         total_coeffs => 16,
         buf_size => 20
@@ -56,11 +56,16 @@ begin
         stall => '0'
     );
     
-    input_valid <= '1';
-    input_value <= std_logic_vector(to_unsigned(1234 * 256, 64));
+    input_value <= std_logic_vector(to_unsigned(1234 * (2**12), 64));
     
     process is
+        variable input_cnt : integer := 0;
     begin
+        input_valid <= '0';
+        if(input_cnt < 16) then
+            input_valid <= '1';
+            input_cnt := input_cnt + 1;
+        end if;
         clk <= '0';
         wait for 100ns;
         clk <= '1';

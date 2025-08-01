@@ -29,31 +29,34 @@ entity window_tb is
 end window_tb;
 
 architecture Behavioral of window_tb is
-    signal    clk : std_logic;
-    signal    enable : std_logic;
-    signal    value : unsigned(31 downto 0) := (others => '0');
-    signal    end_of_stream : std_logic;
-    signal    valid : std_logic;
-    signal    windowed_value : unsigned(31 downto 0);
+   signal     clk : std_logic;
+   signal     input_valid : std_logic;
+   signal     input_value : signed(32 - 1 downto 0);
+   signal     output_valid : std_logic;
+   signal     output_value : signed(32 - 1 downto 0);
+   signal     stall : std_logic;
+   signal     stall_request : std_logic;
 begin
+    stall <= '0';
+    
     window_module : entity work.window(Behavioral) 
     generic map(
         sample_size => 32,
-        window_size => 32,
-        window_file => "../../../../ham_window.txt",
-        precision_shift => 0
+        window_size => 512,
+        precision => 8
     )
     port map(
         clk => clk,
-        enable => enable,
-        value => value,
-        end_of_stream => end_of_stream,
-        valid => valid,
-        windowed_value => windowed_value
+        input_valid => input_valid,
+        input_value => input_value,
+        output_valid => output_valid,
+        output_value => output_value,
+        stall => '0',
+        stall_request => stall_request
     );
     
-    value(0) <= '1';
-    enable <= '1';
+    input_value <= to_signed(1, 32);
+    input_valid <= '1';
     
     process is
     begin 

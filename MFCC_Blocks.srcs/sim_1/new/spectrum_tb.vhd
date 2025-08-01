@@ -31,30 +31,32 @@ end spectrum_tb;
 architecture Behavioral of spectrum_tb is
     signal    clk : std_logic;
     signal    wave_clk : std_logic;
-    signal    enable : std_logic;
-    signal    input_val : unsigned(31 downto 0) := (others => '0');
-    signal    output_ready : std_logic;
+    
+    signal    input_valid_fft : std_logic;
+    signal    input_value_fft : signed(31 downto 0) := (others => '0');
+    signal    output_valid_fft : std_logic;
     signal    output_re : std_logic_vector(31 downto 0);
     signal    output_im : std_logic_vector(31 downto 0);
     signal    frame_end : std_logic;
+    
     signal    temp_val : std_logic_vector(15 downto 0);
     signal    spectrum_valid : std_logic;
     signal    sum : std_logic_vector(63 downto 0);
     signal    spectrum : std_logic_vector(63 downto 0);
     
-    signal receiver_ready_fft : std_logic := '1';
-    signal ready_to_receive_fft : std_logic := '1';
+    signal fft_stall_req : std_logic;
+    signal spectrum_stall_req : std_logic;
 begin
     fft : entity work.fft(Behavioral) port map(
         clk => clk,
-        enable => enable,
-        input_val => input_val,
-        output_ready => output_ready,
+        input_valid => input_valid_fft,
+        input_value => input_value_fft,
+        output_valid => output_valid_fft,
         output_re => output_re,
         output_im => output_im,
         frame_end => frame_end,
-        receiver_ready => receiver_ready_fft,
-        ready_to_receive => ready_to_receive_fft
+        request_stall => fft_stall_req,
+        stall => spectrum_stall_req
     );
     
     pow_spectrum : entity work.power_spectrum(Behavioral) 
@@ -64,29 +66,30 @@ begin
     )
     port map(
         clk => clk,
-        enable => output_ready,
+        input_valid => output_valid_fft,
         re_in => output_re,
         im_in => output_im,
-        valid => spectrum_valid,
+        output_valid => spectrum_valid,
         sum => sum,
-        spectrum => spectrum,
-        receiver_ready => '1',
-        ready_to_receive => receiver_ready_fft
+        output_value => spectrum,
+        stall => '0',
+        request_stall => spectrum_stall_req
     );
     
     wave_gen : entity work.complex_signal_generator(Behavioral) 
     generic map(
         FFT_Size => 512,
-        FUNC_TYPE => 0
+        FUNC_TYPE => 1
     )
     port map(
         clk => wave_clk,
         reset => '1',
-        real_out => temp_val
+        real_out => temp_val,
+        tvalid => input_valid_fft
     );
     
-    input_val(15 downto 0) <= unsigned(temp_val);
-    enable <= '1';
+    input_value_fft <= resize(signed(temp_val), input_value_fft'length);
+    
     
     process 
     is 
@@ -103,7 +106,7 @@ begin
         wave_clk <= '0';
         wait for 100ns;
         
-        if(ready_to_receive_fft='1') then
+        if(fft_stall_req='0') then
             wave_clk <= '1';
         else
             wave_clk <= '0';

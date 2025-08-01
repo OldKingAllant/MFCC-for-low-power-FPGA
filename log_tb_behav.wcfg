@@ -11,11 +11,11 @@
    </db_ref_list>
    <zoom_setting>
       <ZoomStartTime time="0.000 ns"></ZoomStartTime>
-      <ZoomEndTime time="1,333.896 ns"></ZoomEndTime>
-      <Cursor1Time time="100.000 ns"></Cursor1Time>
+      <ZoomEndTime time="3,995.001 ns"></ZoomEndTime>
+      <Cursor1Time time="3,300.000 ns"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="182"></NameColumnWidth>
+      <NameColumnWidth column_width="174"></NameColumnWidth>
       <ValueColumnWidth column_width="58"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="5" />
@@ -38,5 +38,9 @@
    <wvobject fp_name="/log_tb/output_value" type="array">
       <obj_property name="ElementShortName">output_value[63:0]</obj_property>
       <obj_property name="ObjectShortName">output_value[63:0]</obj_property>
+      <obj_property name="Radix">REALRADIX</obj_property>
+      <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
+      <obj_property name="radix_fractionWidth">12</obj_property>
+      <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
 </wave_config>

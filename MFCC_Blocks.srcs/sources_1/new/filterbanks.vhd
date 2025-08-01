@@ -27,25 +27,25 @@ use IEEE.math_real.all;
 
 entity filterbanks is
     generic (
-        sample_size : integer;
-        low_freq : integer;
-        high_freq : integer;
-        numfilters : integer;
-        nfft : integer;
-        precision : integer;
-        sample_freq : integer;
-        nmult : integer --number of multipliers used for convolution,
+        sample_size : integer := 32;
+        low_freq : integer := 50;
+        high_freq : integer := 6500;
+        numfilters : integer := 16;
+        nfft : integer := 512;
+        precision : integer := 8;
+        sample_freq : integer := 16000;
+        nmult : integer := 4 --number of multipliers used for convolution,
                         --the greater, the faster the design but also
                         --the greater the number of resources
     );
     port (
         clk : in std_logic;
-        sample_valid : in std_logic;
-        sample : in std_logic_vector((sample_size * 2) - 1 downto 0);
+        input_valid : in std_logic;
+        input_value : in std_logic_vector((sample_size * 2) - 1 downto 0);
         end_of_frame : in std_logic;
         accepts_samples : out std_logic;
         coefficients : out std_logic_vector(((sample_size * 2) * nmult) - 1 downto 0); --packed nmult coefficients
-        valid : out std_logic;
+        output_valid : out std_logic;
         stall : in std_logic
     );
 end filterbanks;
@@ -59,7 +59,7 @@ end filterbanks;
 architecture Behavioral of filterbanks is
     function HzToMel(f: real) return real is 
     begin
-        return 2595 * log10(1.0+f/700.0); 
+        return 2595.0 * log10(1.0+f/700.0); 
     end function;
     
     function MelToHz(mel: real) return real is 
@@ -67,7 +67,7 @@ architecture Behavioral of filterbanks is
     begin
         --mel / 2595
         --(10^(mel / 2595) - 1) * 700
-        pow_res := 10.0 ** (mel / 2595);
+        pow_res := 10.0 ** (mel / 2595.0);
         return 700.0 * (pow_res - 1.0);
     end function;
     
@@ -93,13 +93,13 @@ architecture Behavioral of filterbanks is
         -- for (int i=0; i<numFilters+2; i++)
         -- mel2hz(lowFreqMel + (highFreqMel-lowFreqMel)/(numFilters+1)*i);
         for i in centre_freq'range loop
-            centre_freq(i) := MelToHz(LOW_MEL_FREQ + (HIGH_MEL_FREQ - LOW_MEL_FREQ)/(real(numfilters) + 1.0)*i);
+            centre_freq(i) := MelToHz(LOW_MEL_FREQ + (HIGH_MEL_FREQ - LOW_MEL_FREQ)/(real(numfilters) + 1.0)*real(i));
             report "Centre: " & real'image(centre_freq(i)) severity note;
         end loop;
         
         --(fs/2.0/(numFFTBins-1)*i);
         for i in fft_bin_freq'range loop
-            fft_bin_freq(i) := real(sample_freq)/2.0/(NFFT_BINS - 1)*i;
+            fft_bin_freq(i) := real(sample_freq)/2.0/real(NFFT_BINS - 1)*real(i);
         end loop;
         
         for filt in bank'range loop
@@ -114,7 +114,7 @@ architecture Behavioral of filterbanks is
                     weight := 0.0;
                 end if;
                 
-                curr_filter(bin) := integer(weight*(2**precision));
+                curr_filter(bin) := integer(weight*real(2**precision));
                 --if (fftBinFreq[bin] < filterCentreFreq[filt-1])
                 --    weight = 0;
                 --else if (fftBinFreq[bin] <= filterCentreFreq[filt])
@@ -152,7 +152,6 @@ begin
     process(clk) is 
         variable mult_result : unsigned((VALUE_SIZE * 2) - 1 downto 0);
         variable next_write_pos : integer;
-        variable safety_buffer_pos : integer;
         variable packed_coeff_position : integer; 
         variable processed_sample : unsigned(VALUE_SIZE - 1 downto 0);
         variable has_sample : std_logic;
@@ -160,12 +159,18 @@ begin
         variable output_coeff_temp : std_logic_vector(VALUE_SIZE - 1 downto 0);
         variable temp_coeffs : TEMP_COEFF_TY;
     begin
+        mult_result := (others => '0');
+        next_write_pos := 0;
+        packed_coeff_position := 0;
+        processed_sample := (others => '0');
+        has_sample := '0';
+        diff := 0;
+        temp_coeffs := (others => (others => '0'));
+        output_coeff_temp := (others => '0');
+        
         if rising_edge(clk) then
-            temp_coeffs := (others => (others => '0'));
-            has_sample := '0';
-            valid <= '0';
+            output_valid <= '0';
             next_write_pos := write_pos + 1;
-            safety_buffer_pos := write_pos + 2;
             diff := read_pos - write_pos;
             
             if(read_pos > write_pos and diff <= 4) then
@@ -174,9 +179,9 @@ begin
                 accepts_samples <= '1';
             end if;
             
-            if(sample_valid='1' and stall='0') then           --there is data on input
+            if(input_valid='1' and stall='0') then           --there is data on input
                 if(not (next_write_pos = read_pos)) then      --check if there is no buffer overrun
-                    samples(write_pos) <= unsigned(sample);
+                    samples(write_pos) <= unsigned(input_value);
                 end if;
                 
                 if(next_write_pos = read_pos) then
@@ -190,7 +195,7 @@ begin
                 end if;
                 
                 if(read_pos = write_pos) then --read process is idle
-                    processed_sample := unsigned(sample);
+                    processed_sample := unsigned(input_value);
                     has_sample := '1';
                 else 
                     processed_sample := samples(read_pos);
@@ -229,7 +234,7 @@ begin
                         --drop precision bits that were doubled by multiplication
                         output_coeff_temp := std_logic_vector(shift_right(unsigned(output_coeff_temp), precision));
                         coefficients(packed_coeff_position + VALUE_SIZE - 1 downto packed_coeff_position) <= output_coeff_temp;
-                        valid <= '1';
+                        output_valid <= '1';
                     end loop;
                 end if;
             

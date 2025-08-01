@@ -27,11 +27,11 @@ use IEEE.NUMERIC_STD.ALL;
 entity fft is
     port (
         clk : in std_logic;
-        enable : in std_logic;
-        input_val : in unsigned(31 downto 0);
+        input_valid : in std_logic;
+        input_value : in signed(31 downto 0);
         request_stall : out std_logic;
         stall : in std_logic;
-        output_ready : out std_logic;
+        output_valid : out std_logic;
         output_re : out std_logic_vector(31 downto 0);
         output_im : out std_logic_vector(31 downto 0);
         frame_end : out std_logic
@@ -89,17 +89,20 @@ architecture Behavioral of fft is
   
   signal m_data_tready : std_logic;
   
+  signal aclken : std_logic;
+  
   constant CONSTANT_CONFIG : std_logic_vector(15 downto 0) := "0000000000000001";
   constant FFT_SIZE : integer := 512;
   
 begin
     m_data_tready <= '0' when stall='1' else '1';
     request_stall <= '1' when fft_in_ready='0' else '0';
+    aclken <= '1' when stall='0' else '0';
     
   fft_block : xfft_0
   PORT MAP (
     aclk => clk,
-    aclken => enable,
+    aclken => '1',
     s_axis_config_tdata => config_data,
     s_axis_config_tvalid => config_valid,
     s_axis_config_tready => config_ready,
@@ -110,7 +113,7 @@ begin
     s_axis_data_tlast => fft_in_last,
     
     m_axis_data_tdata => fft_out_data,
-    m_axis_data_tvalid => output_ready,
+    m_axis_data_tvalid => output_valid,
     m_axis_data_tlast => fft_out_last,
     m_axis_data_tready => m_data_tready,
     
@@ -124,9 +127,11 @@ begin
     variable temp_input : std_logic_vector(31 downto 0);
     variable next_count : integer;
   begin 
+    temp_input := (others => '0');
+    next_count := 0;
     if rising_edge(clk) then
-        assert unexpected_tlast = '0' report "Unexpected tlast event";
-        assert missing_tlast = '0' report "Missing tlast";
+        assert unexpected_tlast = '0' report "Unexpected tlast event, count: " & integer'image(curr_fft_cnt);
+        assert missing_tlast = '0' report "Missing tlast, count: " & integer'image(curr_fft_cnt);
         
         if(curr_state = CONFIG) then
             config_valid <= '1';
@@ -144,9 +149,9 @@ begin
         data_valid <= '0';
         
         if(stall='0') then
-            if(curr_state = NORMAL  and enable='1' and fft_in_ready='1') then
+            if(curr_state = NORMAL  and input_valid='1' and fft_in_ready='1') then
                     data_valid <= '1';
-                    temp_input := std_logic_vector(input_val);
+                    temp_input := std_logic_vector(input_value);
                     fft_in_data(31 downto 0) <= temp_input;
                     fft_in_data(63 downto 32) <= (others => '0');
                     

@@ -5,7 +5,6 @@ transcript on
 
 vlib work
 vmap -link {D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.cache/compile_simlib/activehdl}
-vlib activehdl/xpm
 vlib activehdl/xbip_utils_v3_0_10
 vlib activehdl/axi_utils_v2_0_6
 vlib activehdl/c_reg_fd_v12_0_6
@@ -22,12 +21,6 @@ vlib activehdl/cmpy_v6_0_21
 vlib activehdl/floating_point_v7_0_20
 vlib activehdl/xfft_v9_1_9
 vlib activehdl/xil_defaultlib
-
-vlog -work xpm  -sv2k12 -l xpm -l xbip_utils_v3_0_10 -l axi_utils_v2_0_6 -l c_reg_fd_v12_0_6 -l xbip_dsp48_wrapper_v3_0_4 -l xbip_pipe_v3_0_6 -l xbip_dsp48_addsub_v3_0_6 -l xbip_addsub_v3_0_6 -l c_addsub_v12_0_15 -l c_mux_bit_v12_0_6 -l c_shift_ram_v12_0_14 -l xbip_bram18k_v3_0_6 -l mult_gen_v12_0_18 -l cmpy_v6_0_21 -l floating_point_v7_0_20 -l xfft_v9_1_9 -l xil_defaultlib \
-"D:/Vivado/Vivado/2023.1/data/ip/xpm/xpm_memory/hdl/xpm_memory.sv" \
-
-vcom -work xpm -93  \
-"D:/Vivado/Vivado/2023.1/data/ip/xpm/xpm_VCOMP.vhd" \
 
 vcom -work xbip_utils_v3_0_10 -93  \
 "../../../ipstatic/hdl/xbip_utils_v3_0_vh_rfs.vhd" \
@@ -77,7 +70,4 @@ vcom -work xfft_v9_1_9 -93  \
 vcom -work xil_defaultlib -93  \
 "../../../../MFCC_Blocks.gen/sources_1/ip/xfft_0/sim/xfft_0.vhd" \
 
-
-vlog -work xil_defaultlib \
-"glbl.v"
 

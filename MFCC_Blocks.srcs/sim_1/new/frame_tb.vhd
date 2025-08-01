@@ -33,13 +33,20 @@ end frame_tb;
 architecture Behavioral of frame_tb is
     signal   clk_sampling : std_logic;
     signal   clk_output : std_logic; --should be faster than sampling clock to avoid losing data
-    signal   enable : std_logic;
-    signal   curr_value : unsigned(31 downto 0);
-    signal   valid : std_logic;
-    signal   stream_out : unsigned(31 downto 0);
     
-    constant WIN_SIZE : integer := 10;
-    constant STEP_SIZE : integer := 6;
+    signal    input_valid : std_logic;       
+    signal    end_of_data : std_logic;  
+    signal    input_value : signed(32 - 1 downto 0); 
+    signal    output_valid : std_logic;
+    signal    output_value : signed(32 - 1 downto 0);
+    signal    stall : std_logic := '0';
+    signal    request_stall : std_logic;
+    
+    signal input_val_temp : std_logic_vector(15 downto 0);
+    signal input_valid_temp : std_logic;
+    
+    constant WIN_SIZE : integer := 512;
+    constant STEP_SIZE : integer := 512 - 170;
 begin
     frame_module : entity work.frame(Behavioral) 
     generic map(
@@ -50,58 +57,58 @@ begin
     port map(
         clk_sampling => clk_sampling,
         clk_output => clk_output,
-        enable => enable,
-        end_of_data => '0',
-        curr_value => curr_value,
-        valid => valid,
-        stream_out => stream_out
+        input_valid => input_valid,
+        end_of_data => end_of_data,
+        output_valid => output_valid,
+        stall => '0',
+        request_stall => request_stall,
+        input_value => input_value,
+        output_value => output_value
     );
     
-    enable <= '1';
+    wave_gen : entity work.complex_signal_generator(Behavioral) 
+    generic map(
+        FFT_Size => 512,
+        FUNC_TYPE => 0
+    )
+    port map(
+        clk => clk_sampling,
+        reset => '1',
+        real_out => input_val_temp,
+        tvalid => input_valid
+    );
     
-    process is 
-        variable input_value : integer := 0;
+    input_value <= resize(signed(input_val_temp), input_value'length);
+    
+    process is
     begin 
         clk_sampling <= '0';
-        curr_value <= to_unsigned(input_value, curr_value'length);
-        input_value := input_value + 1;
-        --if(input_value = 9) then
-        --    input_value := 0;
-        --else 
-        --    input_value := input_value + 1;
-        --end if;
         wait for 100ns;
         clk_sampling <= '1';
         wait for 100ns;
     end process;
     
     process is 
-        file test_output : text open write_mode is "frame_tb.log";
-        variable curr_line : line;
-        variable curr_line_width : integer := 0;
-        variable old_out_value : unsigned(31 downto 0) := (others => '1');
-        
-        constant UNDEF_VECTOR : std_logic_vector(31 downto 0) := (others => 'U');
-        constant X_VECTOR : std_logic_vector(31 downto 0) := (others => 'X');
+        variable input_cnt : integer := 0;
     begin 
         clk_output <= '0';
         wait for 25ns;
+        
+        --input_valid <= '0';
+        --if(input_valid_temp='1') then
+        --    if(input_cnt=0) then
+        --        input_valid <= '1';
+        --    end if;
+            
+        --    if(input_cnt + 1 = 4) then
+        --        input_cnt := 0;
+        --    else
+        --        input_cnt := input_cnt + 1;
+        --    end if;
+       -- end if;
+        
+        
         clk_output <= '1';
         wait for 25ns;
-        
-        if(not (to_integer(stream_out) = to_integer(old_out_value)) and not (std_logic_vector(stream_out) = UNDEF_VECTOR)) then
-            old_out_value := stream_out;
-            hwrite(curr_line, std_logic_vector(stream_out));
-            write(curr_line, ' ');
-            curr_line_width := curr_line_width + 1;
-        
-            if(curr_line_width = WIN_SIZE) then
-                curr_line_width := 0;
-                writeline(test_output, curr_line);
-                flush(test_output);
-            end if;
-        end if;
-        
-        
     end process;
 end Behavioral;

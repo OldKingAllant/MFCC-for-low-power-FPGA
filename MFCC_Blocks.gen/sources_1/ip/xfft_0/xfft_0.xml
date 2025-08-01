@@ -1008,11 +1008,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1044,11 +1044,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1062,11 +1062,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1124,11 +1124,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:8745e821</spirit:value>
+            <spirit:value>9:0bd9c621</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1143,11 +1143,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:14 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:27 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1163,11 +1163,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:8745e821</spirit:value>
+            <spirit:value>9:0bd9c621</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1225,11 +1225,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1245,11 +1245,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1265,11 +1265,11 @@
         <spirit:parameters>
           <spirit:parameter>
             <spirit:name>GENtimestamp</spirit:name>
-            <spirit:value>Fri Jul 25 08:10:15 UTC 2025</spirit:value>
+            <spirit:value>Fri Aug 01 09:49:28 UTC 2025</spirit:value>
           </spirit:parameter>
           <spirit:parameter>
             <spirit:name>outputProductCRC</spirit:name>
-            <spirit:value>9:0a304cf3</spirit:value>
+            <spirit:value>9:12dee2dc</spirit:value>
           </spirit:parameter>
         </spirit:parameters>
       </spirit:view>
@@ -1786,7 +1786,7 @@
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_TWIDDLE_WIDTH</spirit:name>
-        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_TWIDDLE_WIDTH">16</spirit:value>
+        <spirit:value spirit:format="long" spirit:resolve="generated" spirit:id="MODELPARAM_VALUE.C_TWIDDLE_WIDTH">8</spirit:value>
       </spirit:modelParameter>
       <spirit:modelParameter spirit:dataType="integer">
         <spirit:name>C_OUTPUT_WIDTH</spirit:name>
@@ -2579,7 +2579,7 @@
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>phase_factor_width</spirit:name>
-      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.phase_factor_width" spirit:choiceRef="choice_list_c6ed4a00" spirit:order="10">16</spirit:value>
+      <spirit:value spirit:resolve="user" spirit:id="PARAM_VALUE.phase_factor_width" spirit:choiceRef="choice_list_c6ed4a00" spirit:order="10">8</spirit:value>
     </spirit:parameter>
     <spirit:parameter>
       <spirit:name>scaling_options</spirit:name>

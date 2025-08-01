@@ -1,65 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xc7z010iclg225-1L" LaunchTime="1753875731" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/sin_lifter.dcp">
-  <File Type="PA-TCL" Name="preemphasis.tcl"/>
-  <File Type="RDS-PROPCONSTRS" Name="preemphasis_drc_synth.rpt"/>
-  <File Type="REPORTS-TCL" Name="preemphasis_reports.tcl"/>
-  <File Type="RDS-RDS" Name="preemphasis.vds"/>
-  <File Type="RDS-UTIL" Name="preemphasis_utilization_synth.rpt"/>
-  <File Type="RDS-UTIL-PB" Name="preemphasis_utilization_synth.pb"/>
-  <File Type="RDS-DCP" Name="preemphasis.dcp"/>
-  <File Type="VDS-TIMINGSUMMARY" Name="preemphasis_timing_summary_synth.rpt"/>
-  <File Type="VDS-TIMING-PB" Name="preemphasis_timing_summary_synth.pb"/>
+<GenRun Id="synth_1" LaunchPart="xc7z010iclg225-1L" LaunchTime="1753972917" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/sin_lifter.dcp">
+  <File Type="PA-TCL" Name="sin_lifter.tcl"/>
+  <File Type="REPORTS-TCL" Name="sin_lifter_reports.tcl"/>
+  <File Type="RDS-RDS" Name="sin_lifter.vds"/>
+  <File Type="RDS-UTIL" Name="sin_lifter_utilization_synth.rpt"/>
+  <File Type="RDS-UTIL-PB" Name="sin_lifter_utilization_synth.pb"/>
+  <File Type="RDS-DCP" Name="sin_lifter.dcp"/>
   <FileSet Name="sources" Type="DesignSrcs" RelSrcDir="$PSRCDIR/sources_1" RelGenDir="$PGENDIR/sources_1">
     <Filter Type="Srcs"/>
-    <File Path="$PSRCDIR/sources_1/new/preemphasis.vhd">
-      <FileInfo SFType="VHDL2008">
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
     <File Path="$PSRCDIR/sources_1/new/sin_lifter.vhd">
       <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/fft.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/ROM.vhd">
-      <FileInfo SFType="VHDL2008">
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sim_1/new/frame.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/window.vhd">
-      <FileInfo SFType="VHDL2008">
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/power_spectrum.vhd">
-      <FileInfo>
-        <Attr Name="AutoDisabled" Val="1"/>
-        <Attr Name="UsedIn" Val="synthesis"/>
-        <Attr Name="UsedIn" Val="simulation"/>
-      </FileInfo>
-    </File>
-    <File Path="$PSRCDIR/sources_1/new/filterbanks.vhd">
+    <File Path="$PSRCDIR/sources_1/new/dct.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -73,7 +28,49 @@
         <Attr Name="UsedIn" Val="simulation"/>
       </FileInfo>
     </File>
-    <File Path="$PSRCDIR/sources_1/new/dct.vhd">
+    <File Path="$PSRCDIR/sources_1/new/filterbanks.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/fft.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/window.vhd">
+      <FileInfo SFType="VHDL2008">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sim_1/new/frame.vhd">
+      <FileInfo>
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/preemphasis.vhd">
+      <FileInfo SFType="VHDL2008">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/ROM.vhd">
+      <FileInfo SFType="VHDL2008">
+        <Attr Name="AutoDisabled" Val="1"/>
+        <Attr Name="UsedIn" Val="synthesis"/>
+        <Attr Name="UsedIn" Val="simulation"/>
+      </FileInfo>
+    </File>
+    <File Path="$PSRCDIR/sources_1/new/power_spectrum.vhd">
       <FileInfo>
         <Attr Name="AutoDisabled" Val="1"/>
         <Attr Name="UsedIn" Val="synthesis"/>
@@ -82,7 +79,7 @@
     </File>
     <Config>
       <Option Name="DesignMode" Val="RTL"/>
-      <Option Name="TopModule" Val="preemphasis"/>
+      <Option Name="TopModule" Val="sin_lifter"/>
     </Config>
   </FileSet>
   <FileSet Name="constrs_in" Type="Constrs" RelSrcDir="$PSRCDIR/constrs_1" RelGenDir="$PGENDIR/constrs_1">
