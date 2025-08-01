@@ -147,7 +147,7 @@ begin
         lut_index := 0;
         lut_entry := (others => '0');
         log2_result := (others => '0');
-        log10_result := (others => '0');
+        --log10_result := (others => '0');
         curr_value := (others => '0');
         curr_coeff_count := 0;
         

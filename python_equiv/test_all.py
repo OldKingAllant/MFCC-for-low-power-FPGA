@@ -88,10 +88,12 @@ for frame in frames_fft:
             coeffs[i] = 1.0
     all_coeffs.extend(coeffs)
 
-#all_coeffs = np.log2(all_coeffs)
+#####################################
 
-for coeff in all_coeffs:
-    print(f'{int(coeff/2**8):x}')
+all_coeffs = np.log2(all_coeffs)
+
+#for coeff in all_coeffs:
+#    print(f'{int(coeff/2**8):x}')
     
 x_axis = [i for i in range(len(all_coeffs))]
 

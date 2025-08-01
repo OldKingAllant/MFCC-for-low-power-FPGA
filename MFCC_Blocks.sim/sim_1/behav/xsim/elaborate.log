@@ -390,5 +390,6 @@ Compiling architecture xfft_0_arch of entity xil_defaultlib.xfft_0 [xfft_0_defau
 Compiling architecture behavioral of entity xil_defaultlib.fft [fft_default]
 Compiling architecture behavioral of entity xil_defaultlib.power_spectrum [\power_spectrum(sample_size=32,f...]
 Compiling architecture behavioral of entity xil_defaultlib.filterbanks [\filterbanks(nmult=8)\]
+Compiling architecture behavioral of entity xil_defaultlib.log_compute [\log_compute(num_coeffs=8)\]
 Compiling architecture behavioral of entity xil_defaultlib.design_tb
 Built simulation snapshot design_tb_behav

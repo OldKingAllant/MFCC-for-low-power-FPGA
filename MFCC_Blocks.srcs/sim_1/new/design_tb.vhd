@@ -79,9 +79,15 @@ architecture Behavioral of design_tb is
     
     signal input_valid_log : std_logic;
     signal input_coeffs_log : std_logic_vector((64 * 8) - 1 downto 0);
+    signal log_stall_req : std_logic;
     
     type COEFF_ARR is array(0 to 7) of std_logic_vector(63 downto 0);
     signal coeff_array : COEFF_ARR;
+    
+    -----------------------------
+    
+    signal input_valid_dct : std_logic;
+    signal input_value_dct : std_logic_vector(63 downto 0);
     
     -----------------------------
     
@@ -90,14 +96,16 @@ architecture Behavioral of design_tb is
     signal stall_fft : std_logic;
     signal stall_spectrum : std_logic;
     signal stall_bank : std_logic;
+    signal stall_log : std_logic;
 begin
     bank_stall_req <= '1' when filt_accepts_samples='0' else '0';
 
-    stall_frame <= '1' when window_stall_request='1' or fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1' else '0';
-    stall_window <= '1' when fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1' else '0';
-    stall_fft <= '1' when spectrum_stall_req='1' or bank_stall_req='1' else '0';
-    stall_spectrum <= '1' when bank_stall_req='1' else '0';
-    stall_bank <= '0';
+    stall_frame <= '1' when window_stall_request='1' or fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1' or log_stall_req='1' else '0';
+    stall_window <= '1' when fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1'  or log_stall_req='1' else '0';
+    stall_fft <= '1' when spectrum_stall_req='1' or bank_stall_req='1'  or log_stall_req='1' else '0';
+    stall_spectrum <= '1' when bank_stall_req='1'  or log_stall_req='1' else '0';
+    stall_bank <= '1' when log_stall_req='1' else '0';
+    stall_log <= '0';
     
     wave_gen : entity work.complex_signal_generator(Behavioral) 
     generic map(
@@ -195,6 +203,24 @@ begin
         accepts_samples => filt_accepts_samples,
         output_valid => input_valid_log,
         coefficients => input_coeffs_log
+    );
+    
+    log_compute : entity work.log_compute(Behavioral) 
+    generic map(
+        sample_size => 64,
+        precision => 8,
+        num_coeffs => 8,
+        total_coeffs => 16,
+        buf_size => 20
+    )
+    port map(
+        clk => clk_output,
+        input_valid => input_valid_log,
+        input_coeffs => input_coeffs_log,
+        stall => stall_log,
+        request_stall => log_stall_req,
+        output_valid => input_valid_dct,
+        output_value => input_value_dct
     );
     
     input_value <= resize(signed(input_val_temp), input_value'length);
