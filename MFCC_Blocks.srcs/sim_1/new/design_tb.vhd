@@ -88,8 +88,15 @@ architecture Behavioral of design_tb is
     
     signal input_valid_dct : std_logic;
     signal input_value_dct : std_logic_vector(63 downto 0);
+    signal dct_stall_req : std_logic;
     
     -----------------------------
+    
+    signal input_valid_lift : std_logic;
+    signal input_value_lift : std_logic_vector(63 downto 0);
+    
+    signal final_output_valid : std_logic;
+    signal final_output_value : std_logic_vector(63 downto 0);
     
     signal stall_frame : std_logic;
     signal stall_window : std_logic;
@@ -97,15 +104,17 @@ architecture Behavioral of design_tb is
     signal stall_spectrum : std_logic;
     signal stall_bank : std_logic;
     signal stall_log : std_logic;
+    signal stall_dct : std_logic;
 begin
     bank_stall_req <= '1' when filt_accepts_samples='0' else '0';
 
-    stall_frame <= '1' when window_stall_request='1' or fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1' or log_stall_req='1' else '0';
-    stall_window <= '1' when fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1'  or log_stall_req='1' else '0';
-    stall_fft <= '1' when spectrum_stall_req='1' or bank_stall_req='1'  or log_stall_req='1' else '0';
-    stall_spectrum <= '1' when bank_stall_req='1'  or log_stall_req='1' else '0';
-    stall_bank <= '1' when log_stall_req='1' else '0';
-    stall_log <= '0';
+    stall_frame <= '1' when window_stall_request='1' or fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1' or log_stall_req='1' or dct_stall_req='1' else '0';
+    stall_window <= '1' when fft_stall_req='1' or spectrum_stall_req='1' or bank_stall_req='1'  or log_stall_req='1' or dct_stall_req='1' else '0';
+    stall_fft <= '1' when spectrum_stall_req='1' or bank_stall_req='1'  or log_stall_req='1' or dct_stall_req='1' else '0';
+    stall_spectrum <= '1' when bank_stall_req='1'  or log_stall_req='1' or dct_stall_req='1' else '0';
+    stall_bank <= '1' when log_stall_req='1' or dct_stall_req='1' else '0';
+    stall_log <= '1' when dct_stall_req='1' else '0';
+    stall_dct <= '0';
     
     wave_gen : entity work.complex_signal_generator(Behavioral) 
     generic map(
@@ -221,6 +230,40 @@ begin
         request_stall => log_stall_req,
         output_valid => input_valid_dct,
         output_value => input_value_dct
+    );
+    
+    dct : entity work.dct(Behavioral)
+    generic map(
+        sample_size => 64,
+        precision => 8,
+        numcoeffs => 16,
+        numcepstra => 16,
+        nmult => 4
+    )
+    port map(
+        clk => clk_output,
+        input_valid => input_valid_dct,
+        input_coeff => input_value_dct,
+        stall => stall_dct,
+        request_stall => dct_stall_req,
+        output_valid => input_valid_lift,
+        output_value => input_value_lift
+    );
+    
+    lifter : entity work.sin_lifter(Behavioral) 
+    generic map(
+        sample_size => 64,
+        precision => 8,
+        window_size => 16,
+        const => 22
+    )
+    port map(
+        clk => clk_output,
+        input_valid => input_valid_lift,
+        input_value => input_value_lift,
+        stall => '0',
+        output_value => final_output_value,
+        output_valid => final_output_valid
     );
     
     input_value <= resize(signed(input_val_temp), input_value'length);

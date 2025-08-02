@@ -1,6 +1,7 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import math
+from scipy.fftpack import dct
 
 fft_size = 512
 wave = [32767 if i > (fft_size / 2)-3 and  i < (fft_size / 2)+3 else 0 for i in range(fft_size)]
@@ -77,7 +78,7 @@ for filt in range(numfilters):
             curr_filter.append(0)
     fbank.append(curr_filter)
 
-all_coeffs = []
+frame_coeffs = []
 for frame in frames_fft:
     coeffs = []
     for i in range(len(fbank)):
@@ -86,17 +87,33 @@ for frame in frames_fft:
             coeffs[i] += fbank[i][j] * frame[j]
         if coeffs[i] < 1.0:
             coeffs[i] = 1.0
-    all_coeffs.extend(coeffs)
+    frame_coeffs.append(coeffs)
 
 #####################################
 
-all_coeffs = np.log2(all_coeffs)
+log_frames = np.log2(frame_coeffs)
 
-#for coeff in all_coeffs:
-#    print(f'{int(coeff/2**8):x}')
+#####################################
+
+frames_dct = np.array(dct(log_frames, 3, norm='ortho'))
+
+#####################################
+
+lifted_coeffs = np.zeros(frames_dct.shape)
+
+n = np.arange(1, lifted_coeffs.shape[1] + 1)
+D = 22
+w = 1 + (D / 2) * np.sin(np.pi * n / D)
+
+# lift coefficients
+lifted_coeffs = frames_dct * w
+
+#####################################
+
+final_coeffs = lifted_coeffs.flatten()
     
-x_axis = [i for i in range(len(all_coeffs))]
+x_axis = [i for i in range(len(final_coeffs))]
 
-plt.plot(x_axis, all_coeffs)
+plt.plot(x_axis, final_coeffs)
 plt.show()
 

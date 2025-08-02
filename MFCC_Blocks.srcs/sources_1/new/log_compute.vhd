@@ -207,7 +207,7 @@ begin
                 coeff_buffer(0 to buf_size - 2) <= coeff_buffer(1 to buf_size - 1);
                 curr_coeff_count := curr_coeff_count - 1;
                 
-                if(curr_coeff_count<0) then
+                if(curr_coeff_count=0) then
                     state <= FILLING;
                     curr_coeff_count := 0;
                 end if;
