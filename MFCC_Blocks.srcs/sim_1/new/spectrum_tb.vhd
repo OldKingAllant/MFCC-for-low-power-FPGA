@@ -79,7 +79,7 @@ begin
     wave_gen : entity work.complex_signal_generator(Behavioral) 
     generic map(
         FFT_Size => 512,
-        FUNC_TYPE => 1
+        FUNC_TYPE => 2
     )
     port map(
         clk => wave_clk,

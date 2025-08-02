@@ -54,12 +54,13 @@ def mel_filter(frames, f_min, f_max, n_mels, fs):
 
 fft_size = 512
 wave = [32767 if i > (fft_size / 2)-3 and  i < (fft_size / 2)+3 else 0 for i in range(fft_size)]
-
-tst = list(map(np.int32, wave))
-dout_scipy = np.fft.fft(tst)
+dout_scipy = np.fft.fft(wave)
 dout_scipy.real = dout_scipy.real* dout_scipy.real
 dout_scipy.imag = dout_scipy.imag * dout_scipy.imag
 sum_re_im = dout_scipy.real + dout_scipy.imag
+sum_re_im /= 2**8
+
+print(max(sum_re_im))
 
 x_axis = [i for i in range(len(sum_re_im))]
 

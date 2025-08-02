@@ -44,7 +44,8 @@ for frame in frames:
     fft_frame.real = fft_frame.real* fft_frame.real
     fft_frame.imag = fft_frame.imag * fft_frame.imag
     magnitudes = fft_frame.real + fft_frame.imag
-    magnitudes /= math.log2(fft_size // 2)
+    magnitudes /= fft_size // 2
+    magnitudes *= 256
     frames_fft.append(magnitudes)
 
 ###################################
@@ -91,7 +92,7 @@ for frame in frames_fft:
 
 #####################################
 
-log_frames = np.log2(frame_coeffs)
+log_frames = np.log10(frame_coeffs)
 
 #####################################
 
@@ -110,9 +111,11 @@ lifted_coeffs = frames_dct * w
 
 #####################################
 
-final_coeffs = lifted_coeffs.flatten()
-    
+final_coeffs = lifted_coeffs.flatten()   
 x_axis = [i for i in range(len(final_coeffs))]
+
+#final_coeffs = np.array(frame_coeffs).flatten()   
+#x_axis = [i for i in range(len(final_coeffs))]
 
 plt.plot(x_axis, final_coeffs)
 plt.show()
