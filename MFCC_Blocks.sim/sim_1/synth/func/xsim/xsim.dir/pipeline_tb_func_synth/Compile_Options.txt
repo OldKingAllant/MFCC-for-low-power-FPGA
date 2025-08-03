@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -L "xil_defaultlib" -L "secureip" --snapshot "pipeline_tb_func_synth" "xil_defaultlib.pipeline_tb" -log "elaborate.log" 
