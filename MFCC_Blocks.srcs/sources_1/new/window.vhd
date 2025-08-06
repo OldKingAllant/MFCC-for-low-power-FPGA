@@ -69,8 +69,8 @@ architecture Behavioral of window is
     begin
         for index in RET_ROM'range loop
             --h = 0.54 - 0.46 * np.cos(2 * np.pi * n / (window_length - 1))
-            temp_val := (0.54 - 0.46 * cos(2.0 * MATH_PI * real(index) / (real(window_size) - 1.0))) * (2**precision);
-            RET_ROM(index) := std_logic_vector(to_signed(integer(temp_val), 32));
+            temp_val := (0.54 - 0.46 * cos(2.0 * MATH_PI * real(index) / (real(window_size) - 1.0))) * real(2**precision);
+            RET_ROM(index) := std_logic_vector(to_signed(integer(floor(temp_val)), 32));
         end loop;
         return RET_ROM;
     end function;

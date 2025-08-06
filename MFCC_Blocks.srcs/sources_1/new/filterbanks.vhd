@@ -114,7 +114,7 @@ architecture Behavioral of filterbanks is
                     weight := 0.0;
                 end if;
                 
-                curr_filter(bin) := integer(weight*real(2**precision));
+                curr_filter(bin) := integer(floor(weight*real(2**precision)));
                 --if (fftBinFreq[bin] < filterCentreFreq[filt-1])
                 --    weight = 0;
                 --else if (fftBinFreq[bin] <= filterCentreFreq[filt])

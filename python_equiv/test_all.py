@@ -94,6 +94,8 @@ for frame in frames_fft:
 
 log_frames = np.log10(frame_coeffs)
 
+print(log_frames)
+
 #####################################
 
 frames_dct = np.array(dct(log_frames, 3, norm='ortho'))

@@ -1,0 +1,5 @@
+0.7
+2020.2
+May  7 2023
+15:24:31
+D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.ip_user_files/ipstatic/hdl/cmpy_v6_0_vh_rfs.vhd,1754041770,vhdl,D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.ip_user_files/ipstatic/hdl/xfft_v9_1_vh_rfs.vhd,,,cmpy_3_dsp48;cmpy_3_dsp48_mult;cmpy_3_mult18_lut;cmpy_4_dsp48;cmpy_4_dsp48_mult;cmpy_4_mult18_lut;cmpy_dspcplx;cmpy_mux2to1;cmpy_v6_0_21;cmpy_v6_0_21_comp;cmpy_v6_0_21_pkg;cmpy_v6_0_21_synth;cmpy_v6_0_21_viv;cmpy_v6_0_21_viv_comp;cmpy_xfft_so_sync;delay_line;input_negation;three_input_adder,,,,,,,,

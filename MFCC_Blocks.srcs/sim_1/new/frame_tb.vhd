@@ -48,7 +48,7 @@ architecture Behavioral of frame_tb is
     constant WIN_SIZE : integer := 512;
     constant STEP_SIZE : integer := 512 - 170;
 begin
-    frame_module : entity work.frame(Behavioral) 
+    frame_module : entity work.frame
     generic map(
         sample_size => 32,
         window_size => WIN_SIZE,
@@ -93,20 +93,6 @@ begin
     begin 
         clk_output <= '0';
         wait for 25ns;
-        
-        --input_valid <= '0';
-        --if(input_valid_temp='1') then
-        --    if(input_cnt=0) then
-        --        input_valid <= '1';
-        --    end if;
-            
-        --    if(input_cnt + 1 = 4) then
-        --        input_cnt := 0;
-        --    else
-        --        input_cnt := input_cnt + 1;
-        --    end if;
-       -- end if;
-        
         
         clk_output <= '1';
         wait for 25ns;

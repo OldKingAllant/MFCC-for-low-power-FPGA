@@ -116,7 +116,7 @@ architecture Behavioral of log_compute is
     begin
         curr_value := 0;
         for curr_fract in lut'range loop
-            lut_entry := integer(log2(1.0+(real(curr_value)/real(LUT_SIZE))) * real(LUT_SIZE));
+            lut_entry := integer(floor(log2(1.0+(real(curr_value)/real(LUT_SIZE))) * real(LUT_SIZE)));
             lut(curr_fract) := std_logic_vector(to_unsigned(lut_entry, sample_size));
             curr_value := curr_value + 1;
         end loop;

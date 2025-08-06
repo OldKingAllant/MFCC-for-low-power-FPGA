@@ -1,0 +1,182 @@
+Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
+---------------------------------------------------------------------------------------------------------------------------------------------
+| Tool Version : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
+| Date         : Wed Aug  6 10:41:45 2025
+| Host         : DESKTOP-S7TDGUG running 64-bit major release  (build 9200)
+| Command      : report_control_sets -verbose -file pipeline_control_sets_placed.rpt
+| Design       : pipeline
+| Device       : xc7z012s
+---------------------------------------------------------------------------------------------------------------------------------------------
+
+Control Set Information
+
+Table of Contents
+-----------------
+1. Summary
+2. Histogram
+3. Flip-Flop Distribution
+4. Detailed Control Set Information
+
+1. Summary
+----------
+
++----------------------------------------------------------+-------+
+|                          Status                          | Count |
++----------------------------------------------------------+-------+
+| Total control sets                                       |   104 |
+|    Minimum number of control sets                        |   104 |
+|    Addition due to synthesis replication                 |     0 |
+|    Addition due to physical synthesis replication        |     0 |
+| Unused register locations in slices containing registers |   166 |
++----------------------------------------------------------+-------+
+* Control sets can be merged at opt_design using control_set_merge or merge_equivalent_drivers
+** Run report_qor_suggestions for automated merging and remapping suggestions
+
+
+2. Histogram
+------------
+
++--------------------+-------+
+|       Fanout       | Count |
++--------------------+-------+
+| Total control sets |   104 |
+| >= 0 to < 4        |     2 |
+| >= 4 to < 6        |     2 |
+| >= 6 to < 8        |     3 |
+| >= 8 to < 10       |     3 |
+| >= 10 to < 12      |    11 |
+| >= 12 to < 14      |     0 |
+| >= 14 to < 16      |     0 |
+| >= 16              |    83 |
++--------------------+-------+
+* Control sets can be remapped at either synth_design or opt_design
+
+
+3. Flip-Flop Distribution
+-------------------------
+
++--------------+-----------------------+------------------------+-----------------+--------------+
+| Clock Enable | Synchronous Set/Reset | Asynchronous Set/Reset | Total Registers | Total Slices |
++--------------+-----------------------+------------------------+-----------------+--------------+
+| No           | No                    | No                     |             172 |           66 |
+| No           | No                    | Yes                    |               0 |            0 |
+| No           | Yes                   | No                     |              33 |           14 |
+| Yes          | No                    | No                     |            8932 |         2955 |
+| Yes          | No                    | Yes                    |               0 |            0 |
+| Yes          | Yes                   | No                     |            2681 |          773 |
++--------------+-----------------------+------------------------+-----------------+--------------+
+
+
+4. Detailed Control Set Information
+-----------------------------------
+
++-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+------------------+----------------+--------------+
+|       Clock Signal      |                                                                  Enable Signal                                                                 |               Set/Reset Signal               | Slice Load Count | Bel Load Count | Bels / Slice |
++-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+------------------+----------------+--------------+
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/config_channel_fifo/gen_non_real_time.data_in_fifo_pt1/wr_enable                                          |                                              |                1 |              1 |         1.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/has_scale_pipelining.has_tw_scale_reg.tw_scale_reg_ce_2                                                   |                                              |                2 |              3 |         1.50 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/has_scale_pipelining.has_tw_scale_reg.tw_scale_reg_ce_1                                                   |                                              |                2 |              4 |         2.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/has_scale_pipelining.has_tw_scale_reg.tw_scale_reg_ce_0                                                   |                                              |                5 |              5 |         1.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/has_scale_pipelining.has_tw_scale_reg.tw_scale_reg_ce                                                     |                                              |                6 |              6 |         1.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_1[0]                                                         |                                              |                4 |              6 |         1.50 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/E[0]                                                                                                      |                                              |                4 |              6 |         1.50 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[4][55]_i_1_n_0                                                                                                        | log_compute/coeff_buffer[4][63]_i_1_n_0      |                1 |              8 |         8.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/symbols_out_remaining[8]_i_1_n_0                                                                          |                                              |                4 |              9 |         2.25 |
+|  clk_output_IBUF_BUFG   | fft/accepts_samples_reg_0                                                                                                                      |                                              |                4 |              9 |         2.25 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_3                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_6                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/CE                                                                                                        |                                              |                5 |             11 |         2.20 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_5                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/xfft_inst/non_floating_point.arch_d.xfft_inst/FLOW/proc0_counter/load_cnt_ce                                          |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_8                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_7                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep_1                                                               |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_2                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep_2                                                               |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/gen_ce_non_real_time.ce_predicted_reg_rep__0_4                                                            |                                              |                4 |             11 |         2.75 |
+|  clk_output_IBUF_BUFG   | fft/fft_in_data                                                                                                                                |                                              |               10 |             24 |         2.40 |
+|  clk_output_IBUF_BUFG   | dct/input_valid_lift                                                                                                                           |                                              |                9 |             26 |         2.89 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer                                                                                                                              | dct/output_cnt                               |                8 |             31 |         3.88 |
+|  clk_sampling_IBUF_BUFG | frame_module/input_position                                                                                                                    | frame_module/input_position[0]_i_1_n_0       |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | fft/accepts_samples_reg                                                                                                                        |                                              |                9 |             32 |         3.56 |
+|  clk_output_IBUF_BUFG   | log_compute/output_valid                                                                                                                       | dct/write_pos                                |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | pow_spectrum/has_sample1                                                                                                                       | pow_spectrum/write_pos                       |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | pow_spectrum/valid_sum                                                                                                                         | pow_spectrum/point_count                     |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | dct/read_pos                                                                                                                                   | dct/mfcc_work_buffer[1][63]_i_1_n_0          |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | fft/accepts_samples_reg                                                                                                                        | frame_module/curr_out_cnt                    |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | fft/config_clk_count[0]_i_1_n_0                                                                                                                |                                              |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | dct/input_valid_lift                                                                                                                           | dct/clear                                    |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | frame_module/advance_cnt                                                                                                                       | frame_module/advance_cnt[0]_i_1_n_0          |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | frame_module/output_jump_position[31]_i_1_n_0                                                                                                  |                                              |               11 |             32 |         2.91 |
+|  clk_output_IBUF_BUFG   | filterbank/read_pos                                                                                                                            | filterbank/coeffs[9][63]_i_1_n_0             |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/data_in_channel_fifo/gen_non_real_time.data_in_fifo_pt1/gen_non_real_time.gen_has_skid_buffer.data_out_10 |                                              |                8 |             32 |         4.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/data_in_channel_fifo/gen_non_real_time.data_in_fifo_pt1/gen_non_real_time.gen_has_skid_buffer.data_out_20 |                                              |                4 |             32 |         8.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/data_in_channel_fifo/gen_non_real_time.data_in_fifo_pt1/wr_enable                                         |                                              |                4 |             32 |         8.00 |
+|  clk_output_IBUF_BUFG   |                                                                                                                                                | log_compute/coeff_count[31]_i_1_n_0          |               14 |             33 |         2.36 |
+|  clk_output_IBUF_BUFG   | dct/output_valid13_in                                                                                                                          | dct/output_cnt                               |                8 |             35 |         4.38 |
+|  clk_output_IBUF_BUFG   | log_compute/p_5_out                                                                                                                            | dct/read_pos                                 |                9 |             36 |         4.00 |
+|  clk_output_IBUF_BUFG   | dct/read_pos                                                                                                                                   | dct/read_pos_rep[4]_i_1_n_0                  |               10 |             37 |         3.70 |
+|  clk_output_IBUF_BUFG   | window/curr_wave_position_0                                                                                                                    | window/curr_wave_position_rep_rep[7]_i_1_n_0 |               10 |             40 |         4.00 |
+|  clk_output_IBUF_BUFG   | pow_spectrum/output_valid1                                                                                                                     | filterbank/read_pos                          |               14 |             41 |         2.93 |
+|  clk_output_IBUF_BUFG   | filterbank/read_pos                                                                                                                            | filterbank/read_pos_rep[8]_i_1_n_0           |               16 |             53 |         3.31 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[18][55]_i_1_n_0                                                                                                       |                                              |               52 |             56 |         1.08 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[19]_5                                                                                                                 |                                              |               55 |             56 |         1.02 |
+|  clk_output_IBUF_BUFG   | pow_spectrum/valid_squared__0                                                                                                                  |                                              |               14 |             56 |         4.00 |
+|  clk_output_IBUF_BUFG   | pow_spectrum/valid_sum                                                                                                                         |                                              |               22 |             56 |         2.55 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[17][55]_i_1_n_0                                                                                                       |                                              |               54 |             56 |         1.04 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[4][55]_i_1_n_0                                                                                                        |                                              |               56 |             56 |         1.00 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[16][63]_i_1_n_0                                                                                                       |                                              |               52 |             58 |         1.12 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[15][63]_i_1_n_0                                                                                                       |                                              |               57 |             59 |         1.04 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[14][63]_i_1_n_0                                                                                                       |                                              |               57 |             60 |         1.05 |
+|  clk_output_IBUF_BUFG   | log_compute/output_valid0                                                                                                                      |                                              |               17 |             61 |         3.59 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[13][63]_i_1_n_0                                                                                                       |                                              |               56 |             62 |         1.11 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[11][63]_i_1_n_0                                                                                                       |                                              |               54 |             63 |         1.17 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[12][63]_i_1_n_0                                                                                                       |                                              |               56 |             63 |         1.12 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[12]_2                                                                                                                     | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               21 |             64 |         3.05 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[13][63]_i_1_n_0                                                                                                           | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               20 |             64 |         3.20 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[14]_1                                                                                                                     | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               16 |             64 |         4.00 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[10]_0                                                                                                                     | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               18 |             64 |         3.56 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[1][63]_i_1_n_0                                                                                                        |                                              |               57 |             64 |         1.12 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[0][55]_i_1_n_0                                                                                                        |                                              |               58 |             64 |         1.10 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[10][63]_i_1_n_0                                                                                                       |                                              |               54 |             64 |         1.19 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[5][55]_i_1_n_0                                                                                                        |                                              |               58 |             64 |         1.10 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[6][63]_i_1_n_0                                                                                                        |                                              |               58 |             64 |         1.10 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[7][63]_i_1_n_0                                                                                                        |                                              |               58 |             64 |         1.10 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[8][63]_i_1_n_0                                                                                                        |                                              |               57 |             64 |         1.12 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[9][63]_i_1_n_0                                                                                                        |                                              |               57 |             64 |         1.12 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[6]_3                                                                                                                      | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               18 |             64 |         3.56 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[2][57]_i_1_n_0                                                                                                        |                                              |               60 |             64 |         1.07 |
+|  clk_output_IBUF_BUFG   | log_compute/coeff_buffer[3][55]_i_1_n_0                                                                                                        |                                              |               57 |             64 |         1.12 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/data_out_channel/data_out_fifo_write                                                                      |                                              |                8 |             64 |         8.00 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/ce_w2c                                                                                                    | fft/fft_block/U0/i_synth/axi_wrapper/SR[0]   |               10 |             64 |         6.40 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[7][63]_i_1_n_0                                                                                                            | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               26 |             64 |         2.46 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[11][63]_i_1_n_0                                                                                                           | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               16 |             64 |         4.00 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[15][63]_i_1_n_0                                                                                                           | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               17 |             64 |         3.76 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/data_out_channel/gen_non_real_time.fifo/fifo0/rd_enable                                                   |                                              |                9 |             65 |         7.22 |
+|  clk_output_IBUF_BUFG   | log_compute/valid_squared                                                                                                                      |                                              |               21 |             68 |         3.24 |
+|  clk_output_IBUF_BUFG   | filterbank/samples_reg_64_127_0_2_i_1_n_0                                                                                                      |                                              |               19 |             76 |         4.00 |
+|  clk_output_IBUF_BUFG   | filterbank/samples_reg_128_191_0_2_i_1_n_0                                                                                                     |                                              |               19 |             76 |         4.00 |
+|  clk_output_IBUF_BUFG   | filterbank/samples_reg_192_255_0_2_i_1_n_0                                                                                                     |                                              |               19 |             76 |         4.00 |
+|  clk_output_IBUF_BUFG   | filterbank/samples_reg_0_63_0_2_i_1_n_0                                                                                                        |                                              |               19 |             76 |         4.00 |
+|  clk_output_IBUF_BUFG   | filterbank/samples_reg_256_319_0_2_i_1_n_0                                                                                                     |                                              |               19 |             76 |         4.00 |
+|  clk_output_IBUF_BUFG   | log_compute/p_0_in0_out                                                                                                                        |                                              |               11 |             88 |         8.00 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[11][63]_i_1_n_0                                                                                                              |                                              |               31 |            112 |         3.61 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[5][63]_i_1_n_0                                                                                                               |                                              |               28 |            112 |         4.00 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[3][63]_i_1_n_0                                                                                                               |                                              |               32 |            112 |         3.50 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[7][63]_i_1_n_0                                                                                                               |                                              |               44 |            112 |         2.55 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[9][63]_i_1_n_0                                                                                                               |                                              |               69 |            112 |         1.62 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[15][63]_i_1_n_0                                                                                                              |                                              |               31 |            112 |         3.61 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[13][63]_i_1_n_0                                                                                                              |                                              |               26 |            112 |         4.31 |
+|  clk_output_IBUF_BUFG   | dct/output_buffer[1][63]_i_1_n_0                                                                                                               |                                              |               31 |            112 |         3.61 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[8][63]_i_1_n_0                                                                                                            | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               44 |            128 |         2.91 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[4][63]_i_1_n_0                                                                                                            | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               39 |            128 |         3.28 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[2][63]_i_1_n_0                                                                                                            | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               40 |            128 |         3.20 |
+|  clk_output_IBUF_BUFG   | dct/mfcc_work_buffer[1][63]_i_2_n_0                                                                                                            | dct/mfcc_work_buffer[1][63]_i_1_n_0          |               41 |            128 |         3.12 |
+|  clk_output_IBUF_BUFG   |                                                                                                                                                |                                              |               66 |            172 |         2.61 |
+|  clk_output_IBUF_BUFG   | filterbank/coefficients[503]_i_1_n_0                                                                                                           |                                              |               96 |            448 |         4.67 |
+|  clk_output_IBUF_BUFG   | filterbank/coeffs[15]_1                                                                                                                        | filterbank/coeffs[9][63]_i_1_n_0             |              147 |            512 |         3.48 |
+|  clk_output_IBUF_BUFG   | filterbank/coeffs[7]_0                                                                                                                         | filterbank/coeffs[9][63]_i_1_n_0             |              152 |            512 |         3.37 |
+|  clk_output_IBUF_BUFG   | fft/fft_block/U0/i_synth/axi_wrapper/ce_w2c                                                                                                    |                                              |             1226 |           7260 |         5.92 |
++-------------------------+------------------------------------------------------------------------------------------------------------------------------------------------+----------------------------------------------+------------------+----------------+--------------+
+
+

@@ -8,5 +8,9 @@ if { [string length $curr_wave] == 0 } {
   }
 }
 
+open_saif "integrate_power.saif"
+log_saif [get_objects -filter {type==in_port || type==out_port || type==inout_port} *]
+
 run 1000ns
+close_saif
 quit

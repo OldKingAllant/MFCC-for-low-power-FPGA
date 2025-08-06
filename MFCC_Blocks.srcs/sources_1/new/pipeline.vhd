@@ -226,7 +226,7 @@ begin
         precision => 8,
         numcoeffs => 16,
         numcepstra => 16,
-        nmult => 4
+        nmult => 2
     )
     port map(
         clk => clk_output,

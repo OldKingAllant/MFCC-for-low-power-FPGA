@@ -1,0 +1,8 @@
+# compile vhdl design source files
+vhdl xil_defaultlib  \
+"pipeline_tb_func_impl.vhd" \
+"../../../../../MFCC_Blocks.srcs/sim_1/new/wave_gen.vhd" \
+"../../../../../MFCC_Blocks.srcs/sim_1/new/pipeline_tb.vhd" \
+
+# Do not sort compile order
+nosort

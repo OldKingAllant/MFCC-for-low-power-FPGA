@@ -68,6 +68,7 @@ architecture Behavioral of dct is
                     curr_row(entry) := std_logic_vector(to_signed(integer(ceil(temp_value)), sample_size));
                 end if;
                 curr_index := curr_index + 1;
+                report integer'image(to_integer(signed(curr_row(entry)))) severity note;
             end loop;
             table(cepstra) := curr_row;
         end loop;
@@ -158,6 +159,7 @@ begin
                 if(curr_coeff_cnt + 1 >= numcoeffs) then
                     for mfcc_index in 0 to nmult - 1 loop
                         output_buffer(curr_cepstra_base + mfcc_index) <= shift_right(temp_mfcc(mfcc_index), precision);
+                        --output_buffer(curr_cepstra_base + mfcc_index) <= shift_right(mfcc_work_buffer(curr_cepstra_base + mfcc_index), precision);
                     end loop;
                     output_cnt <= output_cnt + nmult;
                 end if;

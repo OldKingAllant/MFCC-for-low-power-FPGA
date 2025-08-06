@@ -1,0 +1,14 @@
+#-----------------------------------------------------------
+# Vivado v2023.1 (64-bit)
+# SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
+# IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
+# SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
+# Start of session at: Wed Aug  6 10:39:51 2025
+# Process ID: 11912
+# Current directory: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/impl_1
+# Command line: vivado.exe -log pipeline.vdi -applog -product Vivado -messageDb vivado.pb -mode batch -source pipeline.tcl -notrace
+# Log file: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/impl_1/pipeline.vdi
+# Journal file: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/impl_1\vivado.jou
+# Running On: DESKTOP-S7TDGUG, OS: Windows, CPU Frequency: 3192 MHz, CPU Physical cores: 6, Host memory: 17093 MB
+#-----------------------------------------------------------
+source pipeline.tcl -notrace
