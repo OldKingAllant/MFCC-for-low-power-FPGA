@@ -66,17 +66,17 @@ begin
     process is
     begin 
         clk_sampling <= '0';
-        wait for 100ns;
+        wait for 31500ns;
         clk_sampling <= '1';
-        wait for 100ns;
+        wait for 31500ns;
     end process;
     
     process is 
         variable input_cnt : integer := 0;
     begin 
         clk_output <= '0';
-        wait for 25ns;
+        wait for 500ns;
         clk_output <= '1';
-        wait for 25ns;
+        wait for 500ns;
     end process;
 end Behavioral;

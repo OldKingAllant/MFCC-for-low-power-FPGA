@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Wed Aug  6 10:43:22 2025
+| Date             : Tue Aug 12 14:33:16 2025
 | Host             : DESKTOP-S7TDGUG running 64-bit major release  (build 9200)
 | Command          : report_power -file pipeline_power_routed.rpt -pb pipeline_power_summary_routed.pb -rpx pipeline_power_routed.rpx
 | Design           : pipeline
@@ -53,17 +53,17 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |    <0.001 |        4 |       --- |             --- |
-| Slice Logic              |    <0.001 |    31027 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |    12537 |     34400 |           36.44 |
-|   CARRY4                 |    <0.001 |     1256 |     11550 |           10.87 |
-|   Register               |    <0.001 |    11818 |     68800 |           17.18 |
-|   LUT as Distributed RAM |    <0.001 |      424 |     14400 |            2.94 |
-|   F7/F8 Muxes            |    <0.001 |      310 |     46200 |            0.67 |
+| Slice Logic              |    <0.001 |    23061 |       --- |             --- |
+|   LUT as Logic           |    <0.001 |     6726 |     34400 |           19.55 |
+|   Register               |    <0.001 |    10423 |     68800 |           15.15 |
+|   CARRY4                 |    <0.001 |      986 |     11550 |            8.54 |
 |   LUT as Shift Register  |    <0.001 |      988 |     14400 |            6.86 |
+|   LUT as Distributed RAM |    <0.001 |      390 |     14400 |            2.71 |
+|   F7/F8 Muxes            |    <0.001 |      242 |     46200 |            0.52 |
 |   Others                 |     0.000 |      973 |       --- |             --- |
-| Signals                  |    <0.001 |    26852 |       --- |             --- |
-| Block RAM                |    <0.001 |        4 |        72 |            5.56 |
-| DSPs                     |    <0.001 |      114 |       120 |           95.00 |
+| Signals                  |    <0.001 |    17869 |       --- |             --- |
+| Block RAM                |    <0.001 |        5 |        72 |            6.94 |
+| DSPs                     |    <0.001 |       62 |       120 |           51.67 |
 | I/O                      |    <0.001 |       92 |       150 |           61.33 |
 | Static Power             |     0.103 |          |           |                 |
 | Total                    |     0.105 |          |           |                 |
@@ -76,7 +76,7 @@ Table of Contents
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
 | Source    | Voltage (V) | Total (A) | Dynamic (A) | Static (A) | Powerup (A) | Budget (A)  | Margin (A) |
 +-----------+-------------+-----------+-------------+------------+-------------+-------------+------------+
-| Vccint    |       1.000 |     0.009 |       0.002 |      0.008 |       NA    | Unspecified | NA         |
+| Vccint    |       1.000 |     0.010 |       0.002 |      0.008 |       NA    | Unspecified | NA         |
 | Vccaux    |       1.800 |     0.009 |       0.000 |      0.009 |       NA    | Unspecified | NA         |
 | Vcco33    |       3.300 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
 | Vcco25    |       2.500 |     0.000 |       0.000 |      0.000 |       NA    | Unspecified | NA         |
@@ -140,7 +140,7 @@ Table of Contents
 | Clock        | Domain       | Constraint (ns) |
 +--------------+--------------+-----------------+
 | clk_output   | clk_output   |          1000.0 |
-| clk_sampling | clk_sampling |         62500.0 |
+| clk_sampling | clk_sampling |         63000.0 |
 +--------------+--------------+-----------------+
 
 

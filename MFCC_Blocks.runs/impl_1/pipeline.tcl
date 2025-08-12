@@ -124,30 +124,13 @@ set rc [catch {
   create_msg_db init_design.pb
   set_param chipscope.maxJobs 3
   set_param runs.launchOptions { -jobs 8  }
-OPTRACE "create in-memory project" START { }
-  create_project -in_memory -part xc7z012sclg485-2
-  set_property design_mode GateLvl [current_fileset]
-  set_param project.singleFileAddWarning.threshold 0
-OPTRACE "create in-memory project" END { }
-OPTRACE "set parameters" START { }
+  reset_param project.defaultXPMLibraries 
+  open_checkpoint D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/impl_1/pipeline.dcp
   set_property webtalk.parent_dir D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.cache/wt [current_project]
   set_property parent.project_path D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.xpr [current_project]
   set_property ip_output_repo D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.cache/ip [current_project]
   set_property ip_cache_permissions {read write} [current_project]
   set_property XPM_LIBRARIES XPM_MEMORY [current_project]
-OPTRACE "set parameters" END { }
-OPTRACE "add files" START { }
-  add_files -quiet D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/pipeline.dcp
-  read_ip -quiet D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/ip/xfft_0/xfft_0.xci
-OPTRACE "read constraints: implementation" START { }
-  read_xdc D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/constrs_1/new/constraints.xdc
-OPTRACE "read constraints: implementation" END { }
-OPTRACE "add files" END { }
-OPTRACE "link_design" START { }
-  link_design -top pipeline -part xc7z012sclg485-2 
-OPTRACE "link_design" END { }
-OPTRACE "gray box cells" START { }
-OPTRACE "gray box cells" END { }
 OPTRACE "init_design_reports" START { REPORT }
 OPTRACE "init_design_reports" END { }
 OPTRACE "init_design_write_hwdef" START { }

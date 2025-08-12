@@ -25,15 +25,18 @@ library xil_defaultlib;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 entity fft is
+    generic (
+        sample_size : integer := 32
+    );
     port (
         clk : in std_logic;
         input_valid : in std_logic;
-        input_value : in signed(31 downto 0);
+        input_value : in signed(sample_size - 1 downto 0);
         request_stall : out std_logic;
         stall : in std_logic;
         output_valid : out std_logic;
-        output_re : out std_logic_vector(31 downto 0);
-        output_im : out std_logic_vector(31 downto 0);
+        output_re : out std_logic_vector(sample_size - 1 downto 0);
+        output_im : out std_logic_vector(sample_size - 1 downto 0);
         frame_end : out std_logic
     );
 end fft;
@@ -76,11 +79,11 @@ architecture Behavioral of fft is
   
   signal data_valid : std_logic := '0';
   signal fft_in_ready : std_logic;
-  signal fft_in_data : std_logic_vector(63 downto 0);
+  signal fft_in_data : std_logic_vector(sample_size * 2 - 1 downto 0);
   signal fft_in_last : std_logic;
   
   signal fft_out_last : std_logic;
-  signal fft_out_data : std_logic_vector(63 downto 0);
+  signal fft_out_data : std_logic_vector(sample_size * 2 - 1 downto 0);
   
   signal new_frame : std_logic;
   signal unexpected_tlast : std_logic;
@@ -124,7 +127,7 @@ begin
   );
   
   process(clk) is 
-    variable temp_input : std_logic_vector(31 downto 0);
+    variable temp_input : std_logic_vector(sample_size - 1 downto 0);
     variable next_count : integer;
   begin 
     temp_input := (others => '0');
@@ -152,8 +155,8 @@ begin
             if(curr_state = NORMAL  and input_valid='1' and fft_in_ready='1') then
                     data_valid <= '1';
                     temp_input := std_logic_vector(input_value);
-                    fft_in_data(31 downto 0) <= temp_input;
-                    fft_in_data(63 downto 32) <= (others => '0');
+                    fft_in_data(sample_size - 1 downto 0) <= temp_input;
+                    fft_in_data(sample_size * 2 - 1 downto sample_size) <= (others => '0');
                     
                     next_count := curr_fft_cnt + 1;
                     if(next_count >= FFT_SIZE) then
@@ -166,8 +169,8 @@ begin
     end if;
   end process;
   
-  output_re <= fft_out_data(31 downto 0);
-  output_im <= fft_out_data(63 downto 32);
+  output_re <= fft_out_data(sample_size - 1 downto 0);
+  output_im <= fft_out_data(sample_size * 2 - 1 downto sample_size);
   
   frame_end <= fft_out_last;
 

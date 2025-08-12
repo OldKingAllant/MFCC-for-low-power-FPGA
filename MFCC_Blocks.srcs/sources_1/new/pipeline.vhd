@@ -76,7 +76,7 @@ architecture Behavioral of pipeline is
     -----------------------------
     
     signal input_valid_log : std_logic;
-    signal input_coeffs_log : std_logic_vector((64 * 8) - 1 downto 0);
+    signal input_coeffs_log : std_logic_vector((64 * 2) - 1 downto 0);
     signal log_stall_req : std_logic;
     
     --type COEFF_ARR is array(0 to 7) of std_logic_vector(63 downto 0);
@@ -151,6 +151,9 @@ begin
     );
     
     fft : entity work.fft(Behavioral) 
+    generic map(
+        sample_size => 32
+    )
     port map(
         clk => clk_output,
         input_valid => input_valid_fft,
@@ -189,7 +192,7 @@ begin
         nfft => 512,
         precision => 8,
         sample_freq => 16000,
-        nmult => 8
+        nmult => 2
     )
     port map(
         clk => clk_output,
@@ -206,7 +209,7 @@ begin
     generic map(
         sample_size => 64,
         precision => 8,
-        num_coeffs => 8,
+        num_coeffs => 2,
         total_coeffs => 16,
         buf_size => 20
     )
@@ -226,7 +229,7 @@ begin
         precision => 8,
         numcoeffs => 16,
         numcepstra => 16,
-        nmult => 2
+        nmult => 1
     )
     port map(
         clk => clk_output,

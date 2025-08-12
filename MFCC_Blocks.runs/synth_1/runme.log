@@ -14,7 +14,7 @@ ECHO disattivato.
     ** Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 
 source pipeline.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 429.637 ; gain = 161.328
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 429.332 ; gain = 161.844
 Command: read_checkpoint -auto_incremental -incremental D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/utils_1/imports/synth_1/sin_lifter.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/utils_1/imports/synth_1/sin_lifter.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -23,11 +23,13 @@ Starting synth_design
 Attempting to get a license for feature 'Synthesis' and/or device 'xc7z012s'
 INFO: [Common 17-349] Got license for feature 'Synthesis' and/or device 'xc7z012s'
 INFO: [Device 21-403] Loading part xc7z012sclg485-2
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 18588
+INFO: [Synth 8-7075] Helper process launched with PID 15744
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:06 ; elapsed = 00:00:08 . Memory (MB): peak = 1281.711 ; gain = 408.738
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1281.328 ; gain = 410.559
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'pipeline' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd:38]
 INFO: [Synth 8-638] synthesizing module 'frame' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sim_1/new/frame.vhd:49]
@@ -40,10 +42,11 @@ INFO: [Synth 8-638] synthesizing module 'window' [D:/Programming/TESI/MFCC_Block
 	Parameter window_size bound to: 512 - type: integer 
 	Parameter precision bound to: 8 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'window' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/window.vhd:50]
-INFO: [Synth 8-638] synthesizing module 'fft' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:41]
-INFO: [Synth 8-3491] module 'xfft_0' declared at 'D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-20600-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:6' bound to instance 'fft_block' of component 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:102]
-INFO: [Synth 8-638] synthesizing module 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-20600-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:31]
-INFO: [Synth 8-256] done synthesizing module 'fft' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:41]
+INFO: [Synth 8-638] synthesizing module 'fft' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:44]
+	Parameter sample_size bound to: 32 - type: integer 
+INFO: [Synth 8-3491] module 'xfft_0' declared at 'D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-11724-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:6' bound to instance 'fft_block' of component 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:105]
+INFO: [Synth 8-638] synthesizing module 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-11724-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:31]
+INFO: [Synth 8-256] done synthesizing module 'fft' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:44]
 INFO: [Synth 8-638] synthesizing module 'power_spectrum' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/power_spectrum.vhd:47]
 	Parameter sample_size bound to: 32 - type: integer 
 	Parameter fft_size bound to: 512 - type: integer 
@@ -57,12 +60,12 @@ INFO: [Synth 8-638] synthesizing module 'filterbanks' [D:/Programming/TESI/MFCC_
 	Parameter nfft bound to: 512 - type: integer 
 	Parameter precision bound to: 8 - type: integer 
 	Parameter sample_freq bound to: 16000 - type: integer 
-	Parameter nmult bound to: 8 - type: integer 
+	Parameter nmult bound to: 2 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'filterbanks' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:59]
 INFO: [Synth 8-638] synthesizing module 'log_compute' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/log_compute.vhd:69]
 	Parameter sample_size bound to: 64 - type: integer 
 	Parameter precision bound to: 8 - type: integer 
-	Parameter num_coeffs bound to: 8 - type: integer 
+	Parameter num_coeffs bound to: 2 - type: integer 
 	Parameter total_coeffs bound to: 16 - type: integer 
 	Parameter buf_size bound to: 20 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'log_compute' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/log_compute.vhd:69]
@@ -71,7 +74,7 @@ INFO: [Synth 8-638] synthesizing module 'dct' [D:/Programming/TESI/MFCC_Blocks/M
 	Parameter precision bound to: 8 - type: integer 
 	Parameter numcoeffs bound to: 16 - type: integer 
 	Parameter numcepstra bound to: 16 - type: integer 
-	Parameter nmult bound to: 2 - type: integer 
+	Parameter nmult bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'dct' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd:47]
 INFO: [Synth 8-638] synthesizing module 'sin_lifter' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:46]
 	Parameter sample_size bound to: 64 - type: integer 
@@ -82,28 +85,22 @@ INFO: [Synth 8-256] done synthesizing module 'sin_lifter' (0#1) [D:/Programming/
 INFO: [Synth 8-256] done synthesizing module 'pipeline' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd:38]
 WARNING: [Synth 8-6014] Unused sequential element first_fill_reg was removed.  [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sim_1/new/frame.vhd:83]
 WARNING: [Synth 8-6014] Unused sequential element curr_window_position_reg was removed.  [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/window.vhd:106]
-WARNING: [Synth 8-4767] Trying to implement RAM 'output_buffer_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
-	2: Unable to determine number of words or word size in RAM. 
-	3: No valid read/write found for RAM. 
-RAM "output_buffer_reg" dissolved into registers
 WARNING: [Synth 8-3848] Net end_of_data in module/entity pipeline does not have driver. [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd:39]
 WARNING: [Synth 8-7129] Port end_of_frame in module filterbanks is either unconnected or has no load
 WARNING: [Synth 8-7129] Port end_of_data in module frame is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1514.109 ; gain = 641.137
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1423.512 ; gain = 552.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1514.109 ; gain = 641.137
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1423.512 ; gain = 552.742
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:13 ; elapsed = 00:00:15 . Memory (MB): peak = 1514.109 ; gain = 641.137
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:11 . Memory (MB): peak = 1423.512 ; gain = 552.742
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.277 . Memory (MB): peak = 1514.109 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.132 . Memory (MB): peak = 1423.512 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -116,91 +113,71 @@ INFO: [Project 1-236] Implementation specific constraints were found while readi
 Resolution: To avoid this warning, move constraints listed in [.Xil/pipeline_propImpl.xdc] to another XDC file and exclude this new file from synthesis with the used_in_synthesis property (File Properties dialog in GUI) and re-run elaboration/synthesis.
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1608.531 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.001 . Memory (MB): peak = 1531.238 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.054 . Memory (MB): peak = 1608.531 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.026 . Memory (MB): peak = 1531.238 ; gain = 0.000
+INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
+INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1608.531 ; gain = 735.559
+Finished Constraint Validation : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1531.238 ; gain = 660.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xc7z012sclg485-2
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1608.531 ; gain = 735.559
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1531.238 ; gain = 660.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for fft/fft_block. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:24 ; elapsed = 00:00:26 . Memory (MB): peak = 1608.531 ; gain = 735.559
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Start Preparing Guide Design
----------------------------------------------------------------------------------
-WARNING: [Synth 8-6702] IncrSynth : Design change found in an area of the design that prevents previous synthesis information being used, Reverting to default synthesis
----------------------------------------------------------------------------------
-Finished Doing Graph Differ : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1608.531 ; gain = 735.559
----------------------------------------------------------------------------------
----------------------------------------------------------------------------------
-Finished Preparing Guide Design : Time (s): cpu = 00:00:25 ; elapsed = 00:00:28 . Memory (MB): peak = 1608.531 ; gain = 735.559
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:20 ; elapsed = 00:00:20 . Memory (MB): peak = 1531.238 ; gain = 660.469
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-6040] Register curr_wave_position_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:43 ; elapsed = 00:00:46 . Memory (MB): peak = 1608.531 ; gain = 735.559
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:27 ; elapsed = 00:00:27 . Memory (MB): peak = 1531.238 ; gain = 660.469
 ---------------------------------------------------------------------------------
-
-
-Incremental Synthesis Report Summary:
-
-1. Incremental synthesis run: no
-
-   Reason for not running incremental synthesis : Design change found in an area of the design that prevents previous synthesis information being used
-
-
-INFO: [Synth 8-7130] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   64 Bit       Adders := 12    
+	   2 Input   64 Bit       Adders := 5     
+	   2 Input   32 Bit       Adders := 24    
 	   3 Input   32 Bit       Adders := 2     
-	   2 Input   32 Bit       Adders := 37    
-	   2 Input    5 Bit       Adders := 1     
-	   2 Input    4 Bit       Adders := 8     
+	   2 Input    4 Bit       Adders := 1     
 +---Registers : 
-	              512 Bit    Registers := 1     
-	               64 Bit    Registers := 74    
+	              128 Bit    Registers := 1     
+	               64 Bit    Registers := 58    
 	               32 Bit    Registers := 7     
 	               16 Bit    Registers := 1     
 	                1 Bit    Registers := 19    
 +---Multipliers : 
 	              13x64  Multipliers := 1     
 	               7x64  Multipliers := 1     
-	              31x64  Multipliers := 8     
 	              32x32  Multipliers := 2     
-	              64x64  Multipliers := 2     
+	              31x64  Multipliers := 2     
+	              64x64  Multipliers := 1     
 	               9x32  Multipliers := 1     
 +---RAMs : 
-	              16K Bit	(257 X 64 bit)          RAMs := 1     
 	              16K Bit	(512 X 32 bit)          RAMs := 1     
+	              16K Bit	(257 X 64 bit)          RAMs := 1     
 	               2K Bit	(32 X 64 bit)          RAMs := 1     
+	             1024 Bit	(16 X 64 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input   64 Bit        Muxes := 44    
+	   2 Input   64 Bit        Muxes := 61    
 	   2 Input   32 Bit        Muxes := 11    
 	  56 Input   32 Bit        Muxes := 1     
-	  16 Input    9 Bit        Muxes := 1520  
-	  16 Input    8 Bit        Muxes := 64    
-	  16 Input    7 Bit        Muxes := 32    
-	  16 Input    6 Bit        Muxes := 24    
-	  16 Input    5 Bit        Muxes := 8     
-	   2 Input    1 Bit        Muxes := 205   
-	   8 Input    1 Bit        Muxes := 16    
-	   3 Input    1 Bit        Muxes := 16    
+	  16 Input    9 Bit        Muxes := 380   
+	  16 Input    8 Bit        Muxes := 16    
+	  16 Input    7 Bit        Muxes := 8     
+	  16 Input    6 Bit        Muxes := 6     
+	  16 Input    5 Bit        Muxes := 2     
+	   2 Input    1 Bit        Muxes := 73    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -216,14 +193,7 @@ Finished Part Resource Summary
 ---------------------------------------------------------------------------------
 Start Cross Boundary and Area Optimization
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 8 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/filterbanks.vhd:213]
+WARNING: [Synth 8-7080] Parallel synthesis criteria is not met
 DSP Report: Generating DSP multOp, operation Mode is: A*B.
 DSP Report: operator multOp is absorbed into DSP multOp.
 DSP Report: operator multOp is absorbed into DSP multOp.
@@ -272,424 +242,7 @@ DSP Report: operator multOp is absorbed into DSP multOp.
 DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
 DSP Report: operator multOp is absorbed into DSP multOp.
 DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
-DSP Report: operator multOp is absorbed into DSP multOp.
-DSP Report: operator multOp is absorbed into DSP multOp.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\curr_filter_base_reg[2] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\curr_filter_base_reg[1] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (i_0/\curr_filter_base_reg[0] )
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[56]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[57]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[58]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[59]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[60]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[61]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[62]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[63]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[120]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[121]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[122]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[123]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[124]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[125]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[126]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[127]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[184]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[185]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[186]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[187]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[188]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[189]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[190]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[191]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[248]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[249]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[250]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[251]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[252]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[253]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[254]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[255]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[312]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[313]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[314]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[315]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[316]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[317]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[318]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[319]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[376]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[377]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[378]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[379]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[380]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[381]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[382]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[383]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[440]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[441]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[442]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[443]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[444]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[445]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[446]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[447]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[504]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[505]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[506]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[507]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[508]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[509]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3886] merging instance 'coefficients_reg[510]' (FDE) to 'coefficients_reg[511]'
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\coefficients_reg[511] )
-INFO: [Synth 8-5544] ROM "THE_BANK[0][142]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][141]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][140]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][139]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][138]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][137]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][136]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][135]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][134]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][133]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][132]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][131]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][130]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][129]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][128]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][127]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][126]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][125]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][124]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][123]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][122]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][121]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][120]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][119]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][118]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][117]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][116]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][115]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][114]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][113]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][112]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][111]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][110]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][109]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][108]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][107]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][106]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][105]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][104]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][103]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][102]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][101]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][100]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][99]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][98]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][97]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][96]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][95]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][94]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][93]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][92]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][91]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][90]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][89]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][88]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][87]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][86]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][85]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][84]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][83]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][82]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][81]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][80]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][79]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][78]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][77]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][76]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][75]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][74]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][73]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][72]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][71]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][70]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][69]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][68]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][67]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][66]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][65]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][64]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][63]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][62]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][61]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][60]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][59]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][58]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][57]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][56]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][55]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][54]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][53]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][52]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][51]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][50]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][49]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][48]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][47]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][46]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][45]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][44]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Synth 8-5544] ROM "THE_BANK[0][43]" won't be mapped to Block RAM because address size (4) smaller than threshold (5)
-INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Common 17-14] Message 'Synth 8-5544' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 16 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd:153]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 16 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd:153]
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
 WARNING: [Synth 8-6040] Register window/curr_wave_position_reg_rep_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 2 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/window.vhd:103]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/power_spectrum.vhd:74]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/power_spectrum.vhd:73]
-INFO: [Synth 8-5845] Not enough pipeline registers after wide multiplier. Recommended levels of pipeline registers is 4 [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:77]
-WARNING: [Synth 8-6014] Unused sequential element lifter/output_value_reg was removed.  [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:80]
 DSP Report: Generating DSP window/ARG0, operation Mode is: A*B.
 DSP Report: operator window/ARG0 is absorbed into DSP window/ARG0.
 DSP Report: operator window/ARG0 is absorbed into DSP window/ARG0.
@@ -724,6 +277,55 @@ DSP Report: Generating DSP pow_spectrum/re_squared_reg, operation Mode is: (PCIN
 DSP Report: register pow_spectrum/re_squared_reg is absorbed into DSP pow_spectrum/re_squared_reg.
 DSP Report: operator pow_spectrum/re_squared0 is absorbed into DSP pow_spectrum/re_squared_reg.
 DSP Report: operator pow_spectrum/re_squared0 is absorbed into DSP pow_spectrum/re_squared_reg.
+DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+DSP Report: operator p_0_in is absorbed into DSP p_0_in.
+WARNING: [Synth 8-6014] Unused sequential element lifter/output_value_reg was removed.  [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:80]
 DSP Report: Generating DSP lifter/ARG, operation Mode is: A*B.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/ARG.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/ARG.
@@ -738,239 +340,137 @@ DSP Report: Generating DSP lifter/output_value_reg, operation Mode is: (PCIN>>17
 DSP Report: register lifter/output_value_reg is absorbed into DSP lifter/output_value_reg.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/output_value_reg.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/output_value_reg.
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[63] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[62] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[61] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[60] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[59] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[58] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[57] driven by constant 0
-WARNING: [Synth 8-3917] design pipeline__GC0 has port output_value[56] driven by constant 0
 WARNING: [Synth 8-3936] Found unconnected internal register 'frame_module/output_value_reg' and it is trimmed from '32' to '24' bits. [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sim_1/new/frame.vhd:110]
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[0]' (FDE) to 'frame_module/output_position_reg[0]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[1]' (FDE) to 'frame_module/output_position_reg[1]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[2]' (FDE) to 'frame_module/output_position_reg[2]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[3]' (FDE) to 'frame_module/output_position_reg[3]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[4]' (FDE) to 'frame_module/output_position_reg[4]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[5]' (FDE) to 'frame_module/output_position_reg[5]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[6]' (FDE) to 'frame_module/output_position_reg[6]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[7]' (FDE) to 'frame_module/output_position_reg[7]'
-INFO: [Synth 8-3886] merging instance 'frame_module/output_position_reg_rep[8]' (FDE) to 'frame_module/output_position_reg[8]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[23]' (FDE) to 'window/output_value_reg[24]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[24]' (FDE) to 'window/output_value_reg[25]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[25]' (FDE) to 'window/output_value_reg[26]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[26]' (FDE) to 'window/output_value_reg[27]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[27]' (FDE) to 'window/output_value_reg[28]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[28]' (FDE) to 'window/output_value_reg[29]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[29]' (FDE) to 'window/output_value_reg[30]'
-INFO: [Synth 8-3886] merging instance 'window/output_value_reg[30]' (FDE) to 'window/output_value_reg[31]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[23]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[24]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[25]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[26]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[27]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[28]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[29]' (FDE) to 'fft/fft_in_data_reg[30]'
-INFO: [Synth 8-3886] merging instance 'fft/fft_in_data_reg[30]' (FDE) to 'fft/fft_in_data_reg[31]'
-INFO: [Synth 8-3333] propagating constant 1 across sequential element (\fft/config_data_reg[0] )
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[1]' (FDRE) to 'fft/config_data_reg[2]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[2]' (FDRE) to 'fft/config_data_reg[3]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[3]' (FDRE) to 'fft/config_data_reg[4]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[4]' (FDRE) to 'fft/config_data_reg[5]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[5]' (FDRE) to 'fft/config_data_reg[6]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[6]' (FDRE) to 'fft/config_data_reg[7]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[7]' (FDRE) to 'fft/config_data_reg[8]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[8]' (FDRE) to 'fft/config_data_reg[9]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[9]' (FDRE) to 'fft/config_data_reg[10]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[10]' (FDRE) to 'fft/config_data_reg[11]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[11]' (FDRE) to 'fft/config_data_reg[12]'
-INFO: [Synth 8-3886] merging instance 'fft/config_data_reg[12]' (FDRE) to 'fft/config_data_reg[13]'
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (\fft/config_data_reg[15] )
-INFO: [Common 17-14] Message 'Synth 8-3886' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dct/i_6/\output_cnt_reg[0] )
-INFO: [Synth 8-3333] propagating constant 0 across sequential element (dct/i_3/\curr_cepstra_base_reg[0] )
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__62) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__63) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__64) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__65) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__66) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__67) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__68) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__69) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (output_value_reg__11) is unused and will be removed from module log_compute.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:27 ; elapsed = 00:02:05 . Memory (MB): peak = 1608.531 ; gain = 735.559
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:15 ; elapsed = 00:01:16 . Memory (MB): peak = 1531.238 ; gain = 660.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 ROM: Preliminary Mapping Report
-+------------+----------------+---------------+----------------+
-|Module Name | RTL Object     | Depth x Width | Implemented As | 
-+------------+----------------+---------------+----------------+
-|window      | WINDOW[0]      | 256x8         | LUT            | 
-|log_compute | ARG1           | 512x8         | LUT            | 
-|dct         | DCT_LUT[0][1]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][2]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][3]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][4]  | 32x5          | LUT            | 
-|dct         | DCT_LUT[0][5]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][6]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][7]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][8]  | 32x4          | LUT            | 
-|dct         | DCT_LUT[0][9]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][10] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][11] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][12] | 32x5          | LUT            | 
-|dct         | DCT_LUT[0][13] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][14] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][15] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][1]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][2]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][3]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][4]  | 32x5          | LUT            | 
-|dct         | DCT_LUT[0][5]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][6]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][7]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][8]  | 32x4          | LUT            | 
-|dct         | DCT_LUT[0][9]  | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][10] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][11] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][12] | 32x5          | LUT            | 
-|dct         | DCT_LUT[0][13] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][14] | 32x8          | LUT            | 
-|dct         | DCT_LUT[0][15] | 32x8          | LUT            | 
-|pipeline    | ARG1           | 512x8         | LUT            | 
-+------------+----------------+---------------+----------------+
++------------+------------------+---------------+----------------+
+|Module Name | RTL Object       | Depth x Width | Implemented As | 
++------------+------------------+---------------+----------------+
+|window      | WINDOW[0]        | 256x8         | LUT            | 
+|log_compute | ARG1             | 512x8         | LUT            | 
+|dct         | DCT_LUT[0][0]    | 32x10         | LUT            | 
+|dct         | DCT_LUT[0][1]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][2]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][3]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][4]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][5]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][6]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][7]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][8]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][9]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][10]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][11]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][12]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][13]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][14]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][15]   | 32x11         | LUT            | 
+|pipeline    | window/WINDOW[0] | 256x8         | LUT            | 
+|dct         | DCT_LUT[0][0]    | 32x10         | LUT            | 
+|dct         | DCT_LUT[0][1]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][2]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][3]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][4]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][5]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][6]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][7]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][8]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][9]    | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][10]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][11]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][12]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][13]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][14]   | 32x11         | LUT            | 
+|dct         | DCT_LUT[0][15]   | 32x11         | LUT            | 
+|log_compute | ARG1             | 512x8         | LUT            | 
++------------+------------------+---------------+----------------+
 
 
 Block RAM: Preliminary Mapping Report (see note below)
-+--------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|Module Name   | RTL Object           | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
-+--------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|pipeline__GC0 | frame_module/MEM_reg | 512 x 24(NO_CHANGE)    | W |   | 512 x 24(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
-+--------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
++------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object            | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|pipeline    | frame_module/MEM_reg  | 512 x 24(NO_CHANGE)    | W |   | 512 x 24(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|pipeline    | dct/output_buffer_reg | 16 x 64(READ_FIRST)    | W |   | 16 x 64(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
++------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping Report (see note below)
-+-----------------+------------------+-----------+----------------------+---------------+
-|Module Name      | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
-+-----------------+------------------+-----------+----------------------+---------------+
-|filterbanks__GB0 | samples_reg      | Implied   | 512 x 64             | RAM64M x 110  | 
-|dct              | coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
-+-----------------+------------------+-----------+----------------------+---------------+
++---------------+----------------------+-----------+----------------------+---------------+
+|Module Name    | RTL Object           | Inference | Size (Depth x Width) | Primitives    | 
++---------------+----------------------+-----------+----------------------+---------------+
+|i_0/filterbank | samples_reg          | Implied   | 512 x 64             | RAM64M x 110  | 
+|pipeline       | dct/coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
++---------------+----------------------+-----------+----------------------+---------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
 DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding REG is set)
-+-----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name      | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+-----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | A*B            | 18     | 9      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 15     | 9      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-+-----------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping    | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|filterbanks | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B            | 18     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | (PCIN>>17)+A*B | 15     | 14     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | A*B            | 18     | 9      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 15     | 9      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|dct         | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++------------+----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 Note: The table above is a preliminary report that shows the DSPs inferred at the current stage of the synthesis flow. Some DSP may be reimplemented as non DSP primitives later in the synthesis flow. Multiple instantiated DSPs are reported only once.
 ---------------------------------------------------------------------------------
@@ -980,33 +480,34 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:38 ; elapsed = 00:02:15 . Memory (MB): peak = 1675.668 ; gain = 802.695
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:24 ; elapsed = 00:01:26 . Memory (MB): peak = 1531.238 ; gain = 660.469
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:50 ; elapsed = 00:02:28 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Timing Optimization : Time (s): cpu = 00:01:30 ; elapsed = 00:01:32 . Memory (MB): peak = 1592.637 ; gain = 721.867
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 
 Block RAM: Final Mapping Report
-+--------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|Module Name   | RTL Object           | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
-+--------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
-|pipeline__GC0 | frame_module/MEM_reg | 512 x 24(NO_CHANGE)    | W |   | 512 x 24(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
-+--------------+----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
++------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|Module Name | RTL Object            | PORT A (Depth x Width) | W | R | PORT B (Depth x Width) | W | R | Ports driving FF | RAMB18 | RAMB36 | 
++------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
+|pipeline    | frame_module/MEM_reg  | 512 x 24(NO_CHANGE)    | W |   | 512 x 24(WRITE_FIRST)  |   | R | Port A and B     | 1      | 0      | 
+|pipeline    | dct/output_buffer_reg | 16 x 64(READ_FIRST)    | W |   | 16 x 64(WRITE_FIRST)   |   | R | Port A and B     | 0      | 1      | 
++------------+-----------------------+------------------------+---+---+------------------------+---+---+------------------+--------+--------+
 
 
 Distributed RAM: Final Mapping Report
-+-----------------+------------------+-----------+----------------------+---------------+
-|Module Name      | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
-+-----------------+------------------+-----------+----------------------+---------------+
-|filterbanks__GB0 | samples_reg      | Implied   | 512 x 64             | RAM64M x 110  | 
-|dct              | coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
-+-----------------+------------------+-----------+----------------------+---------------+
++---------------+----------------------+-----------+----------------------+---------------+
+|Module Name    | RTL Object           | Inference | Size (Depth x Width) | Primitives    | 
++---------------+----------------------+-----------+----------------------+---------------+
+|i_0/filterbank | samples_reg          | Implied   | 512 x 64             | RAM64M x 110  | 
+|pipeline       | dct/coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
++---------------+----------------------+-----------+----------------------+---------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -1014,16 +515,10 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 ---------------------------------------------------------------------------------
 Start Technology Mapping
 ---------------------------------------------------------------------------------
-WARNING: [Synth 8-326] inferred exception to break timing loop: 'set_false_path -through filterbanki_5/O26[3]'
-INFO: [Synth 8-7067] Removed DRAM instance filterbanki_1/filterbank/samples_reg_256_319_63_63 from module filterbanks__GB0_tempName due to constant propagation
-INFO: [Synth 8-7067] Removed DRAM instance filterbanki_1/filterbank/samples_reg_192_255_63_63 from module filterbanks__GB0_tempName due to constant propagation
-INFO: [Synth 8-7067] Removed DRAM instance filterbanki_1/filterbank/samples_reg_128_191_63_63 from module filterbanks__GB0_tempName due to constant propagation
-INFO: [Synth 8-7067] Removed DRAM instance filterbanki_1/filterbank/samples_reg_64_127_63_63 from module filterbanks__GB0_tempName due to constant propagation
-INFO: [Synth 8-7067] Removed DRAM instance filterbanki_1/filterbank/samples_reg_0_63_63_63 from module filterbanks__GB0_tempName due to constant propagation
-INFO: [Synth 8-7067] Removed DRAM instance filterbanki_1/filterbank/samples_reg_256_319_63_63 from module filterbanks__GB0_tempName due to constant propagation
-INFO: [Synth 8-7052] The timing for the instance i_0/frame_module/MEM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance frame_module/MEM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
+INFO: [Synth 8-7052] The timing for the instance dct/output_buffer_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:02:15 ; elapsed = 00:03:02 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Technology Mapping : Time (s): cpu = 00:01:35 ; elapsed = 00:01:37 . Memory (MB): peak = 1600.836 ; gain = 730.066
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -1037,142 +532,89 @@ Finished Flattening Before IO Insertion
 ---------------------------------------------------------------------------------
 Start Final Netlist Cleanup
 ---------------------------------------------------------------------------------
-INFO: [Synth 8-7052] The timing for the instance frame_module/MEM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:02:21 ; elapsed = 00:03:08 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished IO Insertion : Time (s): cpu = 00:01:41 ; elapsed = 00:01:42 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:02:21 ; elapsed = 00:03:08 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:41 ; elapsed = 00:01:42 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:02:26 ; elapsed = 00:03:13 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:02:26 ; elapsed = 00:03:13 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:02:27 ; elapsed = 00:03:14 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:02:27 ; elapsed = 00:03:14 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
 ---------------------------------------------------------------------------------
 
 DSP Final Report (the ' indicates corresponding REG is set)
-+-----------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|Module Name      | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
-+-----------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|dct              | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN>>17+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN>>17+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct              | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN>>17+A*B     | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|filterbanks__GB0 | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | A'*B             | 17     | 12     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A*B')' | 12     | 18     | -      | -      | 48     | 0    | 1    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A'*B             | 17     | 12     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A'*B)' | 17     | 12     | -      | -      | 48     | 1    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B              | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A*B)'  | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A*B)'  | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B              | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A*B)'  | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A*B)'  | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|pipeline__GC0    | A*B              | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|pipeline__GC0    | (PCIN>>17+A*B)'  | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-+-----------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|Module Name | DSP Mapping     | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
+|dct         | A*B             | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B        | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B             | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B        | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN>>17+A*B    | 14     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B        | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B             | 14     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN>>17+A*B    | 14     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B        | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN>>17+A*B    | 14     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B             | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B        | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN>>17+A*B    | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B             | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN>>17+A*B    | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B        | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B             | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B             | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B        | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN>>17+A*B    | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | A*B             | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN>>17+A*B    | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|filterbanks | PCIN+A*B        | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | A*B             | 17     | 12     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 12     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B             | 17     | 12     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 17     | 12     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B             | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 30     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B             | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
+|pipeline    | A*B             | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|pipeline    | (PCIN>>17+A*B)' | 30     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
++------------+-----------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 
 
 Report BlackBoxes: 
@@ -1188,46 +630,49 @@ Report Cell Usage:
 +------+------------+------+
 |1     |xfft_0_bbox |     1|
 |2     |BUFG        |     2|
-|3     |CARRY4      |   865|
-|4     |DSP48E1     |    90|
-|10    |LUT1        |    71|
-|11    |LUT2        |  1851|
-|12    |LUT3        |   657|
-|13    |LUT4        |  1823|
-|14    |LUT5        |  2512|
-|15    |LUT6        |  4278|
-|16    |MUXF7       |   224|
-|17    |MUXF8       |    92|
-|18    |RAM32M      |    11|
-|19    |RAM64M      |    95|
-|20    |RAMB18E1    |     1|
-|21    |FDRE        |  5671|
-|22    |IBUF        |    27|
-|23    |OBUF        |    65|
+|3     |CARRY4      |   595|
+|4     |DSP48E1     |    38|
+|6     |LUT1        |    64|
+|7     |LUT2        |  1003|
+|8     |LUT3        |   708|
+|9     |LUT4        |   381|
+|10    |LUT5        |  1568|
+|11    |LUT6        |  1309|
+|12    |MUXF7       |   197|
+|13    |MUXF8       |    45|
+|14    |RAM32M      |     2|
+|15    |RAM32X1D    |     2|
+|16    |RAM64M      |    95|
+|17    |RAMB18E1    |     1|
+|18    |RAMB36E1    |     1|
+|19    |FDRE        |  4274|
+|20    |IBUF        |    27|
+|21    |OBUF        |    65|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:02:27 ; elapsed = 00:03:14 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 1601.199 ; gain = 730.430
 ---------------------------------------------------------------------------------
 Synthesis finished with 0 errors, 0 critical warnings and 14 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:02:10 ; elapsed = 00:03:20 . Memory (MB): peak = 2048.027 ; gain = 1080.633
-Synthesis Optimization Complete : Time (s): cpu = 00:02:28 ; elapsed = 00:03:24 . Memory (MB): peak = 2048.027 ; gain = 1175.055
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:28 ; elapsed = 00:01:41 . Memory (MB): peak = 1601.199 ; gain = 622.703
+Synthesis Optimization Complete : Time (s): cpu = 00:01:42 ; elapsed = 00:01:44 . Memory (MB): peak = 1601.199 ; gain = 730.430
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.224 . Memory (MB): peak = 2048.027 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 1378 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.144 . Memory (MB): peak = 1613.270 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 976 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 2048.027 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1616.957 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 106 instances were transformed.
-  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 11 instances
+  A total of 99 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 2 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
   RAM64M => RAM64M (RAMD64E(x4)): 95 instances
 
-Synth Design complete | Checksum: 1e0bb91b
+Synth Design complete | Checksum: dd424b23
 INFO: [Common 17-83] Releasing license: Synthesis
-273 Infos, 20 Warnings, 0 Critical Warnings and 0 Errors encountered.
+43 Infos, 19 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:02:35 ; elapsed = 00:03:33 . Memory (MB): peak = 2048.027 ; gain = 1583.086
+synth_design: Time (s): cpu = 00:01:48 ; elapsed = 00:01:51 . Memory (MB): peak = 1616.957 ; gain = 1152.422
 INFO: [Common 17-1381] The checkpoint 'D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/pipeline.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file pipeline_utilization_synth.rpt -pb pipeline_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Wed Aug  6 10:31:18 2025...
+INFO: [Common 17-206] Exiting Vivado at Tue Aug 12 14:14:40 2025...

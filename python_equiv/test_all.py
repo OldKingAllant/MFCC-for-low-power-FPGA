@@ -48,6 +48,8 @@ for frame in frames:
     magnitudes *= 256
     frames_fft.append(magnitudes)
 
+print(len(frames_fft[0]))
+
 ###################################
 
 def hz2mel(f):
@@ -94,11 +96,10 @@ for frame in frames_fft:
 
 log_frames = np.log10(frame_coeffs)
 
-print(log_frames)
 
 #####################################
 
-frames_dct = np.array(dct(log_frames, 3, norm='ortho'))
+frames_dct = np.array(dct(log_frames, 2))
 
 #####################################
 
@@ -110,6 +111,8 @@ w = 1 + (D / 2) * np.sin(np.pi * n / D)
 
 # lift coefficients
 lifted_coeffs = frames_dct * w
+
+print(lifted_coeffs)
 
 #####################################
 

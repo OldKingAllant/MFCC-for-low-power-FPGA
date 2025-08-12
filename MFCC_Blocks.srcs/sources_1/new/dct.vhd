@@ -55,13 +55,17 @@ architecture Behavioral of dct is
         variable curr_index : integer;
         
         constant SQRT_2_N : real := sqrt(2.0 / real(numcoeffs));
+        constant SQRT_1_OVER_4_N : real := sqrt(1.0 / (4.0 * real(numcoeffs)));
+        constant SQRT_1_OVER_2_N : real := sqrt(1.0 / (2.0 * real(numcoeffs)));
     begin
-        --row[i] = cos(PI * (i + 1 - 0.5) * i / N)
+        --row[i] = 2cos(PI*k*(2n+1)/2N)
         for cepstra in table'range loop
             curr_row := (others => (others => '0'));
             curr_index := 0;
-            for entry in curr_row'range loop
-                temp_value := (SQRT_2_N * cos(MATH_PI * (real(cepstra) + 1.0 - 0.5) * real(curr_index) / real(numcoeffs))) * real(2**precision);
+            for entry in curr_row'range loop --entry is k
+                --temp_value := (SQRT_2_N * cos(MATH_PI * (real(cepstra) + 1.0 - 0.5) * real(curr_index) / real(numcoeffs)));
+                temp_value := 2.0 * cos( (MATH_PI*real(cepstra)*(2.0*real(curr_index)+1.0)) / (2.0*real(numcoeffs))  );
+                temp_value := temp_value * real(2**precision);
                 if(temp_value >= 0.0) then
                     curr_row(entry) := std_logic_vector(to_signed(integer(floor(temp_value)), sample_size));
                 else 
