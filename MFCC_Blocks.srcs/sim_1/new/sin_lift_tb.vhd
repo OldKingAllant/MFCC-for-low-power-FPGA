@@ -37,13 +37,13 @@ architecture Behavioral of sin_lift_tb is
     signal request_stall : std_logic;
     signal stall : std_logic := '0';
 begin
-    lifter : entity work.sin_lifter(Behavioral) 
-    generic map(
-        sample_size => 64,
-        precision => 8,
-        window_size => 16,
-        const => 22
-    )
+    lifter : entity work.sin_lifter
+    --generic map(
+    --    sample_size => 64,
+    --    precision => 8,
+    --    window_size => 16,
+    --    const => 22
+    --)
     port map(
         clk => clk,
         input_valid => input_valid,
@@ -59,8 +59,8 @@ begin
         input_valid <= '1';
         input_value <= std_logic_vector(to_unsigned(256, 64));
         clk <= '0';
-        wait for 100ns;
+        wait for 500ns;
         clk <= '1';
-        wait for 100ns;
+        wait for 500ns;
     end process;
 end Behavioral;

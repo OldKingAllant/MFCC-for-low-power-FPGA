@@ -63,6 +63,8 @@ architecture Behavioral of sin_lifter is
     
     constant LIFT_WIN : WIN_TY := ComputeLiftWindow(0);
     signal curr_window_pos : integer := 0;
+    
+    signal out_value_temp : std_logic_vector(sample_size - 1 downto 0) := (others => '0');
 begin
     request_stall <= '0';
     
@@ -73,11 +75,13 @@ begin
         if rising_edge(clk) then
             if(stall='0') then
                 output_valid <= '0';
+                --output_value <= (others => '0');
                 if(input_valid='1') then
                     mult_result := LIFT_WIN(curr_window_pos) * signed(input_value);
                     mult_result := shift_right(mult_result, precision);
                     output_valid <= '1';
-                    output_value <= std_logic_vector(mult_result(sample_size - 1 downto 0));
+                    out_value_temp <= std_logic_vector(mult_result(sample_size - 1 downto 0));
+                    output_value <= out_value_temp;
                     
                     if(curr_window_pos + 1 >= LIFT_WIN'length) then
                         curr_window_pos <= 0;

@@ -50,7 +50,6 @@ architecture Behavioral of frame is
     type INTERNAL_RAM is array(0 to window_size - 1) of signed(sample_size - 1 downto 0);
     signal MEM : INTERNAL_RAM := (others => (others => '0')); --Single ringbuffer used for both input and output
     
-    signal first_fill : std_logic := '0';  --if the first fill has been performed
     signal output_position : integer := 0; --index inside ringbuffer used for output
     signal input_position : integer  := 0; --same but for input
     --signal enable_output : std_logic := '0';
@@ -80,7 +79,6 @@ begin
                 if(not(temp_input_position = output_jump_position)) then --avoid buffer overrun
                     if(temp_input_position >= window_size) then --counter is out of bounds, reset
                         input_position <= 0;
-                        first_fill <= '1'; --this flag is true regardless if this is actually the first fill or not
                     else
                         input_position <= temp_input_position;
                     end if;

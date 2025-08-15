@@ -35,7 +35,8 @@ entity complex_signal_generator is
         real_out     : out STD_LOGIC_VECTOR(15 downto 0);
         imagery_out  : out STD_LOGIC_VECTOR(15 downto 0);
         tvalid       : out STD_LOGIC;
-        tlast        : out STD_LOGIC
+        tlast        : out STD_LOGIC;
+        enable       : in std_logic
     );
 end entity complex_signal_generator;
 
@@ -80,7 +81,7 @@ begin
                 imag_temp <= 0;
                 tvalid <= '0';
                 tlast <= '0';
-            else
+            elsif(enable = '1') then
                 theta_index <= (theta_index + 1) mod FFT_Size;
                 tvalid <= '1'; -- Always valid unless reset
                 

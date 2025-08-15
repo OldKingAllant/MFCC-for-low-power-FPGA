@@ -101,6 +101,10 @@ log_frames = np.log10(frame_coeffs)
 
 frames_dct = np.array(dct(log_frames, 2))
 
+print(frames_dct)
+print()
+print()
+
 #####################################
 
 lifted_coeffs = np.zeros(frames_dct.shape)

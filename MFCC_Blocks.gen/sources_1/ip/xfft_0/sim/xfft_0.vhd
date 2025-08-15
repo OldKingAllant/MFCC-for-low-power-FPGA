@@ -183,8 +183,8 @@ ARCHITECTURE xfft_0_arch OF xfft_0 IS
 BEGIN
   U0 : xfft_v9_1_9
     GENERIC MAP (
-      C_XDEVICEFAMILY => "zynq",
-      C_PART => "xc7z012sclg485-2",
+      C_XDEVICEFAMILY => "azynq",
+      C_PART => "xa7z010clg400-1I",
       C_S_AXIS_CONFIG_TDATA_WIDTH => 16,
       C_S_AXIS_DATA_TDATA_WIDTH => 64,
       C_M_AXIS_DATA_TDATA_WIDTH => 64,
@@ -212,7 +212,7 @@ BEGIN
       C_DATA_MEM_TYPE => 1,
       C_TWIDDLE_MEM_TYPE => 1,
       C_BRAM_STAGES => 2,
-      C_REORDER_MEM_TYPE => 1,
+      C_REORDER_MEM_TYPE => 0,
       C_USE_HYBRID_RAM => 0,
       C_OPTIMIZE_GOAL => 0,
       C_CMPY_TYPE => 1,

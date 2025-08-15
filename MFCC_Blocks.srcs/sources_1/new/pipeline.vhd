@@ -25,76 +25,82 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity pipeline is
+  generic (
+     sample_size : integer := 32;
+     frame_step : integer := 170;
+     precision : integer := 8;
+     mel_filters : integer := 16;
+     cepstra : integer := 16;
+     sr : integer := 16000;
+     lift : integer := 22;
+     lf : integer := 50;
+     hf : integer := 6500;
+     nfft : integer := 512
+  );
   port (
-     clk_sampling : in std_logic;
      clk_output   : in std_logic;
      input_valid  : in std_logic;
-     input_value  : in std_logic_vector(31 downto 0);
+     input_value  : in std_logic_vector(sample_size - 1 downto 0);
      output_valid : out std_logic;
-     output_value : out std_logic_vector(63 downto 0)
+     output_value : out std_logic_vector((sample_size * 2) - 1 downto 0)
   );
 end pipeline;
 
 architecture Behavioral of pipeline is
+    constant OUTPUT_SIZE : integer := sample_size * 2;
+    
     signal    end_of_data : std_logic; 
     signal    stall : std_logic := '0';
     signal    request_stall : std_logic;
-    signal    effective_input_value : signed(31 downto 0);
+    signal    effective_input_value : signed(sample_size - 1 downto 0);
+    signal    input_enable_counter : integer := 0;
     
-    --signal input_val_temp : std_logic_vector(15 downto 0);
-    --signal input_valid_temp : std_logic;
+    constant WIN_SIZE : integer := nfft;
+    constant STEP_SIZE : integer := nfft - frame_step;
     
-    constant WIN_SIZE : integer := 512;
-    constant STEP_SIZE : integer := 512 - 170;
     -----------------------------
     
     signal input_valid_window : std_logic;
-    signal input_value_window : signed(32 - 1 downto 0);
+    signal input_value_window : signed(sample_size - 1 downto 0);
     signal window_stall_request : std_logic;
     
     -----------------------------
     
     signal input_valid_fft : std_logic;
-    signal input_value_fft : signed(32 - 1 downto 0);
+    signal input_value_fft : signed(sample_size - 1 downto 0);
     signal fft_stall_req : std_logic;
     signal frame_end_fft : std_logic;
     
     -----------------------------
     
     signal input_valid_spectrum : std_logic;
-    signal input_re : std_logic_vector(31 downto 0);
-    signal input_im : std_logic_vector(31 downto 0);
+    signal input_re : std_logic_vector(sample_size - 1 downto 0);
+    signal input_im : std_logic_vector(sample_size - 1 downto 0);
     signal spectrum_stall_req : std_logic;
     
     ----------------------------
     
     signal input_valid_filt : std_logic;
-    signal input_value_filt : std_logic_vector(63 downto 0);
+    signal input_value_filt : std_logic_vector(OUTPUT_SIZE - 1 downto 0);
     signal filt_accepts_samples : std_logic;
     signal bank_stall_req : std_logic;
     
     -----------------------------
     
     signal input_valid_log : std_logic;
-    signal input_coeffs_log : std_logic_vector((64 * 2) - 1 downto 0);
+    signal input_coeffs_log : std_logic_vector((OUTPUT_SIZE * 2) - 1 downto 0);
     signal log_stall_req : std_logic;
-    
-    --type COEFF_ARR is array(0 to 7) of std_logic_vector(63 downto 0);
-    --signal coeff_array : COEFF_ARR;
     
     -----------------------------
     
     signal input_valid_dct : std_logic;
-    signal input_value_dct : std_logic_vector(63 downto 0);
+    signal input_value_dct : std_logic_vector(OUTPUT_SIZE - 1 downto 0);
     signal dct_stall_req : std_logic;
     
     -----------------------------
     
     signal input_valid_lift : std_logic;
-    signal input_value_lift : std_logic_vector(63 downto 0);
-    
-    --signal final_output_valid : std_logic;
-    --signal final_output_value : std_logic_vector(63 downto 0);
+    signal input_value_lift : std_logic_vector(OUTPUT_SIZE - 1 downto 0);
     
     signal stall_frame : std_logic;
     signal stall_window : std_logic;
@@ -118,12 +124,12 @@ begin
     
     frame_module : entity work.frame(Behavioral) 
     generic map(
-        sample_size => 32,
+        sample_size => sample_size,
         window_size => WIN_SIZE,
         step_size => STEP_SIZE
     )
     port map(
-        clk_sampling => clk_sampling,
+        clk_sampling => clk_output,--clk_sampling,
         clk_output => clk_output,
         input_valid => input_valid,
         end_of_data => end_of_data,
@@ -136,9 +142,9 @@ begin
     
     window : entity work.window(Behavioral) 
     generic map(
-        sample_size => 32,
-        window_size => 512,
-        precision => 8
+        sample_size => sample_size,
+        window_size => nfft,
+        precision => precision
     )
     port map(
         clk => clk_output,
@@ -152,7 +158,7 @@ begin
     
     fft : entity work.fft(Behavioral) 
     generic map(
-        sample_size => 32
+        sample_size => sample_size
     )
     port map(
         clk => clk_output,
@@ -168,9 +174,9 @@ begin
     
     pow_spectrum : entity work.power_spectrum(Behavioral) 
     generic map(
-        sample_size => 32,
-        fft_size => 512,
-        precision => 8
+        sample_size => sample_size,
+        fft_size => nfft,
+        precision => precision
     )
     port map(
         clk => clk_output,
@@ -185,13 +191,13 @@ begin
     
     filterbank : entity work.filterbanks(Behavioral)
     generic map(
-        sample_size => 32,
-        low_freq => 50,
-        high_freq => 6500,
-        numfilters => 16,
-        nfft => 512,
-        precision => 8,
-        sample_freq => 16000,
+        sample_size => sample_size,
+        low_freq => lf,
+        high_freq => hf,
+        numfilters => mel_filters,
+        nfft => nfft,
+        precision => precision,
+        sample_freq => sr,
         nmult => 2
     )
     port map(
@@ -207,10 +213,10 @@ begin
     
     log_compute : entity work.log_compute(Behavioral) 
     generic map(
-        sample_size => 64,
-        precision => 8,
+        sample_size => OUTPUT_SIZE,
+        precision => precision,
         num_coeffs => 2,
-        total_coeffs => 16,
+        total_coeffs => mel_filters,
         buf_size => 20
     )
     port map(
@@ -225,10 +231,10 @@ begin
     
     dct : entity work.dct(Behavioral)
     generic map(
-        sample_size => 64,
-        precision => 8,
-        numcoeffs => 16,
-        numcepstra => 16,
+        sample_size => OUTPUT_SIZE,
+        precision => precision,
+        numcoeffs => mel_filters,
+        numcepstra => cepstra,
         nmult => 1
     )
     port map(
@@ -243,10 +249,10 @@ begin
     
     lifter : entity work.sin_lifter(Behavioral) 
     generic map(
-        sample_size => 64,
-        precision => 8,
-        window_size => 16,
-        const => 22
+        sample_size => OUTPUT_SIZE,
+        precision => precision,
+        window_size => cepstra,
+        const => lift
     )
     port map(
         clk => clk_output,

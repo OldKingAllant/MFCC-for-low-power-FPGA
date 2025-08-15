@@ -3,27 +3,22 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="pipeline_tb_behav.wdb" id="1">
+      <db_ref path="pipeline_tb_func_synth.wdb" id="1">
          <top_modules>
             <top_module name="pipeline_tb" />
-            <top_module name="vcomponents" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="173,948.551 ns"></ZoomStartTime>
-      <ZoomEndTime time="178,273.552 ns"></ZoomEndTime>
-      <Cursor1Time time="174,669.384 ns"></Cursor1Time>
+      <ZoomStartTime time="42.180000101 ms"></ZoomStartTime>
+      <ZoomEndTime time="86.030000102 ms"></ZoomEndTime>
+      <Cursor1Time time="52.330000101 ms"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="84"></NameColumnWidth>
-      <ValueColumnWidth column_width="82"></ValueColumnWidth>
+      <ValueColumnWidth column_width="70"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="10" />
-   <wvobject fp_name="/pipeline_tb/clk_sampling" type="logic">
-      <obj_property name="ElementShortName">clk_sampling</obj_property>
-      <obj_property name="ObjectShortName">clk_sampling</obj_property>
-   </wvobject>
+   <WVObjectSize size="11" />
    <wvobject fp_name="/pipeline_tb/clk_output" type="logic">
       <obj_property name="ElementShortName">clk_output</obj_property>
       <obj_property name="ObjectShortName">clk_output</obj_property>
@@ -42,8 +37,8 @@
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
    <wvobject fp_name="/pipeline_tb/mfcc_extract/input_value_window" type="array">
-      <obj_property name="ElementShortName">input_value_window[31:0]</obj_property>
-      <obj_property name="ObjectShortName">input_value_window[31:0]</obj_property>
+      <obj_property name="ElementShortName">input_value_window[23:0]</obj_property>
+      <obj_property name="ObjectShortName">input_value_window[23:0]</obj_property>
       <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
@@ -53,27 +48,10 @@
       <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
       <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
-   </wvobject>
-   <wvobject fp_name="/pipeline_tb/mfcc_extract/input_value_fft" type="array">
-      <obj_property name="ElementShortName">input_value_fft[31:0]</obj_property>
-      <obj_property name="ObjectShortName">input_value_fft[31:0]</obj_property>
-      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
-      <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
-      <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
-      <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_HOLD</obj_property>
-      <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
-      <obj_property name="AnalogHorizLine">0.000000</obj_property>
-   </wvobject>
-   <wvobject fp_name="/pipeline_tb/mfcc_extract/frame_end_fft" type="logic">
-      <obj_property name="ElementShortName">frame_end_fft</obj_property>
-      <obj_property name="ObjectShortName">frame_end_fft</obj_property>
    </wvobject>
    <wvobject fp_name="/pipeline_tb/mfcc_extract/input_value_filt" type="array">
-      <obj_property name="ElementShortName">input_value_filt[63:0]</obj_property>
-      <obj_property name="ObjectShortName">input_value_filt[63:0]</obj_property>
+      <obj_property name="ElementShortName">input_value_filt[55:0]</obj_property>
+      <obj_property name="ObjectShortName">input_value_filt[55:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">8</obj_property>
@@ -88,8 +66,8 @@
       <obj_property name="AnalogHorizLine">0.000000</obj_property>
    </wvobject>
    <wvobject fp_name="/pipeline_tb/mfcc_extract/input_value_dct" type="array">
-      <obj_property name="ElementShortName">input_value_dct[63:0]</obj_property>
-      <obj_property name="ObjectShortName">input_value_dct[63:0]</obj_property>
+      <obj_property name="ElementShortName">input_value_dct[12:0]</obj_property>
+      <obj_property name="ObjectShortName">input_value_dct[12:0]</obj_property>
       <obj_property name="Radix">REALRADIX</obj_property>
       <obj_property name="radix_realType">UNSIGNEDFIXEDPOINTRADIX</obj_property>
       <obj_property name="radix_fractionWidth">8</obj_property>
@@ -103,6 +81,22 @@
       <obj_property name="radix_fractionWidth">8</obj_property>
       <obj_property name="radix_otherWidth">0</obj_property>
    </wvobject>
+   <wvobject fp_name="/pipeline_tb/mfcc_extract/fft/fft_block/s_axis_config_tdata" type="array">
+      <obj_property name="ElementShortName">s_axis_config_tdata[15:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_config_tdata[15:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pipeline_tb/mfcc_extract/fft/s_axis_data_tdata" type="array">
+      <obj_property name="ElementShortName">s_axis_data_tdata[31:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_data_tdata[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pipeline_tb/mfcc_extract/fft/fft_block/s_axis_data_tdata" type="array">
+      <obj_property name="ElementShortName">s_axis_data_tdata[63:0]</obj_property>
+      <obj_property name="ObjectShortName">s_axis_data_tdata[63:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/pipeline_tb/mfcc_extract/fft/fft_block/s_axis_data_tlast" type="logic">
+      <obj_property name="ElementShortName">s_axis_data_tlast</obj_property>
+      <obj_property name="ObjectShortName">s_axis_data_tlast</obj_property>
+   </wvobject>
    <wvobject fp_name="/pipeline_tb/output_value" type="array">
       <obj_property name="ElementShortName">output_value[63:0]</obj_property>
       <obj_property name="ObjectShortName">output_value[63:0]</obj_property>
@@ -112,9 +106,9 @@
       <obj_property name="radix_otherWidth">0</obj_property>
       <obj_property name="WaveformStyle">STYLE_ANALOG</obj_property>
       <obj_property name="CellHeight">100</obj_property>
-      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_AUTO</obj_property>
-      <obj_property name="AnalogYRangeMin">0.000000</obj_property>
-      <obj_property name="AnalogYRRangeMax">0.000000</obj_property>
+      <obj_property name="AnalogYRangeType">ANALOG_YRANGETYPE_FIXED</obj_property>
+      <obj_property name="AnalogYRangeMin">-50.000000</obj_property>
+      <obj_property name="AnalogYRRangeMax">900.000000</obj_property>
       <obj_property name="AnalogInterpolation">ANALOG_INTERPOLATION_LINEAR</obj_property>
       <obj_property name="AnalogOffscale">ANALOG_OFFSCALE_HIDE</obj_property>
       <obj_property name="AnalogHorizLine">0.000000</obj_property>

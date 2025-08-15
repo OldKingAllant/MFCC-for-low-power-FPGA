@@ -73,7 +73,7 @@ architecture Behavioral of fft is
   --signal new_frame_asserted : std_logic := '0';
   
   --for fft
-  signal config_data : std_logic_vector(15 downto 0);
+  signal config_data : std_logic_vector(15 downto 0) := "0000000000000001";
   signal config_valid : std_logic;
   signal config_ready : std_logic;
   
@@ -94,11 +94,13 @@ architecture Behavioral of fft is
   
   signal aclken : std_logic;
   
+  signal error_occurred : std_logic := '0';
+  
   constant CONSTANT_CONFIG : std_logic_vector(15 downto 0) := "0000000000000001";
   constant FFT_SIZE : integer := 512;
   
 begin
-    m_data_tready <= '0' when stall='1' else '1';
+    m_data_tready <= '0' when stall='1' or error_occurred='1' else '1';
     request_stall <= '1' when fft_in_ready='0' else '0';
     aclken <= '1' when stall='0' else '0';
     
@@ -127,14 +129,20 @@ begin
   );
   
   process(clk) is 
-    variable temp_input : std_logic_vector(sample_size - 1 downto 0);
+    --variable temp_input : std_logic_vector(sample_size - 1 downto 0);
     variable next_count : integer;
   begin 
-    temp_input := (others => '0');
+    --temp_input := (others => '0');
     next_count := 0;
     if rising_edge(clk) then
         assert unexpected_tlast = '0' report "Unexpected tlast event, count: " & integer'image(curr_fft_cnt);
         assert missing_tlast = '0' report "Missing tlast, count: " & integer'image(curr_fft_cnt);
+        
+        if(unexpected_tlast='1' or missing_tlast='1') then
+            error_occurred <= '1';
+        end if;
+        
+        config_data <= (others => '0');
         
         if(curr_state = CONFIG) then
             config_valid <= '1';
@@ -154,9 +162,9 @@ begin
         if(stall='0') then
             if(curr_state = NORMAL  and input_valid='1' and fft_in_ready='1') then
                     data_valid <= '1';
-                    temp_input := std_logic_vector(input_value);
-                    fft_in_data(sample_size - 1 downto 0) <= temp_input;
-                    fft_in_data(sample_size * 2 - 1 downto sample_size) <= (others => '0');
+                    --temp_input := std_logic_vector(input_value);
+                    fft_in_data <= std_logic_vector(resize(unsigned(input_value), sample_size * 2));
+                   -- fft_in_data(sample_size * 2 - 1 downto sample_size) <= (others => '0');
                     
                     next_count := curr_fft_cnt + 1;
                     if(next_count >= FFT_SIZE) then

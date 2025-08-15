@@ -1,3 +1,5 @@
 set_property SRC_FILE_INFO {cfile:D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/constrs_1/new/constraints.xdc rfile:../../../MFCC_Blocks.srcs/constrs_1/new/constraints.xdc id:1} [current_design]
-set_property src_info {type:XDC file:1 line:6 export:INPUT save:INPUT read:READ} [current_design]
-set_operating_conditions -grade extended
+set_property src_info {type:XDC file:1 line:9 export:INPUT save:INPUT read:READ} [current_design]
+set_false_path -from [get_clocks *clk*] -to [get_pins {fft/fft_block/U0/i_synth/xfft_inst/non_floating_point.arch_d.xfft_inst/pe_gen[0].natural_order_input.PE/has_TW_mult.MULT/i_cmpy/three_mult_structure.use_dsp.i_dsp48/mult1_preadder_d_plus_a.mult1/mult/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1/ACIN[0]}]
+set_property src_info {type:XDC file:1 line:10 export:INPUT save:INPUT read:READ} [current_design]
+set_false_path -from [get_clocks *clk*] -to [get_pins {fft/fft_block/U0/i_synth/xfft_inst/non_floating_point.arch_d.xfft_inst/pe_gen[0].natural_order_input.PE/has_TW_mult.MULT/i_cmpy/three_mult_structure.use_dsp.i_dsp48/mult1_preadder_d_plus_a.mult1/mult/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1/ACIN[10]}]
