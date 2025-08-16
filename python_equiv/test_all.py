@@ -96,6 +96,10 @@ for frame in frames_fft:
 
 log_frames = np.log10(frame_coeffs)
 
+print(log_frames)
+print()
+print()
+
 
 #####################################
 

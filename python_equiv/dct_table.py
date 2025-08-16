@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.fftpack import fft, dct
 
-def discrete_cos_transformation(frames: np.array, precision):
+def discrete_cos_transformation(precision):
     """
     Applies DCT to input frames
 
@@ -9,7 +9,7 @@ def discrete_cos_transformation(frames: np.array, precision):
     :return: DCT frames
     """
 
-    rows, cols = frames.shape
+    rows, cols = (1, 16)
 
     N = cols
     n = np.arange(1, N + 1)
@@ -17,25 +17,24 @@ def discrete_cos_transformation(frames: np.array, precision):
     weights = np.zeros((N, N))
     for k in np.arange(0, N):
         weights[:, k] = np.sqrt(2/N) * np.cos(np.pi * (n - 1 / 2) * k / N) * (2**precision)
-    
-    dct_signal = np.zeros((N))
-    for filt in range(len(weights[0])):
-        for cepstra in range(len(weights)):
-            dct_signal[cepstra] += int(weights[cepstra][filt]) * frames[0][filt]
-    #dct_signal = np.dot(frames, weights)
 
-    return dct_signal
+    for row in weights:
+        for weight in row:
+            print(f'{int(weight)}', end=' ')
+        print()
+    return
 
 
-frames = np.full((1, 16), 2**16)
+values = [i*256 for i in range(0, 16)]
+frames = np.array(values)
 print(frames)
 
-dct_res = discrete_cos_transformation(frames, 16)
+discrete_cos_transformation(8)
 
-print('\n\n')
-print(dct_res / 2**32)
+#print('\n\n')
+#print(dct_res / 2**32)
 #for elem in dct_res:
 #    elem = int(elem)
 #    print(f'{elem:x}')
 
-print(dct(frames[0], 3, norm='ortho') / 2**16)
+print(dct(frames, 2) / 2**8)

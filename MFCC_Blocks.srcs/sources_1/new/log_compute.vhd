@@ -131,6 +131,9 @@ architecture Behavioral of log_compute is
     
     type STATE_TY is (FILLING, COMPUTING);
     signal state : STATE_TY := FILLING;
+    
+    signal out_valid_temp : std_logic := '0';
+    signal out_value_temp : std_logic_vector(sample_size - 1 downto 0);
 begin
     --request_stall <= '0';
     
@@ -152,7 +155,8 @@ begin
         curr_coeff_count := 0;
         
         if rising_edge(clk) then
-            output_valid <= '0';
+            out_valid_temp <= '0';
+            out_value_temp <= (others => '0');
             
             if(coeff_count=buf_size) then
                 request_stall <= '1';
@@ -201,8 +205,8 @@ begin
                 --finally compute log10(x) = log2(x) * 1/log2(10),
                 --drop 'precision' bits that were doubled by the multiplication
                 log10_result := shift_right(log2_result * unsigned(ONE_OVER_LOG2_OF_10_FIXED), precision);
-                output_valid <= '1';
-                output_value <= std_logic_vector(log10_result(sample_size - 1 downto 0));
+                out_valid_temp <= '1';
+                out_value_temp <= std_logic_vector(log10_result(sample_size - 1 downto 0));
                 
                 coeff_buffer(0 to buf_size - 2) <= coeff_buffer(1 to buf_size - 1);
                 curr_coeff_count := curr_coeff_count - 1;
@@ -212,6 +216,10 @@ begin
                     curr_coeff_count := 0;
                 end if;
             end if;
+            
+            output_valid <= out_valid_temp;
+            output_value <= out_value_temp;
+                
             coeff_count <= curr_coeff_count;
         end if;
     end process;

@@ -6,8 +6,9 @@ set_input_delay -clock [get_clocks *clk*] -add_delay 5.000 [get_ports {input_val
 set_output_delay -clock [get_clocks *clk*] -add_delay 5.000 [get_ports -filter { NAME =~  "*" && DIRECTION == "OUT" }]
 
 
-set_false_path -from [get_clocks *clk*] -to [get_pins {fft/fft_block/U0/i_synth/xfft_inst/non_floating_point.arch_d.xfft_inst/pe_gen[0].natural_order_input.PE/has_TW_mult.MULT/i_cmpy/three_mult_structure.use_dsp.i_dsp48/mult1_preadder_d_plus_a.mult1/mult/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1/ACIN[0]}]
-set_false_path -from [get_clocks *clk*] -to [get_pins {fft/fft_block/U0/i_synth/xfft_inst/non_floating_point.arch_d.xfft_inst/pe_gen[0].natural_order_input.PE/has_TW_mult.MULT/i_cmpy/three_mult_structure.use_dsp.i_dsp48/mult1_preadder_d_plus_a.mult1/mult/use_prim.appDSP48[0].bppDSP48[1].use_dsp.use_dsp48e1.iDSP48E1/ACIN[10]}]
 
-create_clock -period 1000.000 -name main_clk -waveform {0.000 500.000} -add [get_ports -filter { NAME =~  "*clk*" && DIRECTION == "IN" }]
+
+
+#Test clock
+#create_clock -period 1000.000 -name main_clk -waveform {0.000 500.000} -add [get_ports -filter { NAME =~  "*clk*" && DIRECTION == "IN" }]
 

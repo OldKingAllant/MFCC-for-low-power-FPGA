@@ -76,7 +76,6 @@ architecture Behavioral of window is
     end function;
     
     constant WINDOW : ROM_TYPE := CreateRom(0);
-    signal curr_window_position : integer := 0; --current number of samples in frame
     signal curr_wave_position : integer := 0;   --position inside wave memory
     
     type WAVE_DIR is (INC, DEC);
@@ -88,11 +87,9 @@ begin
     
     process(clk) is
         variable next_wave_pos : integer := 0;
-        variable next_win_pos : integer := 0;
         variable temp_result : signed(63 downto 0);
     begin 
         next_wave_pos := 0;
-        next_win_pos := 0;
         temp_result := (others => '0');
         if rising_edge(clk) then
             if(stall='0') then
@@ -102,8 +99,6 @@ begin
                     --Apply window transform
                     temp_result := shift_left(input_value, precision) * signed(WINDOW(curr_wave_position));
                     output_value <= shift_right(temp_result(31 downto 0), precision);
-                
-                    next_win_pos := curr_window_position + 1;
                 
                     if(curr_wave_dir = INC) then                 --Still in first half of window
                         next_wave_pos := curr_wave_position + 1; --increase position
@@ -119,12 +114,7 @@ begin
                         end if;
                     end if;
                 
-                    if(next_win_pos >= window_size) then
-                        next_win_pos := 0;
-                    end if;
-                
                     curr_wave_position <= next_wave_pos;
-                    curr_window_position <= next_win_pos;
                 end if;
             end if;
         end if;

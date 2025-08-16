@@ -31,20 +31,20 @@ end window_tb;
 architecture Behavioral of window_tb is
    signal     clk : std_logic;
    signal     input_valid : std_logic;
-   signal     input_value : signed(32 - 1 downto 0);
+   signal     input_value : std_logic_vector(32 - 1 downto 0);
    signal     output_valid : std_logic;
-   signal     output_value : signed(32 - 1 downto 0);
+   signal     output_value : std_logic_vector(32 - 1 downto 0);
    signal     stall : std_logic;
    signal     stall_request : std_logic;
 begin
     stall <= '0';
     
-    window_module : entity work.window(Behavioral) 
-    generic map(
-        sample_size => 32,
-        window_size => 512,
-        precision => 8
-    )
+    window_module : entity work.test_window
+    --generic map(
+    --    sample_size => 32,
+    --    window_size => 512,
+    --    precision => 8
+    --)
     port map(
         clk => clk,
         input_valid => input_valid,
@@ -55,14 +55,14 @@ begin
         stall_request => stall_request
     );
     
-    input_value <= to_signed(1, 32);
+    input_value <= std_logic_vector(to_signed(1, 32));
     input_valid <= '1';
     
     process is
     begin 
         clk <= '0';
-        wait for 100ns;
+        wait for 500ns;
         clk <= '1';
-        wait for 100ns;
+        wait for 500ns;
     end process;
 end Behavioral;
