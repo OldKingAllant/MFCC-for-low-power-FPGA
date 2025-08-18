@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<GenRun Id="synth_1" LaunchPart="xa7z010clg400-1I" LaunchTime="1755359147" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/sin_lifter.dcp">
+<GenRun Id="synth_1" LaunchPart="xa7z010clg400-1I" LaunchTime="1755448401" LaunchIncrCheckpoint="$PSRCDIR/utils_1/imports/synth_1/sin_lifter.dcp">
   <File Type="PA-TCL" Name="pipeline.tcl"/>
   <File Type="RDS-PROPCONSTRS" Name="pipeline_drc_synth.rpt"/>
   <File Type="REPORTS-TCL" Name="pipeline_reports.tcl"/>
@@ -133,9 +133,7 @@
     </Config>
   </FileSet>
   <Strategy Version="1" Minor="2">
-    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023">
-      <Desc>Vivado Synthesis Defaults</Desc>
-    </StratHandle>
+    <StratHandle Name="Vivado Synthesis Defaults" Flow="Vivado Synthesis 2023"/>
     <Step Id="synth_design"/>
   </Strategy>
 </GenRun>

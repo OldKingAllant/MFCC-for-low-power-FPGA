@@ -106,10 +106,12 @@ begin
         variable mult_result : signed((VALUE_SIZE * 2) - 1 downto 0);
         variable next_write_pos : integer;
         variable diff : integer;
+        variable temp_sum : signed(VALUE_SIZE - 1 downto 0);
     begin
         mult_result := (others => '0');
         next_write_pos := 0;
         diff := 0;
+        temp_sum := (others => '0');
         
         if rising_edge(clk) then
             out_valid_temp <= '0';
@@ -142,7 +144,8 @@ begin
             
             ------------------------------------------------------------
             
-            if(((not (read_pos = write_pos))) and stall='0') then
+            if(not (nmult = 1)) then
+                if(((not (read_pos = write_pos))) and stall='0') then
                     for cepstra in 0 to nmult - 1 loop
                         mult_result := signed(coeff_buffer(read_pos)) * signed(DCT_LUT(curr_cepstra_base + cepstra)(curr_coeff_cnt));
                         output_buffer(curr_cepstra_base + cepstra) <= output_buffer(curr_cepstra_base + cepstra) + mult_result(VALUE_SIZE - 1 downto 0);
@@ -171,51 +174,63 @@ begin
                         curr_cepstra_base <= curr_cepstra_base + nmult; --go to next chunk of filters
                     end if;
                 end if;
+            end if;
+            
+            
                 
-            --if(nmult = 1) then
-            --    
-            --    if(((not (read_pos = write_pos))) and stall='0') then
-            --        --mult_result := signed(processed_sample) * signed(DCT_LUT(curr_cepstra_base)(curr_coeff_cnt));
-            --        mult_result := signed(coeff_buffer(read_pos)) * signed(DCT_LUT(curr_cepstra_base)(curr_coeff_cnt));
-            --        output_buffer(curr_cepstra_base) <= output_buffer(curr_cepstra_base) + mult_result(VALUE_SIZE - 1 downto 0);
-            --        
-            --        if(curr_coeff_cnt + 1 >= numcoeffs) then
-            --            output_cnt <= output_cnt + 1;
-            --        end if;
-            --        
-            --        if(curr_cepstra_base + 1 >= numcepstra) then --we applied all filters to the current sample
-            --            curr_cepstra_base <= 0; --reset filter position
-            --            if(read_pos + 1 >= coeff_buffer'length) then  --go to next sample
-            --                read_pos <= 0;
-            --            else 
-            --                read_pos <= read_pos + 1;
-            --            end if;
-            --       
-            --            if(curr_coeff_cnt + 1 >= numcoeffs) then     --last sample in frame
-            --                curr_coeff_cnt <= 0;
-            --            else 
-            --                curr_coeff_cnt <= curr_coeff_cnt + 1; --else increment count
-            --            end if;
-            --        else 
-            --            curr_cepstra_base <= curr_cepstra_base + 1; --go to next chunk of filters
-            --        end if;
-            --    end if;
-            --end if;
+            if(nmult = 1) then
+                
+                if(((not (read_pos = write_pos))) and stall='0') then
+                    --mult_result := signed(processed_sample) * signed(DCT_LUT(curr_cepstra_base)(curr_coeff_cnt));
+                    mult_result := signed(coeff_buffer(read_pos)) * signed(DCT_LUT(curr_cepstra_base)(curr_coeff_cnt));
+                    temp_sum := output_buffer(curr_cepstra_base) + mult_result(VALUE_SIZE - 1 downto 0);
+                    output_buffer(curr_cepstra_base) <= temp_sum;
+                    
+                    if(curr_coeff_cnt + 1 >= numcoeffs) then
+                        --output_cnt <= output_cnt + 1;
+                        out_valid_temp <= '1';
+                        out_value_temp <= std_logic_vector(shift_right(temp_sum, precision));
+                    end if;
+                    
+                    if(curr_cepstra_base + 1 >= numcepstra) then --we applied all filters to the current sample
+                        curr_cepstra_base <= 0; --reset filter position
+                        if(read_pos + 1 >= coeff_buffer'length) then  --go to next sample
+                            read_pos <= 0;
+                        else 
+                            read_pos <= read_pos + 1;
+                        end if;
+                   
+                        if(curr_coeff_cnt + 1 >= numcoeffs) then     --last sample in frame
+                            for curr_pos in output_buffer'range loop
+                                output_buffer(curr_pos) <= (others => '0');
+                            end loop;
+                            
+                            curr_coeff_cnt <= 0;
+                        else 
+                            curr_coeff_cnt <= curr_coeff_cnt + 1; --else increment count
+                        end if;
+                    else 
+                        curr_cepstra_base <= curr_cepstra_base + 1; --go to next chunk of filters
+                    end if;
+                end if;
+            end if;
             
             
             ---------------------------------------------------------------
             
-            if(output_cnt = numcepstra and stall='0') then
-                out_valid_temp <= '1';
-                out_value_temp <= std_logic_vector(shift_right(output_buffer(output_pos), precision));
-                output_buffer(output_pos) <= (others => '0');
-                if(output_pos + 1 >= output_buffer'length) then
-                    output_pos <= 0;
-                    output_cnt <= 0;
-                else
-                    output_pos <= output_pos + 1;
+            if(not (nmult = 1)) then 
+                if(output_cnt = numcepstra and stall='0') then
+                    out_valid_temp <= '1';
+                    out_value_temp <= std_logic_vector(shift_right(output_buffer(output_pos), precision));
+                    output_buffer(output_pos) <= (others => '0');
+                    if(output_pos + 1 >= output_buffer'length) then
+                        output_pos <= 0;
+                        output_cnt <= 0;
+                    else
+                        output_pos <= output_pos + 1;
+                    end if;
                 end if;
-            end if;
+            end if;          
             
             output_valid <= out_valid_temp;
             output_value <= out_value_temp;

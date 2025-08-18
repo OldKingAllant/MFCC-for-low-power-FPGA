@@ -1,2 +1,21 @@
 Time resolution is 1 ps
-INFO: xsimkernel Simulation Memory Usage: 44856 KB (Peak: 44856 KB), Simulation CPU Usage: 47952 ms
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 204
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 205
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 208
+Stopped at time : 44730500 ns : File "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" Line 221
+INFO: xsimkernel Simulation Memory Usage: 46496 KB (Peak: 46496 KB), Simulation CPU Usage: 62483 ms

@@ -1,4 +1,6 @@
 INFO: [VRFC 10-163] Analyzing VHDL file "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'dct'
+INFO: [VRFC 10-163] Analyzing VHDL file "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd" into library xil_defaultlib
+INFO: [VRFC 10-3107] analyzing entity 'pipeline'
 INFO: [VRFC 10-163] Analyzing VHDL file "D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sim_1/new/pipeline_tb.vhd" into library xil_defaultlib
 INFO: [VRFC 10-3107] analyzing entity 'pipeline_tb'

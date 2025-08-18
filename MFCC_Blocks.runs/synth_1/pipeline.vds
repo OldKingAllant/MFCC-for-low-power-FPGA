@@ -3,8 +3,8 @@
 # SW Build 3865809 on Sun May  7 15:05:29 MDT 2023
 # IP Build 3864474 on Sun May  7 20:36:21 MDT 2023
 # SharedData Build 3865790 on Sun May 07 13:33:03 MDT 2023
-# Start of session at: Sat Aug 16 17:45:51 2025
-# Process ID: 8932
+# Start of session at: Sun Aug 17 18:33:27 2025
+# Process ID: 17688
 # Current directory: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1
 # Command line: vivado.exe -log pipeline.vds -product Vivado -mode batch -messageDb vivado.pb -notrace -source pipeline.tcl
 # Log file: D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/pipeline.vds
@@ -12,7 +12,7 @@
 # Running On: DESKTOP-S7TDGUG, OS: Windows, CPU Frequency: 3192 MHz, CPU Physical cores: 6, Host memory: 17093 MB
 #-----------------------------------------------------------
 source pipeline.tcl -notrace
-create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 428.941 ; gain = 160.676
+create_project: Time (s): cpu = 00:00:07 ; elapsed = 00:00:08 . Memory (MB): peak = 431.266 ; gain = 164.719
 Command: read_checkpoint -auto_incremental -incremental D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/utils_1/imports/synth_1/sin_lifter.dcp
 INFO: [Vivado 12-5825] Read reference checkpoint from D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/utils_1/imports/synth_1/sin_lifter.dcp for incremental synthesis
 INFO: [Vivado 12-7989] Please ensure there are no constraint changes
@@ -25,9 +25,9 @@ INFO: [Designutils 20-5440] No compile time benefit to using incremental synthes
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 INFO: [Synth 8-7079] Multithreading enabled for synth_design using a maximum of 2 processes.
 INFO: [Synth 8-7078] Launching helper process for spawning children vivado processes
-INFO: [Synth 8-7075] Helper process launched with PID 4796
+INFO: [Synth 8-7075] Helper process launched with PID 280
 ---------------------------------------------------------------------------------
-Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:05 . Memory (MB): peak = 1257.645 ; gain = 410.840
+Starting RTL Elaboration : Time (s): cpu = 00:00:05 ; elapsed = 00:00:07 . Memory (MB): peak = 1256.777 ; gain = 410.988
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-638] synthesizing module 'pipeline' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd:49]
 INFO: [Synth 8-638] synthesizing module 'frame' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sim_1/new/frame.vhd:49]
@@ -42,8 +42,8 @@ INFO: [Synth 8-638] synthesizing module 'window' [D:/Programming/TESI/MFCC_Block
 INFO: [Synth 8-256] done synthesizing module 'window' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/window.vhd:50]
 INFO: [Synth 8-638] synthesizing module 'fft' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:44]
 	Parameter sample_size bound to: 32 - type: integer 
-INFO: [Synth 8-3491] module 'xfft_0' declared at 'D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-8932-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:6' bound to instance 'fft_block' of component 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:107]
-INFO: [Synth 8-638] synthesizing module 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-8932-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:31]
+INFO: [Synth 8-3491] module 'xfft_0' declared at 'D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-17688-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:6' bound to instance 'fft_block' of component 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:107]
+INFO: [Synth 8-638] synthesizing module 'xfft_0' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/.Xil/Vivado-17688-DESKTOP-S7TDGUG/realtime/xfft_0_stub.vhdl:31]
 INFO: [Synth 8-256] done synthesizing module 'fft' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/fft.vhd:44]
 INFO: [Synth 8-638] synthesizing module 'power_spectrum' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/power_spectrum.vhd:47]
 	Parameter sample_size bound to: 32 - type: integer 
@@ -72,7 +72,7 @@ INFO: [Synth 8-638] synthesizing module 'dct' [D:/Programming/TESI/MFCC_Blocks/M
 	Parameter precision bound to: 8 - type: integer 
 	Parameter numcoeffs bound to: 16 - type: integer 
 	Parameter numcepstra bound to: 16 - type: integer 
-	Parameter nmult bound to: 2 - type: integer 
+	Parameter nmult bound to: 1 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'dct' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/dct.vhd:47]
 INFO: [Synth 8-638] synthesizing module 'sin_lifter' [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:46]
 	Parameter sample_size bound to: 64 - type: integer 
@@ -81,33 +81,22 @@ INFO: [Synth 8-638] synthesizing module 'sin_lifter' [D:/Programming/TESI/MFCC_B
 	Parameter const bound to: 22 - type: integer 
 INFO: [Synth 8-256] done synthesizing module 'sin_lifter' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:46]
 INFO: [Synth 8-256] done synthesizing module 'pipeline' (0#1) [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd:49]
-WARNING: [Synth 8-4767] Trying to implement RAM ' ' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-	1: Invalid write to RAM. 
-	2: Unable to determine number of words or word size in RAM. 
-	3: No valid read/write found for RAM. 
-RAM dissolved into registers
-WARNING: [Synth 8-4767] Trying to implement RAM 'output_buffer_reg' in registers. Block RAM or DRAM implementation is not possible; see log for reasons.
-Reason is one or more of the following :
-	1: RAM has multiple writes via different ports in same process. If RAM inferencing intended, write to one port per process. 
-	2: Unable to determine number of words or word size in RAM. 
-	3: No valid read/write found for RAM. 
-RAM "output_buffer_reg" dissolved into registers
 WARNING: [Synth 8-3848] Net end_of_data in module/entity pipeline does not have driver. [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/pipeline.vhd:52]
 WARNING: [Synth 8-7129] Port end_of_frame in module filterbanks is either unconnected or has no load
 WARNING: [Synth 8-7129] Port end_of_data in module frame is either unconnected or has no load
 ---------------------------------------------------------------------------------
-Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1403.078 ; gain = 556.273
+Finished RTL Elaboration : Time (s): cpu = 00:00:10 ; elapsed = 00:00:12 . Memory (MB): peak = 1399.160 ; gain = 553.371
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1403.078 ; gain = 556.273
+Finished Handling Custom Attributes : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1399.160 ; gain = 553.371
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:10 . Memory (MB): peak = 1403.078 ; gain = 556.273
+Finished RTL Optimization Phase 1 : Time (s): cpu = 00:00:10 ; elapsed = 00:00:13 . Memory (MB): peak = 1399.160 ; gain = 553.371
 ---------------------------------------------------------------------------------
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.151 . Memory (MB): peak = 1403.078 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.128 . Memory (MB): peak = 1399.160 ; gain = 0.000
 INFO: [Project 1-570] Preparing netlist for logic optimization
 
 Processing XDC Constraints
@@ -120,44 +109,43 @@ Parsing XDC File [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/dont_
 Finished Parsing XDC File [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/dont_touch.xdc]
 Completed Processing XDC Constraints
 
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1495.125 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1506.625 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
 No Unisim elements were transformed.
 
-Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.027 . Memory (MB): peak = 1495.125 ; gain = 0.000
+Constraint Validation Runtime : Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.062 . Memory (MB): peak = 1506.625 ; gain = 0.000
 INFO: [Designutils 20-5440] No compile time benefit to using incremental synthesis; A full resynthesis will be run
 INFO: [Designutils 20-4379] Flow is switching to default flow due to incremental criteria not met. If you would like to alter this behaviour and have the flow terminate instead, please set the following parameter config_implementation {autoIncr.Synth.RejectBehavior Terminate}
 ---------------------------------------------------------------------------------
-Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1495.125 ; gain = 648.320
+Finished Constraint Validation : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1506.625 ; gain = 660.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Loading Part and Timing Information
 ---------------------------------------------------------------------------------
 Loading part: xa7z010clg400-1I
 ---------------------------------------------------------------------------------
-Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1495.125 ; gain = 648.320
+Finished Loading Part and Timing Information : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1506.625 ; gain = 660.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Applying 'set_property' XDC Constraints
 ---------------------------------------------------------------------------------
 Applied set_property KEEP_HIERARCHY = SOFT for fft/fft_block. (constraint file  auto generated constraint).
 ---------------------------------------------------------------------------------
-Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:20 . Memory (MB): peak = 1495.125 ; gain = 648.320
+Finished applying 'set_property' XDC Constraints : Time (s): cpu = 00:00:19 ; elapsed = 00:00:23 . Memory (MB): peak = 1506.625 ; gain = 660.836
 ---------------------------------------------------------------------------------
 WARNING: [Synth 8-6040] Register curr_wave_position_reg_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
 ---------------------------------------------------------------------------------
-Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:27 . Memory (MB): peak = 1495.125 ; gain = 648.320
+Finished RTL Optimization Phase 2 : Time (s): cpu = 00:00:26 ; elapsed = 00:00:30 . Memory (MB): peak = 1506.625 ; gain = 660.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start RTL Component Statistics 
 ---------------------------------------------------------------------------------
 Detailed RTL Component Info : 
 +---Adders : 
-	   2 Input   64 Bit       Adders := 6     
-	   2 Input   32 Bit       Adders := 24    
+	   2 Input   64 Bit       Adders := 5     
+	   2 Input   32 Bit       Adders := 23    
 	   3 Input   32 Bit       Adders := 2     
-	   2 Input    5 Bit       Adders := 1     
-	   2 Input    4 Bit       Adders := 2     
+	   2 Input    4 Bit       Adders := 1     
 +---Registers : 
 	              128 Bit    Registers := 1     
 	               64 Bit    Registers := 61    
@@ -169,15 +157,14 @@ Detailed RTL Component Info :
 	               7x64  Multipliers := 1     
 	              32x32  Multipliers := 2     
 	              31x64  Multipliers := 2     
-	              64x64  Multipliers := 2     
+	              64x64  Multipliers := 1     
 	               9x32  Multipliers := 1     
 +---RAMs : 
 	              16K Bit	(512 X 32 bit)          RAMs := 1     
 	              16K Bit	(257 X 64 bit)          RAMs := 1     
 	               2K Bit	(32 X 64 bit)          RAMs := 1     
 +---Muxes : 
-	   2 Input 1024 Bit        Muxes := 2     
-	   2 Input   64 Bit        Muxes := 107   
+	   2 Input   64 Bit        Muxes := 59    
 	   2 Input   32 Bit        Muxes := 11    
 	  56 Input   32 Bit        Muxes := 1     
 	   2 Input   16 Bit        Muxes := 1     
@@ -186,7 +173,7 @@ Detailed RTL Component Info :
 	  16 Input    7 Bit        Muxes := 8     
 	  16 Input    6 Bit        Muxes := 6     
 	  16 Input    5 Bit        Muxes := 2     
-	   2 Input    1 Bit        Muxes := 69    
+	   2 Input    1 Bit        Muxes := 74    
 ---------------------------------------------------------------------------------
 Finished RTL Component Statistics 
 ---------------------------------------------------------------------------------
@@ -251,7 +238,56 @@ DSP Report: operator multOp is absorbed into DSP multOp.
 DSP Report: Generating DSP multOp, operation Mode is: PCIN+A*B.
 DSP Report: operator multOp is absorbed into DSP multOp.
 DSP Report: operator multOp is absorbed into DSP multOp.
+DSP Report: Generating DSP ARG0, operation Mode is: A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: PCIN+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: PCIN+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: PCIN+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: PCIN+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: PCIN+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: PCIN+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: Generating DSP ARG0, operation Mode is: (PCIN>>17)+A*B.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
+DSP Report: operator ARG0 is absorbed into DSP ARG0.
 WARNING: [Synth 8-6040] Register window/curr_wave_position_reg_rep_rep driving address of a ROM cannot be packed in BRAM/URAM because of presence of initial value.
+WARNING: [Synth 8-6014] Unused sequential element lifter/out_value_temp_reg was removed.  [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:79]
 DSP Report: Generating DSP window/ARG0, operation Mode is: A*B.
 DSP Report: operator window/ARG0 is absorbed into DSP window/ARG0.
 DSP Report: operator window/ARG0 is absorbed into DSP window/ARG0.
@@ -286,103 +322,6 @@ DSP Report: Generating DSP pow_spectrum/re_squared_reg, operation Mode is: (PCIN
 DSP Report: register pow_spectrum/re_squared_reg is absorbed into DSP pow_spectrum/re_squared_reg.
 DSP Report: operator pow_spectrum/re_squared0 is absorbed into DSP pow_spectrum/re_squared_reg.
 DSP Report: operator pow_spectrum/re_squared0 is absorbed into DSP pow_spectrum/re_squared_reg.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: PCIN+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: Generating DSP p_0_in, operation Mode is: (PCIN>>17)+A*B.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-DSP Report: operator p_0_in is absorbed into DSP p_0_in.
-WARNING: [Synth 8-6014] Unused sequential element lifter/out_value_temp_reg was removed.  [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sources_1/new/sin_lifter.vhd:79]
 DSP Report: Generating DSP lifter/ARG, operation Mode is: A*B.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/ARG.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/ARG.
@@ -397,6 +336,7 @@ DSP Report: Generating DSP lifter/out_value_temp_reg, operation Mode is: (PCIN>>
 DSP Report: register lifter/out_value_temp_reg is absorbed into DSP lifter/out_value_temp_reg.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/out_value_temp_reg.
 DSP Report: operator lifter/ARG is absorbed into DSP lifter/out_value_temp_reg.
+WARNING: [Synth 8-7129] Port end_of_frame in module filterbanks is either unconnected or has no load
 WARNING: [Synth 8-3936] Found unconnected internal register 'frame_module/output_value_reg' and it is trimmed from '32' to '24' bits. [D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/sim_1/new/frame.vhd:108]
 WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg__0) is unused and will be removed from module log_compute.
 WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg__1) is unused and will be removed from module log_compute.
@@ -410,9 +350,97 @@ WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg__66) is unused an
 WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg__67) is unused and will be removed from module log_compute.
 WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg__68) is unused and will be removed from module log_compute.
 WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg__69) is unused and will be removed from module log_compute.
-WARNING: [Synth 8-3332] Sequential element (out_value_temp_reg) is unused and will be removed from module log_compute.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[47]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[46]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[45]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[44]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[43]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[42]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[41]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[40]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[39]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[38]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[37]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[36]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[35]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[34]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[33]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[32]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[31]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[30]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[29]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[28]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[27]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[26]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[25]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[24]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[23]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[22]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[21]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[20]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[19]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[18]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[17]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[47]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[46]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[45]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[44]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[43]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[42]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[41]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[40]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[39]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[38]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[37]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[36]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[35]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[34]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[33]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[32]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[31]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[30]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[29]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[28]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[27]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[26]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[25]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[24]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[23]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[22]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[21]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[20]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[19]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[18]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/im_squared_reg[17]__0) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[47]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[46]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[45]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[44]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[43]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[42]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[41]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[40]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[39]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[38]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[37]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[36]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[35]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[34]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[33]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[32]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[31]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[30]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[29]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[28]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[27]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[26]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[25]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[24]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[23]) is unused and will be removed from module pipeline.
+WARNING: [Synth 8-3332] Sequential element (pow_spectrum/re_squared_reg[22]) is unused and will be removed from module pipeline.
+INFO: [Common 17-14] Message 'Synth 8-3332' appears 100 times and further instances of the messages will be disabled. Use the Tcl command set_msg_config to change the current settings.
 ---------------------------------------------------------------------------------
-Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:09 ; elapsed = 00:01:10 . Memory (MB): peak = 1495.125 ; gain = 648.320
+Finished Cross Boundary and Area Optimization : Time (s): cpu = 00:01:32 ; elapsed = 00:01:37 . Memory (MB): peak = 1506.625 ; gain = 660.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -440,6 +468,7 @@ ROM: Preliminary Mapping Report
 |dct         | DCT_LUT[0][13]   | 32x11         | LUT            | 
 |dct         | DCT_LUT[0][14]   | 32x11         | LUT            | 
 |dct         | DCT_LUT[0][15]   | 32x11         | LUT            | 
+|log_compute | ARG1             | 512x8         | LUT            | 
 |dct         | DCT_LUT[0][0]    | 32x10         | LUT            | 
 |dct         | DCT_LUT[0][1]    | 32x11         | LUT            | 
 |dct         | DCT_LUT[0][2]    | 32x11         | LUT            | 
@@ -457,34 +486,6 @@ ROM: Preliminary Mapping Report
 |dct         | DCT_LUT[0][14]   | 32x11         | LUT            | 
 |dct         | DCT_LUT[0][15]   | 32x11         | LUT            | 
 |pipeline    | window/WINDOW[0] | 256x8         | LUT            | 
-|log_compute | ARG1             | 512x8         | LUT            | 
-|dct         | DCT_LUT[0][0]    | 32x10         | LUT            | 
-|dct         | DCT_LUT[0][1]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][2]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][3]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][4]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][5]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][6]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][9]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][10]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][13]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][14]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][15]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][1]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][2]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][3]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][4]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][5]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][6]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][7]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][8]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][9]    | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][10]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][11]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][12]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][13]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][14]   | 32x11         | LUT            | 
-|dct         | DCT_LUT[0][15]   | 32x11         | LUT            | 
 +------------+------------------+---------------+----------------+
 
 
@@ -498,12 +499,12 @@ Block RAM: Preliminary Mapping Report (see note below)
 Note: The table above is a preliminary report that shows the Block RAMs at the current stage of the synthesis flow. Some Block RAMs may be reimplemented as non Block RAM primitives later in the synthesis flow. Multiple instantiated Block RAMs are reported only once. 
 
 Distributed RAM: Preliminary Mapping Report (see note below)
-+---------------+------------------+-----------+----------------------+---------------+
-|Module Name    | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
-+---------------+------------------+-----------+----------------------+---------------+
-|i_0/filterbank | samples_reg      | Implied   | 512 x 64             | RAM64M x 110  | 
-|i_2/dct        | coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
-+---------------+------------------+-----------+----------------------+---------------+
++------------+------------------+-----------+----------------------+---------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
++------------+------------------+-----------+----------------------+---------------+
+|filterbank  | samples_reg      | Implied   | 512 x 64             | RAM64M x 110  | 
+|dct         | coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
++------------+------------------+-----------+----------------------+---------------+
 
 Note: The table above is a preliminary report that shows the Distributed RAMs at the current stage of the synthesis flow. Some Distributed RAMs may be reimplemented as non Distributed RAM primitives later in the synthesis flow. Multiple instantiated RAMs are reported only once.
 
@@ -527,6 +528,22 @@ DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding R
 |filterbanks | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |filterbanks | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |filterbanks | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |pipeline    | A*B            | 18     | 9      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |pipeline    | (PCIN>>17)+A*B | 15     | 9      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |pipeline    | A*B            | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
@@ -537,38 +554,6 @@ DSP: Preliminary Mapping Report (see note below. The ' indicates corresponding R
 |pipeline    | (PCIN>>17)+A*B | 15     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
 |pipeline    | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |pipeline    | (PCIN>>17)+A*B | 18     | 15     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
-|dct         | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B            | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B       | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | (PCIN>>17)+A*B | 18     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |pipeline    | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |pipeline    | (PCIN>>17)+A*B | 13     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 1    | 
 |pipeline    | A*B            | 18     | 13     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
@@ -583,13 +568,13 @@ Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
 Start Applying XDC Timing Constraints
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:18 ; elapsed = 00:01:20 . Memory (MB): peak = 1495.125 ; gain = 648.320
+Finished Applying XDC Timing Constraints : Time (s): cpu = 00:01:41 ; elapsed = 00:01:46 . Memory (MB): peak = 1506.625 ; gain = 660.836
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Timing Optimization
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Timing Optimization : Time (s): cpu = 00:01:27 ; elapsed = 00:01:29 . Memory (MB): peak = 1646.195 ; gain = 799.391
+Finished Timing Optimization : Time (s): cpu = 00:01:47 ; elapsed = 00:01:53 . Memory (MB): peak = 1563.965 ; gain = 718.176
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -604,12 +589,12 @@ Block RAM: Final Mapping Report
 
 
 Distributed RAM: Final Mapping Report
-+---------------+------------------+-----------+----------------------+---------------+
-|Module Name    | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
-+---------------+------------------+-----------+----------------------+---------------+
-|i_0/filterbank | samples_reg      | Implied   | 512 x 64             | RAM64M x 110  | 
-|i_2/dct        | coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
-+---------------+------------------+-----------+----------------------+---------------+
++------------+------------------+-----------+----------------------+---------------+
+|Module Name | RTL Object       | Inference | Size (Depth x Width) | Primitives    | 
++------------+------------------+-----------+----------------------+---------------+
+|filterbank  | samples_reg      | Implied   | 512 x 64             | RAM64M x 110  | 
+|dct         | coeff_buffer_reg | Implied   | 32 x 64              | RAM32M x 11   | 
++------------+------------------+-----------+----------------------+---------------+
 
 ---------------------------------------------------------------------------------
 Finished ROM, RAM, DSP, Shift Register and Retiming Reporting
@@ -619,7 +604,7 @@ Start Technology Mapping
 ---------------------------------------------------------------------------------
 INFO: [Synth 8-7052] The timing for the instance frame_module/MEM_reg (implemented as a Block RAM) might be sub-optimal as no optional output register could be merged into the ram block. Providing additional output register may help in improving timing.
 ---------------------------------------------------------------------------------
-Finished Technology Mapping : Time (s): cpu = 00:01:33 ; elapsed = 00:01:35 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Technology Mapping : Time (s): cpu = 00:01:52 ; elapsed = 00:01:57 . Memory (MB): peak = 1563.980 ; gain = 718.191
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start IO Insertion
@@ -637,37 +622,37 @@ Start Final Netlist Cleanup
 Finished Final Netlist Cleanup
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished IO Insertion : Time (s): cpu = 00:01:39 ; elapsed = 00:01:40 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished IO Insertion : Time (s): cpu = 00:01:57 ; elapsed = 00:02:02 . Memory (MB): peak = 1576.090 ; gain = 730.301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Instances
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Instances : Time (s): cpu = 00:01:39 ; elapsed = 00:01:40 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Renaming Generated Instances : Time (s): cpu = 00:01:57 ; elapsed = 00:02:02 . Memory (MB): peak = 1576.090 ; gain = 730.301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Rebuilding User Hierarchy
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:40 ; elapsed = 00:01:42 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Rebuilding User Hierarchy : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 1576.090 ; gain = 730.301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Ports
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Ports : Time (s): cpu = 00:01:40 ; elapsed = 00:01:42 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Renaming Generated Ports : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 1576.090 ; gain = 730.301
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Handling Custom Attributes
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Handling Custom Attributes : Time (s): cpu = 00:01:41 ; elapsed = 00:01:43 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Handling Custom Attributes : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 1576.102 ; gain = 730.312
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Renaming Generated Nets
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
-Finished Renaming Generated Nets : Time (s): cpu = 00:01:41 ; elapsed = 00:01:43 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Renaming Generated Nets : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 1576.102 ; gain = 730.312
 ---------------------------------------------------------------------------------
 ---------------------------------------------------------------------------------
 Start Writing Synthesis Report
@@ -677,26 +662,16 @@ DSP Final Report (the ' indicates corresponding REG is set)
 +------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
 |Module Name | DSP Mapping      | A Size | B Size | C Size | D Size | P Size | AREG | BREG | CREG | DREG | ADREG | MREG | PREG | 
 +------------+------------------+--------+--------+--------+--------+--------+------+------+------+------+-------+------+------+
-|dct         | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN>>17+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN>>17+A*B     | 17     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | A*B              | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN+A*B         | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
-|dct         | PCIN>>17+A*B     | 17     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B              | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B         | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B              | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B         | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN>>17+A*B     | 14     | 18     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B         | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | A*B              | 14     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN>>17+A*B     | 14     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN+A*B         | 0      | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
+|dct         | PCIN>>17+A*B     | 14     | 17     | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |filterbanks | A*B              | 8      | 5      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |filterbanks | A*B              | 17     | 0      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
 |filterbanks | PCIN+A*B         | 17     | 8      | -      | -      | 48     | 0    | 0    | -    | -    | -     | 0    | 0    | 
@@ -741,46 +716,48 @@ Report Cell Usage:
 +------+------------+------+
 |1     |xfft_0_bbox |     1|
 |2     |BUFG        |     1|
-|3     |CARRY4      |   619|
-|4     |DSP48E1     |    48|
-|9     |LUT1        |    70|
-|10    |LUT2        |  1032|
-|11    |LUT3        |   762|
-|12    |LUT4        |   771|
-|13    |LUT5        |  1456|
-|14    |LUT6        |  2429|
-|15    |MUXF7       |   317|
-|16    |MUXF8       |   139|
-|17    |RAM32M      |    10|
-|18    |RAM64M      |    95|
-|19    |RAMB18E1    |     1|
-|20    |FDRE        |  4402|
-|21    |IBUF        |    26|
-|22    |OBUF        |    65|
+|3     |CARRY4      |   567|
+|4     |DSP48E1     |    38|
+|9     |LUT1        |    64|
+|10    |LUT2        |   982|
+|11    |LUT3        |   708|
+|12    |LUT4        |   363|
+|13    |LUT5        |  1559|
+|14    |LUT6        |  1303|
+|15    |MUXF7       |   197|
+|16    |MUXF8       |    45|
+|17    |RAM32M      |     2|
+|18    |RAM32X1D    |     2|
+|19    |RAM64M      |    95|
+|20    |RAMB18E1    |     1|
+|21    |FDRE        |  4343|
+|22    |IBUF        |    26|
+|23    |OBUF        |    65|
 +------+------------+------+
 ---------------------------------------------------------------------------------
-Finished Writing Synthesis Report : Time (s): cpu = 00:01:41 ; elapsed = 00:01:43 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Finished Writing Synthesis Report : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 1576.102 ; gain = 730.312
 ---------------------------------------------------------------------------------
-Synthesis finished with 0 errors, 0 critical warnings and 18 warnings.
-Synthesis Optimization Runtime : Time (s): cpu = 00:01:27 ; elapsed = 00:01:40 . Memory (MB): peak = 1655.234 ; gain = 716.383
-Synthesis Optimization Complete : Time (s): cpu = 00:01:41 ; elapsed = 00:01:43 . Memory (MB): peak = 1655.234 ; gain = 808.430
+Synthesis finished with 0 errors, 0 critical warnings and 213 warnings.
+Synthesis Optimization Runtime : Time (s): cpu = 00:01:46 ; elapsed = 00:02:00 . Memory (MB): peak = 1576.102 ; gain = 622.848
+Synthesis Optimization Complete : Time (s): cpu = 00:01:59 ; elapsed = 00:02:04 . Memory (MB): peak = 1576.102 ; gain = 730.312
 INFO: [Project 1-571] Translating synthesized netlist
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.161 . Memory (MB): peak = 1655.234 ; gain = 0.000
-INFO: [Netlist 29-17] Analyzing 1229 Unisim elements for replacement
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.145 . Memory (MB): peak = 1588.148 ; gain = 0.000
+INFO: [Netlist 29-17] Analyzing 947 Unisim elements for replacement
 INFO: [Netlist 29-28] Unisim Transformation completed in 0 CPU seconds
 INFO: [Project 1-570] Preparing netlist for logic optimization
 INFO: [Opt 31-138] Pushed 0 inverter(s) to 0 load pin(s).
-Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.003 . Memory (MB): peak = 1655.234 ; gain = 0.000
+Netlist sorting complete. Time (s): cpu = 00:00:00 ; elapsed = 00:00:00.002 . Memory (MB): peak = 1598.742 ; gain = 0.000
 INFO: [Project 1-111] Unisim Transformation Summary:
-  A total of 105 instances were transformed.
-  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 10 instances
+  A total of 99 instances were transformed.
+  RAM32M => RAM32M (RAMD32(x6), RAMS32(x2)): 2 instances
+  RAM32X1D => RAM32X1D (RAMD32(x2)): 2 instances
   RAM64M => RAM64M (RAMD64E(x4)): 95 instances
 
-Synth Design complete | Checksum: 20922e60
+Synth Design complete | Checksum: 174f2ef3
 INFO: [Common 17-83] Releasing license: Synthesis
-41 Infos, 23 Warnings, 0 Critical Warnings and 0 Errors encountered.
+42 Infos, 109 Warnings, 0 Critical Warnings and 0 Errors encountered.
 synth_design completed successfully
-synth_design: Time (s): cpu = 00:01:48 ; elapsed = 00:01:50 . Memory (MB): peak = 1655.234 ; gain = 1190.859
+synth_design: Time (s): cpu = 00:02:05 ; elapsed = 00:02:21 . Memory (MB): peak = 1598.742 ; gain = 1132.516
 INFO: [Common 17-1381] The checkpoint 'D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.runs/synth_1/pipeline.dcp' has been generated.
 INFO: [runtcl-4] Executing : report_utilization -file pipeline_utilization_synth.rpt -pb pipeline_utilization_synth.pb
-INFO: [Common 17-206] Exiting Vivado at Sat Aug 16 17:47:52 2025...
+INFO: [Common 17-206] Exiting Vivado at Sun Aug 17 18:36:06 2025...

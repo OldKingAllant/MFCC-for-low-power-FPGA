@@ -235,7 +235,7 @@ begin
         precision => precision,
         numcoeffs => mel_filters,
         numcepstra => cepstra,
-        nmult => 2
+        nmult => 1
     )
     port map(
         clk => clk_output,
