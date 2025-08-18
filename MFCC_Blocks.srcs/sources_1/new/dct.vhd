@@ -38,7 +38,7 @@ entity dct is
     input_valid : in std_logic;
     input_coeff : in std_logic_vector(sample_size - 1 downto 0);
     output_valid : out std_logic;
-    output_value : out std_logic_vector(sample_size - 1 downto 0);
+    output_value : out std_logic_vector((sample_size * nmult) - 1 downto 0);
     request_stall : out std_logic;
     stall : in std_logic
   );
@@ -84,7 +84,7 @@ architecture Behavioral of dct is
     
     constant VALUE_SIZE : integer := sample_size;
     
-    type COEFF_BUFF_TY is array(0 to numcoeffs * 2 - 1) of unsigned(sample_size - 1 downto 0);
+    type COEFF_BUFF_TY is array(0 to numcoeffs - 1) of unsigned(sample_size - 1 downto 0);
     type OUT_BUFF_TY is array(0 to numcepstra - 1) of signed(sample_size - 1 downto 0);
     type MFCC_BUFF_TY is array(0 to numcepstra - 1) of signed(VALUE_SIZE - 1 downto 0);
     type TEMP_MFCC_TY is array(0 to nmult - 1) of signed(VALUE_SIZE - 1 downto 0);
@@ -96,22 +96,26 @@ architecture Behavioral of dct is
     signal write_pos : integer := 0;
     
     signal output_buffer : OUT_BUFF_TY := (others => (others => '0'));
-    signal output_cnt : integer := 0;
-    signal output_pos : integer := 0;
     
     signal out_valid_temp : std_logic := '0';
-    signal out_value_temp : std_logic_vector(sample_size - 1 downto 0);
+    signal out_value_temp : std_logic_vector((sample_size * nmult) - 1 downto 0);
 begin
     process(clk) is
         variable mult_result : signed((VALUE_SIZE * 2) - 1 downto 0);
         variable next_write_pos : integer;
         variable diff : integer;
-        variable temp_sum : signed(VALUE_SIZE - 1 downto 0);
+        variable temp_sums : TEMP_MFCC_TY;
+        variable packed_coeff_position : integer; 
+        variable processed_sample : signed(VALUE_SIZE - 1 downto 0);
+        variable has_sample : std_logic;
     begin
         mult_result := (others => '0');
         next_write_pos := 0;
         diff := 0;
-        temp_sum := (others => '0');
+        temp_sums := (others => (others => '0'));
+        packed_coeff_position := 0;
+        processed_sample := (others => '0');
+        has_sample := '0';
         
         if rising_edge(clk) then
             out_valid_temp <= '0';
@@ -120,7 +124,7 @@ begin
             next_write_pos := write_pos + 1;
             diff := read_pos - write_pos;
             
-            if(read_pos > write_pos and diff <= 4) then
+            if(read_pos > write_pos and diff < 2) then
                 request_stall <= '1';
             else
                 request_stall <= '0';
@@ -140,97 +144,60 @@ begin
                 else
                     write_pos <= next_write_pos;
                 end if;
+                
+                if(read_pos = write_pos) then --read process is idle
+                    processed_sample := signed(input_coeff);
+                    has_sample := '1';
+                else 
+                    processed_sample := signed(coeff_buffer(read_pos));
+                end if;
+            else
+                processed_sample := signed(coeff_buffer(read_pos));
             end if;
             
             ------------------------------------------------------------
             
-            if(not (nmult = 1)) then
-                if(((not (read_pos = write_pos))) and stall='0') then
-                    for cepstra in 0 to nmult - 1 loop
-                        mult_result := signed(coeff_buffer(read_pos)) * signed(DCT_LUT(curr_cepstra_base + cepstra)(curr_coeff_cnt));
-                        output_buffer(curr_cepstra_base + cepstra) <= output_buffer(curr_cepstra_base + cepstra) + mult_result(VALUE_SIZE - 1 downto 0);
+            if(((not (read_pos = write_pos)) or has_sample='1') and stall='0') then
+                for cepstra in 0 to nmult - 1 loop
+                    mult_result := processed_sample * signed(DCT_LUT(curr_cepstra_base + cepstra)(curr_coeff_cnt));
+                    temp_sums(cepstra) := output_buffer(curr_cepstra_base + cepstra) + mult_result(VALUE_SIZE - 1 downto 0);
+                    output_buffer(curr_cepstra_base + cepstra) <= temp_sums(cepstra);
                     
                     --report integer'image(to_integer(signed(temp_mfcc(cepstra)))) severity note;
+                end loop;
+                
+                if(curr_coeff_cnt + 1 >= numcoeffs) then
+                    for coeff_index in 0 to nmult - 1 loop
+                        packed_coeff_position := coeff_index * VALUE_SIZE;
+                        out_value_temp(packed_coeff_position + VALUE_SIZE - 1 downto packed_coeff_position) <= 
+                            std_logic_vector(shift_right(temp_sums(coeff_index), precision));
                     end loop;
-                
-                    if(curr_coeff_cnt + 1 >= numcoeffs) then
-                        output_cnt <= output_cnt + nmult;
-                    end if;
-                
-                    if(curr_cepstra_base + nmult >= numcepstra) then --we applied all filters to the current sample
-                        curr_cepstra_base <= 0; --reset filter position
-                        if(read_pos + 1 >= coeff_buffer'length) then  --go to next sample
-                            read_pos <= 0;
-                        else 
-                            read_pos <= read_pos + 1;
-                        end if;
-                    
-                        if(curr_coeff_cnt + 1 >= numcoeffs) then     --last sample in frame
-                            curr_coeff_cnt <= 0;
-                        else 
-                            curr_coeff_cnt <= curr_coeff_cnt + 1; --else increment count
-                        end if;
-                    else 
-                        curr_cepstra_base <= curr_cepstra_base + nmult; --go to next chunk of filters
-                    end if;
-                end if;
-            end if;
-            
-            
-                
-            if(nmult = 1) then
-                
-                if(((not (read_pos = write_pos))) and stall='0') then
-                    --mult_result := signed(processed_sample) * signed(DCT_LUT(curr_cepstra_base)(curr_coeff_cnt));
-                    mult_result := signed(coeff_buffer(read_pos)) * signed(DCT_LUT(curr_cepstra_base)(curr_coeff_cnt));
-                    temp_sum := output_buffer(curr_cepstra_base) + mult_result(VALUE_SIZE - 1 downto 0);
-                    output_buffer(curr_cepstra_base) <= temp_sum;
-                    
-                    if(curr_coeff_cnt + 1 >= numcoeffs) then
-                        --output_cnt <= output_cnt + 1;
-                        out_valid_temp <= '1';
-                        out_value_temp <= std_logic_vector(shift_right(temp_sum, precision));
-                    end if;
-                    
-                    if(curr_cepstra_base + 1 >= numcepstra) then --we applied all filters to the current sample
-                        curr_cepstra_base <= 0; --reset filter position
-                        if(read_pos + 1 >= coeff_buffer'length) then  --go to next sample
-                            read_pos <= 0;
-                        else 
-                            read_pos <= read_pos + 1;
-                        end if;
-                   
-                        if(curr_coeff_cnt + 1 >= numcoeffs) then     --last sample in frame
-                            for curr_pos in output_buffer'range loop
-                                output_buffer(curr_pos) <= (others => '0');
-                            end loop;
-                            
-                            curr_coeff_cnt <= 0;
-                        else 
-                            curr_coeff_cnt <= curr_coeff_cnt + 1; --else increment count
-                        end if;
-                    else 
-                        curr_cepstra_base <= curr_cepstra_base + 1; --go to next chunk of filters
-                    end if;
-                end if;
-            end if;
-            
-            
-            ---------------------------------------------------------------
-            
-            if(not (nmult = 1)) then 
-                if(output_cnt = numcepstra and stall='0') then
                     out_valid_temp <= '1';
-                    out_value_temp <= std_logic_vector(shift_right(output_buffer(output_pos), precision));
-                    output_buffer(output_pos) <= (others => '0');
-                    if(output_pos + 1 >= output_buffer'length) then
-                        output_pos <= 0;
-                        output_cnt <= 0;
-                    else
-                        output_pos <= output_pos + 1;
-                    end if;
                 end if;
-            end if;          
+                
+                if(curr_cepstra_base + nmult >= numcepstra) then --we applied all filters to the current sample
+                    curr_cepstra_base <= 0; --reset filter position
+                    if(read_pos + 1 >= coeff_buffer'length) then  --go to next sample
+                        read_pos <= 0;
+                    else 
+                       read_pos <= read_pos + 1;
+                    end if;
+                    
+                    if(curr_coeff_cnt + 1 >= numcoeffs) then     --last sample in frame
+                        for coeff in output_buffer'range loop
+                            output_buffer(coeff) <= (others => '0');
+                        end loop;
+                        curr_coeff_cnt <= 0;
+                    else 
+                        curr_coeff_cnt <= curr_coeff_cnt + 1; --else increment count
+                    end if;
+                else 
+                    curr_cepstra_base <= curr_cepstra_base + nmult; --go to next chunk of filters
+                end if;
+            end if;
+            
+            
+            ---------------------------------------------------------------          
             
             output_valid <= out_valid_temp;
             output_value <= out_value_temp;

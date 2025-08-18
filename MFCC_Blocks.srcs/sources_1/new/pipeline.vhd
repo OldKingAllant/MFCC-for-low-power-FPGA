@@ -99,8 +99,10 @@ architecture Behavioral of pipeline is
     
     -----------------------------
     
+    constant DCT_MULTS : integer := 2;
+    
     signal input_valid_lift : std_logic;
-    signal input_value_lift : std_logic_vector(OUTPUT_SIZE - 1 downto 0);
+    signal input_value_lift : std_logic_vector((OUTPUT_SIZE * DCT_MULTS) - 1 downto 0);
     
     signal stall_frame : std_logic;
     signal stall_window : std_logic;
@@ -235,7 +237,7 @@ begin
         precision => precision,
         numcoeffs => mel_filters,
         numcepstra => cepstra,
-        nmult => 1
+        nmult => DCT_MULTS
     )
     port map(
         clk => clk_output,
@@ -252,7 +254,8 @@ begin
         sample_size => OUTPUT_SIZE,
         precision => precision,
         window_size => cepstra,
-        const => lift
+        const => lift,
+        input_cnt => DCT_MULTS
     )
     port map(
         clk => clk_output,

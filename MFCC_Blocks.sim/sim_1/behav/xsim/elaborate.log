@@ -398,7 +398,7 @@ Compiling architecture behavioral of entity xil_defaultlib.fft [fft_default]
 Compiling architecture behavioral of entity xil_defaultlib.power_spectrum [\power_spectrum(sample_size=32,f...]
 Compiling architecture behavioral of entity xil_defaultlib.filterbanks [\filterbanks(nmult=2)\]
 Compiling architecture behavioral of entity xil_defaultlib.log_compute [\log_compute(num_coeffs=2)\]
-Compiling architecture behavioral of entity xil_defaultlib.dct [dct_default]
+Compiling architecture behavioral of entity xil_defaultlib.dct [\dct(nmult=2)\]
 Compiling architecture behavioral of entity xil_defaultlib.sin_lifter [sin_lifter_default]
 Compiling architecture behavioral of entity xil_defaultlib.pipeline [pipeline_default]
 Compiling architecture behavioral of entity xil_defaultlib.pipeline_tb

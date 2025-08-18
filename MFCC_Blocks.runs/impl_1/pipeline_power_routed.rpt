@@ -1,7 +1,7 @@
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved. Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -------------------------------------------------------------------------------------------------------------------------------------------------
 | Tool Version     : Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
-| Date             : Sun Aug 17 18:39:43 2025
+| Date             : Mon Aug 18 13:57:51 2025
 | Host             : DESKTOP-S7TDGUG running 64-bit major release  (build 9200)
 | Command          : report_power -file pipeline_power_routed.rpt -pb pipeline_power_summary_routed.pb -rpx pipeline_power_routed.rpx
 | Design           : pipeline
@@ -30,7 +30,7 @@ Table of Contents
 ----------
 
 +--------------------------+--------------+
-| Total On-Chip Power (W)  | 0.094        |
+| Total On-Chip Power (W)  | 0.095        |
 | Design Power Budget (W)  | Unspecified* |
 | Power Budget Margin (W)  | NA           |
 | Dynamic (W)              | 0.003        |
@@ -53,20 +53,20 @@ Table of Contents
 | On-Chip                  | Power (W) | Used     | Available | Utilization (%) |
 +--------------------------+-----------+----------+-----------+-----------------+
 | Clocks                   |    <0.001 |        3 |       --- |             --- |
-| Slice Logic              |    <0.001 |    25075 |       --- |             --- |
-|   LUT as Logic           |    <0.001 |     6775 |     17600 |           38.49 |
-|   Register               |    <0.001 |    10855 |     35200 |           30.84 |
-|   CARRY4                 |    <0.001 |      978 |      4400 |           22.23 |
+| Slice Logic              |    <0.001 |    29418 |       --- |             --- |
+|   LUT as Logic           |    <0.001 |     8998 |     17600 |           51.13 |
+|   Register               |    <0.001 |    12790 |     35200 |           36.34 |
+|   CARRY4                 |    <0.001 |     1026 |      4400 |           23.32 |
 |   LUT as Distributed RAM |    <0.001 |     1414 |      6000 |           23.57 |
-|   LUT as Shift Register  |    <0.001 |      989 |      6000 |           16.48 |
-|   F7/F8 Muxes            |    <0.001 |      754 |     17600 |            4.28 |
+|   LUT as Shift Register  |    <0.001 |      990 |      6000 |           16.50 |
+|   F7/F8 Muxes            |    <0.001 |      800 |     17600 |            4.55 |
 |   Others                 |     0.000 |      973 |       --- |             --- |
-| Signals                  |    <0.001 |    18120 |       --- |             --- |
+| Signals                  |    <0.001 |    21107 |       --- |             --- |
 | Block RAM                |    <0.001 |        3 |        60 |            5.00 |
-| DSPs                     |    <0.001 |       62 |        80 |           77.50 |
+| DSPs                     |    <0.001 |       72 |        80 |           90.00 |
 | I/O                      |    <0.001 |       91 |       100 |           91.00 |
 | Static Power             |     0.092 |          |           |                 |
-| Total                    |     0.094 |          |           |                 |
+| Total                    |     0.095 |          |           |                 |
 +--------------------------+-----------+----------+-----------+-----------------+
 
 
