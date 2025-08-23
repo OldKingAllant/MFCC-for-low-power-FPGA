@@ -4,13 +4,17 @@ import math
 from scipy.fftpack import dct
 
 fft_size = 512
-wave = [32767 if i > (fft_size / 2)-3 and  i < (fft_size / 2)+3 else 0 for i in range(fft_size)]
+cos_lut = []
+
+for i in range(fft_size):
+    angle = (8 * 2 * math.pi * i) / fft_size
+    cos_lut.append(round(32767 * math.cos(angle)))
 
 signal = []
-signal.extend(wave)
-signal.extend(wave)
-signal.extend(wave)
-signal.extend(wave)
+signal.extend(cos_lut)
+signal.extend(cos_lut)
+signal.extend(cos_lut)
+signal.extend(cos_lut)
 
 total_frames = len(signal) // fft_size
 frame_step = 170
@@ -46,9 +50,11 @@ for frame in frames:
     magnitudes = fft_frame.real + fft_frame.imag
     magnitudes /= fft_size // 2
     magnitudes *= 256
-    frames_fft.append(magnitudes)
+    frames_fft.append(magnitudes[0:257])
 
-print(len(frames_fft[0]))
+print(frames_fft[0])
+print()
+print()
 
 ###################################
 
@@ -92,6 +98,10 @@ for frame in frames_fft:
             coeffs[i] = 1.0
     frame_coeffs.append(coeffs)
 
+print(frame_coeffs)
+print()
+print()
+
 #####################################
 
 log_frames = np.log10(frame_coeffs)
@@ -124,11 +134,9 @@ print(lifted_coeffs)
 
 #####################################
 
-final_coeffs = lifted_coeffs.flatten()   
+final_coeffs = lifted_coeffs.flatten()
+#final_coeffs = np.array(signal).flatten()
 x_axis = [i for i in range(len(final_coeffs))]
-
-#final_coeffs = np.array(frame_coeffs).flatten()   
-#x_axis = [i for i in range(len(final_coeffs))]
 
 plt.plot(x_axis, final_coeffs)
 plt.show()

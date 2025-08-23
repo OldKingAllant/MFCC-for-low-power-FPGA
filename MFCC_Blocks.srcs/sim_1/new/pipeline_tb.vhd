@@ -24,6 +24,7 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 use IEEE.math_real.all;
+use std.textio.all;
 
 entity pipeline_tb is
 --  Port ( );
@@ -101,10 +102,23 @@ begin
     --end process;
     
     process is 
+        FILE fd : text open write_mode is "output.txt";
+        variable frame_line : line;
+        variable coeff_cnt : integer := 0;
     begin 
         clk_output <= '0';
         wait for 500ns;
         clk_output <= '1';
         wait for 500ns;
+        
+        if(output_valid = '1') then
+            write(frame_line, real'image(real(to_integer(signed(output_value))) / 256.0) & " ");
+            coeff_cnt := coeff_cnt + 1;
+            if(coeff_cnt = 16) then
+                writeline(fd, frame_line);
+                write(frame_line, string'(""));
+                coeff_cnt := 0;
+            end if;
+        end if;
     end process;
 end Behavioral;

@@ -46,7 +46,7 @@ end dct;
 
 architecture Behavioral of dct is
     type DCT_ROW is array(0 to numcoeffs - 1) of std_logic_vector(sample_size - 1 downto 0);
-    type DCT_TABLE is array(0 to numcepstra) of DCT_ROW;
+    type DCT_TABLE is array(0 to numcepstra - 1) of DCT_ROW;
     
     function CreateDctTable(unused: integer) return DCT_TABLE is
         variable curr_row : DCT_ROW;

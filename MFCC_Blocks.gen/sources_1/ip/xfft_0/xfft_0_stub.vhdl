@@ -2,10 +2,10 @@
 -- Copyright 2022-2023 Advanced Micro Devices, Inc. All Rights Reserved.
 -- --------------------------------------------------------------------------------
 -- Tool Version: Vivado v.2023.1 (win64) Build 3865809 Sun May  7 15:05:29 MDT 2023
--- Date        : Wed Aug 13 20:41:10 2025
+-- Date        : Fri Aug 22 11:19:04 2025
 -- Host        : DESKTOP-S7TDGUG running 64-bit major release  (build 9200)
--- Command     : write_vhdl -force -mode synth_stub -rename_top xfft_0 -prefix
---               xfft_0_ xfft_0_stub.vhdl
+-- Command     : write_vhdl -force -mode synth_stub
+--               d:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.gen/sources_1/ip/xfft_0/xfft_0_stub.vhdl
 -- Design      : xfft_0
 -- Purpose     : Stub declaration of top-level module interface
 -- Device      : xa7z010clg400-1I

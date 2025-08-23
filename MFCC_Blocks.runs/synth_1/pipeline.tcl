@@ -70,7 +70,6 @@ proc create_report { reportName command } {
   }
 }
 OPTRACE "synth_1" START { ROLLUP_AUTO }
-set_param chipscope.maxJobs 3
 OPTRACE "Creating in-memory project" START { }
 create_project -in_memory -part xa7z010clg400-1I
 
@@ -113,8 +112,6 @@ foreach dcp [get_files -quiet -all -filter file_type=="Design\ Checkpoint"] {
 read_xdc D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/constrs_1/new/constraints.xdc
 set_property used_in_implementation false [get_files D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/constrs_1/new/constraints.xdc]
 
-read_xdc dont_touch.xdc
-set_property used_in_implementation false [get_files dont_touch.xdc]
 set_param ips.enableIPCacheLiteLoad 1
 
 read_checkpoint -auto_incremental -incremental D:/Programming/TESI/MFCC_Blocks/MFCC_Blocks.srcs/utils_1/imports/synth_1/sin_lifter.dcp
